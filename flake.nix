@@ -6,8 +6,22 @@
     flake-utils.url = "github:numtide/flake-utils";
   };
 
-  outputs = { self, nixpkgs, flake-utils, ... }:
-    flake-utils.lib.eachDefaultSystem (system: let
+  outputs = { self, nixpkgs, flake-utils, ... }: let
+    mkHomeModule = { pkgs, ...}: {
+      programs.neovim = {
+        enable = true;
+        package = self.packages.${pkgs.system}.default;
+        extraPackages = with pkgs; [
+          fd
+          nixfmt
+          ripgrep
+        ];
+      };
+    };
+  in {
+    homeManagerModules.default = mkHomeModule;
+
+    packages = flake-utils.lib.eachDefaultSystem (system: let
       pkgs = nixpkgs.legacyPackages.${system};
 
       # harpoon-2 = pkgs.vimUtils.buildVimPlugin {
@@ -122,19 +136,22 @@
         };
       };
     in {
-      packages.default = neovim-config;
+      default = neovim-config;
 
-      homeManagerModules.default = { config, pkgs, ... }: {
-        programs.neovim = {
-          enable = true;
-          package = neovim-config;
-          extraPackages = with pkgs; [
-            # Runtime dependencies
-            fd
-            nixfmt
-            ripgrep
-          ];
-        };
-      };
+      # packages.default = neovim-config;
+
+      # homeManagerModules.default = { config, pkgs, ... }: {
+      #   programs.neovim = {
+      #     enable = true;
+      #     package = neovim-config;
+      #     extraPackages = with pkgs; [
+      #       # Runtime dependencies
+      #       fd
+      #       nixfmt
+      #       ripgrep
+      #     ];
+      #   };
+      # };
     });
+  };
 }
