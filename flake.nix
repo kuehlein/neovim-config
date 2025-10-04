@@ -10,7 +10,8 @@
     mkHomeModule = { pkgs, ...}: {
       programs.neovim = {
         enable = true;
-        package = self.packages.${pkgs.system}.default;
+        package = self.packages.x86_64-linux.default;
+        # package = self.packages.${pkgs.system}.default;
         extraPackages = with pkgs; [
           fd
           nixfmt
