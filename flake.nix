@@ -43,7 +43,7 @@
             cmp_luasnip
 
             # Comment utility
-            Comment-nvim
+            comment-nvim
 
             # Custom plugins
             marks-plugin
