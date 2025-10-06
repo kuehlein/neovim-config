@@ -40,7 +40,7 @@
             cmp-buffer
             cmp-nvim-lua
             luasnip
-            cmp-luasnip
+            cmp_luasnip
 
             # Comment utility
             Comment-nvim
