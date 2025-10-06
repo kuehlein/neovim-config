@@ -85,7 +85,7 @@
             # Telescope and deps/extensions (from your example)
             telescope-nvim
             plenary-nvim
-            telescope-fzf-native
+            telescope-fzf-native-nvim
             telescope-smart-history-nvim
             telescope-ui-select-nvim
             sqlite-lua  # For smart_history
