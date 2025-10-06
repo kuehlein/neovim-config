@@ -3,16 +3,18 @@
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    nixvim.url = "github:nix-community/nixvim";  # NEW: Add nixvim input (pins to latest stable)
   };
 
-  outputs = { self, nixpkgs }: let
-    system = "x86_64-linux";  # Hardcoded for your T490
+  outputs = { self, nixpkgs, nixvim }: let
+    system = "x86_64-linux";  # TODO: make this dynamic
     pkgs = nixpkgs.legacyPackages.${system};
 
+    # TODO: do we want the latest version of harpoon?
     # harpoon-2 = pkgs.vimUtils.buildVimPlugin {
     #   pname = "harpoon";
     #   src = pkgs.fetchFromGitHub {
-    #     hash = "sha256-XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX=";  # Replace with output from nix-prefetch-github (see Step 2)
+    #     hash = "sha256-XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX="; # replace with output from `nix-prefetch-github`
     #     owner = "ThePrimeagen";
     #     repo = "harpoon";
     #     rev = "harpoon2";
@@ -23,89 +25,96 @@
     # Custom plugin for displaying marks
     marks-plugin = pkgs.vimUtils.buildVimPlugin {
       pname = "marks";
-      src = ./plugin;  # Directory containing marks.lua (Nix expects a dir with lua/ or plugin/ subdirs ideally)
+      src = ./plugin;
       version = "local";
     };
 
-    # Custom Neovim with plugins
-    neovim-config = pkgs.neovim.override {
-      configure = {
-        packages.myPlugins = with pkgs.vimPlugins; {
-          start = [
-            # Auto-completion and related
-            nvim-cmp
-            lspkind-nvim
-            cmp-nvim-lsp
-            cmp-path
-            cmp-buffer
-            cmp-nvim-lua
-            luasnip
-            cmp_luasnip
+    # TODO: currently some plugins have overlapping dependencies (e.g. `neogit` and `telescope` both need `plenary-nvim`)
+    # removing one  may remove both if I'm not careful. Is there a better way to do this?
+    myPlugins = with pkgs.vimPlugins; [
+      # Auto-completion
+      nvim-cmp
+      lspkind-nvim
+      cmp-nvim-lsp
+      cmp-path
+      cmp-buffer
+      cmp-nvim-lua
+      luasnip
+      cmp_luasnip
 
-            # Comment utility
-            comment-nvim
+      # Comment utility
+      comment-nvim
 
-            # Custom plugins
-            marks-plugin
+      # Custom plugins
+      marks-plugin
 
-            # Debugger and related
-            nvim-dap
-            nvim-dap-go
-            nvim-dap-ui
-            nvim-dap-virtual-text
-            nvim-nio
-            mason-nvim
+      # Debugger
+      nvim-dap
+      nvim-dap-go
+      nvim-dap-ui
+      nvim-dap-virtual-text
+      nvim-nio
+      mason-nvim
 
-            # Harpoon
-            harpoon # Uncomment and replace with harpoon-2 after Step 2 for latest version
+      # Harpoon
+      harpoon # harpoon-2
 
-            # LSP and related
-            nvim-lspconfig
-            neodev-nvim
-            mason-lspconfig-nvim
-            mason-tool-installer-nvim
-            fidget-nvim
-            conform-nvim
-            SchemaStore-nvim
+      # LSP
+      nvim-lspconfig
+      neodev-nvim
+      mason-lspconfig-nvim
+      mason-tool-installer-nvim
+      fidget-nvim
+      conform-nvim
+      SchemaStore-nvim
 
-            # Mini modules
-            mini-nvim
+      # Mini modules
+      mini-nvim
 
-            # Neogit and dependencies
-            neogit
-            plenary-nvim
-            diffview-nvim
-            telescope-nvim  # Optional for neogit, but included as dependency
+      # Neogit
+      neogit
+      plenary-nvim
+      diffview-nvim
+      telescope-nvim
 
-            # SQL tools
-            vim-dadbod
-            vim-dadbod-completion
-            vim-dadbod-ui
+      # SQL tools
+      vim-dadbod
+      vim-dadbod-completion
+      vim-dadbod-ui
 
-            # Telescope and deps/extensions (from your example)
-            telescope-nvim
-            plenary-nvim
-            telescope-fzf-native-nvim
-            telescope-smart-history-nvim
-            telescope-ui-select-nvim
-            sqlite-lua  # For smart_history
+      # Telescope
+      # telescope-nvim # dupe
+      # plenary-nvim # dupe
+      telescope-fzf-native-nvim
+      telescope-smart-history-nvim
+      telescope-ui-select-nvim
+      sqlite-lua
 
-            # Treesitter
-            nvim-treesitter
+      # Treesitter
+      nvim-treesitter
 
-            # TypeScript tools
-            typescript-tools-nvim
-          ];
-          opt = [];
-        };
+      # TypeScript tools
+      typescript-tools-nvim
+    ];
 
-        # TODO: how to just import this as raw lua file?
-        customRC = ''
-          lua << EOF
+    mkHomeModule = { pkgs, ... }: {
+      imports = [ nixvim.homeManagerModules.nixvim ];
 
-          ${builtins.readFile ./init.lua}
+      programs.nixvim = {
+        enable = true;
+        extraPackages = with pkgs; [
+          fd
+          nixfmt
+          ripgrep
+        ];
+        extraPlugins = myPlugins;
 
-          -- Additional configuration for plugins
+        # TODO: how to just import this as a raw lua file
+        # TODO: move `config/` into `init.lua`?
+        luaConfig = ''
+          ${builtins.readFile ./init.lua}  # Direct import
+
+          -- Additional configuration for plugins (via require)
           require("config.comment")
           require("config.completion")
           require("config.dap")
@@ -115,25 +124,11 @@
           require("config.neogit")
           require("config.treesitter")
           require("config.typescript")
-
-          EOF
         '';
-      };
-    };
-
-    mkHomeModule = { pkgs, ... }: {
-      programs.neovim = {
-        enable = true;
-        package = neovim-config;  # Direct reference—no self or system needed
-        extraPackages = with pkgs; [
-          fd
-          nixfmt
-          ripgrep
-        ];
       };
     };
   in {
     homeManagerModules.default = mkHomeModule;
-    packages.${system}.default = neovim-config;
+    # packages.${system}.default = neovim-config;
   };
 }
