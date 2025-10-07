@@ -106,7 +106,7 @@
         # TODO: how to just import this as a raw lua file
         # TODO: move `config/` into `init.lua`?
         extraConfigLua = ''
-          ${builtins.readFile ./init.lua}  # Direct import
+          ${builtins.readFile ./init.lua}  -- Direct import
 
           -- Additional configuration for plugins (via require)
           require("config.comment")
