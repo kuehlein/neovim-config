@@ -22,6 +22,12 @@
     #   version = "unstable";
     # };
 
+    lua-modules = pkgs.vimUtils.buildVimPlugin {
+      pname = "lua-modules";
+      src = ./lua;
+      version = "local";
+    };
+
     # Custom plugin for displaying marks
     marks-plugin = pkgs.vimUtils.buildVimPlugin {
       pname = "marks";
@@ -46,6 +52,7 @@
       comment-nvim
 
       # Custom plugins
+      lua-modules
       marks-plugin
 
       # Debugger

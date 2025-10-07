@@ -9,5 +9,5 @@ require("overwrite")
 require("theme")
 require("custom.filetype")
 
-local layouts = require("layouts")
+-- local layouts = require("layouts")
 -- layouts.colemak()
