@@ -131,7 +131,7 @@
     };
   in {
     # for home-manager
-    homeManagerModules.default = mkHomeModule;
+    homeModules.default = mkHomeModule;
 
     # standalone
     packages.${system}.default = nixvim.legacyPackages.${system}.makeNixvim {
