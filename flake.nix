@@ -134,6 +134,7 @@
           mapleader = " ";
           maplocalleader = "\\";
         };
+        opts.generateInitLua = true;
       };
     };
   in {
