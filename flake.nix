@@ -139,7 +139,6 @@
       extraConfigLua = neovimModule.programs.nixvim.extraConfigLua;
       # extraLuaPackages = neovimModule.programs.nixvim.extraLuaPackages;
       extraPackages = neovimModule.programs.nixvim.extraPackages;
-      extraPlugins = neovimModule.programs.nixvim.extraPlugins;
       globals = neovimModule.programs.nixvim.globals;
     };
   };
