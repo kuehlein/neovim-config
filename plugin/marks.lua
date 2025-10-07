@@ -2,9 +2,9 @@
 -- Custom plugin for displaying local marks in the sign column
 --
 
-local theme_utils = require("utils.theme")
-
-local p = theme_utils.palette -- commonly used colors
+-- local theme_utils = require("utils.theme")
+--
+-- local p = theme_utils.palette -- commonly used colors
 
 local SIGN_COLUMN_MARK_INDICATOR_HIGHLIGHT_GROUP = "SignColumnMarkIndicator"
 
@@ -58,4 +58,5 @@ vim.api.nvim_create_autocmd({
 })
 
 -- Ensure that marks are correctly highlighted
-vim.api.nvim_set_hl(0, SIGN_COLUMN_MARK_INDICATOR_HIGHLIGHT_GROUP, { fg = p.fg.orange })
+-- vim.api.nvim_set_hl(0, SIGN_COLUMN_MARK_INDICATOR_HIGHLIGHT_GROUP, { fg = p.fg.orange })
+vim.api.nvim_set_hl(0, SIGN_COLUMN_MARK_INDICATOR_HIGHLIGHT_GROUP, { fg = "#bd561d" })
