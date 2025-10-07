@@ -3,7 +3,7 @@
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
-    nixvim.url = "github:nix-community/nixvim";  # NEW: Add nixvim input (pins to latest stable)
+    nixvim.url = "github:nix-community/nixvim";
   };
 
   outputs = { self, nixpkgs, nixvim }: let
@@ -97,21 +97,15 @@
       typescript-tools-nvim
     ];
 
-    mkHomeModule = { pkgs, ... }: {
-      imports = [ nixvim.homeManagerModules.nixvim ];
+    neovimModule = { pkgs, ... }: {
+      imports = [ nixvim.homeModules.nixvim ];
 
       programs.nixvim = {
         enable = true;
-        extraPackages = with pkgs; [
-          fd
-          nixfmt
-          ripgrep
-        ];
-        extraPlugins = myPlugins;
 
         # TODO: how to just import this as a raw lua file
         # TODO: move `config/` into `init.lua`?
-        luaConfig = ''
+        extraConfigLua = ''
           ${builtins.readFile ./init.lua}  # Direct import
 
           -- Additional configuration for plugins (via require)
@@ -125,10 +119,28 @@
           require("config.treesitter")
           require("config.typescript")
         '';
+
+        # extraLuaPackages = [ lua-sqlite ];
+        extraPackages = with pkgs; [ fd nixfmt ripgrep ];
+        extraPlugins = myPlugins;
+        globals = {
+          mapleader = " ";
+          maplocalleader = "\\";
+        };
       };
     };
   in {
+    # for home-manager
     homeManagerModules.default = mkHomeModule;
-    # packages.${system}.default = neovim-config;
+
+    # standalone
+    packages.${system}.default = nixvim.legacyPackages.${system}.makeNixvim {
+      extraPlugins = myPlugins;
+      extraConfigLua = neovimModule.programs.nixvim.extraConfigLua;
+      # extraLuaPackages = neovimModule.programs.nixvim.extraLuaPackages;
+      extraPackages = neovimModule.programs.nixvim.extraPackages;
+      extraPlugins = neovimModule.programs.nixvim.extraPlugins;
+      globals = neovimModule.programs.nixvim.globals;
+    };
   };
 }
