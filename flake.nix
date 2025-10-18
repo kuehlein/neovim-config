@@ -1,153 +1,69 @@
+# TODO: read the nix flake guide: https://vtimofeenko.com/posts/practical-nix-flake-anatomy-a-guided-tour-of-flake.nix/
+#   - create a flake that works with nixos and without it
+#   - streamline neovim config
+#      - minimize plugins
+#      - no useless config
+#      - switch to gruvbox theme
+
+# TODO: config to make this work for non-linux? (do this later)
+
+# TODO: update symbol layer
+#         - move = onto home row?
+#         - fix ' and "
+#             - ! <=> `
+#             - ? <=> '
+#             - not sure..
+#         - homerow mods?
+
+# TODO: clean up github repos & history
+
+# TODO: proceed with nixos config
+#    - seems cool: https://github.com/Mjoyufull/fsel
+#    - rice zsh
+
 {
-  description = "Neovim config & Nix flake";
+  description = "Neovim config.";
 
   inputs = {
+    flake-utils.url = "github:numtide/flake-utils";
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
-    nixvim.url = "github:nix-community/nixvim";
+    plugins.url = "./plugins.nix";
   };
 
-  outputs = { self, nixpkgs, nixvim }: let
-    system = "x86_64-linux";  # TODO: make this dynamic
-    pkgs = nixpkgs.legacyPackages.${system};
+  outputs = inputs @ { self, flake-utils, nixpkgs, plugins ... }:
+    flake-utils.lib.eachDefaultSystem (system:
+    let
+      pkgs = nixpkgs.legacyPackages.${system};
 
-    # TODO: do we want the latest version of harpoon?
-    # harpoon-2 = pkgs.vimUtils.buildVimPlugin {
-    #   pname = "harpoon";
-    #   src = pkgs.fetchFromGitHub {
-    #     hash = "sha256-XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX="; # replace with output from `nix-prefetch-github`
-    #     owner = "ThePrimeagen";
-    #     repo = "harpoon";
-    #     rev = "harpoon2";
-    #   };
-    #   version = "unstable";
-    # };
+      # Package your entire config dir (init.lua + subdirs) into a derivation
+      # This copies everything to $out, preserving structure
+      configDir = pkgs.runCommand "nvim-config" {} ''
+        mkdir -p $out
+        cp ${./init.lua} $out/init.lua
+        cp -r ${./lua} $out/lua
+        cp -r ${./plugin} $out/plugin
+        cp -r ${./after} $out/after
+      '';
 
-    lua-modules = pkgs.vimUtils.buildVimPlugin {
-      pname = "lua-modules";
-      src = ./lua;
-      version = "local";
-    };
+      neovimConfig = pkgs.wrapNeovimUnstable pkgs.neovim-unstable {
+        configure = {
+          customRC = ''
+            lua vim.opt.runtimepath:prepend("${configDir}")
+            luafile ${configDir}/init.lua
+          '';
 
-    # Custom plugin for displaying marks
-    marks-plugin = pkgs.vimUtils.buildVimPlugin {
-      pname = "marks";
-      src = ./plugin;
-      version = "local";
-    };
-
-    # TODO: currently some plugins have overlapping dependencies (e.g. `neogit` and `telescope` both need `plenary-nvim`)
-    # removing one  may remove both if I'm not careful. Is there a better way to do this?
-    myPlugins = with pkgs.vimPlugins; [
-      # Auto-completion
-      nvim-cmp
-      lspkind-nvim
-      cmp-nvim-lsp
-      cmp-path
-      cmp-buffer
-      cmp-nvim-lua
-      luasnip
-      cmp_luasnip
-
-      # Comment utility
-      comment-nvim
-
-      # Custom plugins
-      lua-modules
-      marks-plugin
-
-      # Debugger
-      nvim-dap
-      nvim-dap-go
-      nvim-dap-ui
-      nvim-dap-virtual-text
-      nvim-nio
-      mason-nvim
-
-      # Harpoon
-      harpoon # harpoon-2
-
-      # LSP
-      nvim-lspconfig
-      neodev-nvim
-      mason-lspconfig-nvim
-      mason-tool-installer-nvim
-      fidget-nvim
-      conform-nvim
-      SchemaStore-nvim
-
-      # Mini modules
-      mini-nvim
-
-      # Neogit
-      neogit
-      plenary-nvim
-      diffview-nvim
-      telescope-nvim
-
-      # SQL tools
-      vim-dadbod
-      vim-dadbod-completion
-      vim-dadbod-ui
-
-      # Telescope
-      # telescope-nvim # dupe
-      # plenary-nvim # dupe
-      telescope-fzf-native-nvim
-      telescope-smart-history-nvim
-      telescope-ui-select-nvim
-      sqlite-lua
-
-      # Treesitter
-      nvim-treesitter
-
-      # TypeScript tools
-      typescript-tools-nvim
-    ];
-
-    neovimModule = { pkgs, ... }: {
-      imports = [ nixvim.homeModules.nixvim ];
-
-      programs.nixvim = {
-        enable = true;
-
-        # TODO: how to just import this as a raw lua file
-        # TODO: move `config/` into `init.lua`?
-        extraConfigLua = ''
-          ${builtins.readFile ./init.lua}  -- Direct import
-
-          -- Additional configuration for plugins (via require)
-          require("config.comment")
-          require("config.completion")
-          require("config.dap")
-          require("config.harpoon")
-          require("config.lspconfig")
-          require("config.mini")
-          require("config.neogit")
-          require("config.treesitter")
-          require("config.typescript")
-        '';
-
-        # extraLuaPackages = [ lua-sqlite ];
-        extraPackages = with pkgs; [ fd nixfmt ripgrep ];
-        extraPlugins = myPlugins;
-        globals = {
-          mapleader = " ";
-          maplocalleader = "\\";
+          packages.all.start = plugins.outputs.plugins.${system};
         };
-        opts.generateInitLua = true;
       };
-    };
-  in {
-    # for home-manager
-    homeModules.default = neovimModule;
+    in {
+      packages = {
+        default = neovimConfig; # `nix build .#default` builds this
+        neovim = neovimConfig; # Alias for clarity
+      };
 
-    # standalone
-    packages.${system}.default = nixvim.legacyPackages.${system}.makeNixvim {
-      extraPlugins = myPlugins;
-      extraConfigLua = neovimModule.programs.nixvim.extraConfigLua;
-      # extraLuaPackages = neovimModule.programs.nixvim.extraLuaPackages;
-      extraPackages = neovimModule.programs.nixvim.extraPackages;
-      globals = neovimModule.programs.nixvim.globals;
-    };
-  };
+      # TODO: what is this for?
+      devShells.default = pkgs.mkShell {
+        packages = [ customNeovim ];
+      };
+    });
 }
