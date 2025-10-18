@@ -33,7 +33,7 @@
     flake-utils.lib.eachDefaultSystem (system:
     let
       pkgs = nixpkgs.legacyPackages.${system};
-      pluginsMod = import ./plugins.nix { inherit pkgs };
+      pluginsMod = import ./plugins.nix { inherit pkgs; };
 
       # Package your entire config dir (init.lua + subdirs) into a derivation
       # This copies everything to $out, preserving structure
