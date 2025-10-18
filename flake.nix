@@ -61,9 +61,9 @@
         neovim = neovimConfig; # Alias for clarity
       };
 
-      # TODO: what is this for?
-      devShells.default = pkgs.mkShell {
-        packages = [ customNeovim ];
-      };
+      # # TODO: what is this for?
+      # devShells.default = pkgs.mkShell {
+      #   packages = [ customNeovim ];
+      # };
     });
 }
