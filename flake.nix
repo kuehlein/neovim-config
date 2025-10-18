@@ -27,13 +27,13 @@
   inputs = {
     flake-utils.url = "github:numtide/flake-utils";
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
-    plugins.url = "./plugins.nix";
   };
 
-  outputs = inputs @ { self, flake-utils, nixpkgs, plugins, ... }:
+  outputs = inputs @ { self, flake-utils, nixpkgs, ... }:
     flake-utils.lib.eachDefaultSystem (system:
     let
       pkgs = nixpkgs.legacyPackages.${system};
+      pluginsMod = import ./plugins.nix { inherit pkgs };
 
       # Package your entire config dir (init.lua + subdirs) into a derivation
       # This copies everything to $out, preserving structure
@@ -51,8 +51,8 @@
             lua vim.opt.runtimepath:prepend("${configDir}")
             luafile ${configDir}/init.lua
           '';
-
-          packages.all.start = plugins.outputs.plugins.${system};
+          extraMakeWrapperArgs = [ "--prefix" "PATH" ":" (pkgs.lib.makeBinPath pluginsMod.extraPackages) ];
+          packages.all.start = pluginsMod.plugins;
         };
       };
     in {
