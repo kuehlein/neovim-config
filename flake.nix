@@ -30,7 +30,7 @@
     plugins.url = "./plugins.nix";
   };
 
-  outputs = inputs @ { self, flake-utils, nixpkgs, plugins ... }:
+  outputs = inputs @ { self, flake-utils, nixpkgs, plugins, ... }:
     flake-utils.lib.eachDefaultSystem (system:
     let
       pkgs = nixpkgs.legacyPackages.${system};
