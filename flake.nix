@@ -51,9 +51,9 @@
             lua vim.opt.runtimepath:prepend("${configDir}")
             luafile ${configDir}/init.lua
           '';
-          extraMakeWrapperArgs = [ "--prefix" "PATH" ":" (pkgs.lib.makeBinPath pluginsMod.extraPackages) ];
           packages.all.start = pluginsMod.plugins;
         };
+        extraMakeWrapperArgs = [ "--prefix" "PATH" ":" (pkgs.lib.makeBinPath pluginsMod.extraPackages) ];
       };
     in {
       packages = {

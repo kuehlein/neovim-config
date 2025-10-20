@@ -99,4 +99,3 @@ let
 in {
   inherit plugins;
 };
-
