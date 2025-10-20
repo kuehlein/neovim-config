@@ -45,7 +45,7 @@
         cp -r ${./after} $out/after
       '';
 
-      neovimConfig = pkgs.wrapNeovimUnstable pkgs.neovim {
+      neovimConfig = pkgs.wrapNeovimUnstable pkgs.neovim-unwrapped {
         configure = {
           customRC = ''
             lua vim.opt.runtimepath:prepend("${configDir}")
