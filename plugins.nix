@@ -59,17 +59,18 @@ let
     ];
 
     # TODO: does this change now? use easy lsp setup for now
-    lsp = with vimPlugins; [
-      lua_ls
-      nil
-      # conform-nvim
-      # fidget-nvim
-      # mason-lspconfig-nvim
-      # mason-tool-installer-nvim
-      # neodev-nvim
-      # nvim-lspconfig
-      # SchemaStore-nvim
-    ];
+    # lsp = with vimPlugins; [
+    #   lua_ls
+    #   nil
+    #
+    #   # conform-nvim
+    #   # fidget-nvim
+    #   # mason-lspconfig-nvim
+    #   # mason-tool-installer-nvim
+    #   # neodev-nvim
+    #   # nvim-lspconfig
+    #   # SchemaStore-nvim
+    # ];
 
     mini = with vimPlugins; [
       mini-nvim

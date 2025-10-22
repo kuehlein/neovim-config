@@ -37,22 +37,12 @@
 
       # Package your entire config dir (init.lua + subdirs) into a derivation
       # This copies everything to $out, preserving structure
-      # configDir = pkgs.runCommand "nvim-config" {} ''
-      #   mkdir -p $out
-      #   cp ${./init.lua} $out/init.lua
-      #   cp -r ${./lua} $out/lua
-      #   cp -r ${./plugin} $out/plugin
-      #   cp -r ${./after} $out/after
-      # '';
-
-      # Package your entire config dir (init.lua + subdirs) into a derivation
-      # This copies everything to $out, preserving structure
       configDir = pkgs.runCommand "nvim-config" {} ''
         mkdir -p $out
-        ${if builtins.pathExists ./init.lua then "cp ${./init.lua} $out/init.lua" else ""}
-        ${if builtins.pathExists ./lua then "cp -r ${./lua} $out/lua" else ""}
-        ${if builtins.pathExists ./plugin then "cp -r ${./plugin} $out/plugin" else ""}
-        ${if builtins.pathExists ./after then "cp -r ${./after} $out/after" else ""}
+        cp ${./init.lua} $out/init.lua
+        cp -r ${./lua} $out/lua
+        cp -r ${./plugin} $out/plugin
+        cp -r ${./after} $out/after
       '';
 
       neovimConfig = pkgs.wrapNeovimUnstable pkgs.neovim-unwrapped {
