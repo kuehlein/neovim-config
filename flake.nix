@@ -36,10 +36,18 @@
 	plugins = import ./plugins.nix { inherit pkgs; };
 
         # Symlink your config dir into the store (handles subfiles automatically)
-        configDir = pkgs.symlinkJoin {
-          name = "neovim-config";
-          paths = [ "${./.}" ];
-        };
+        # configDir = pkgs.symlinkJoin {
+        #   name = "neovim-config";
+        #   paths = [ "${./.}" ];
+        # };
+
+        configDir = pkgs.runCommand "neovim-config" {} ''
+          mkdir -p $out/lua $out/after $out/plugin  # Create subdirs
+          cp ${./init.lua} $out/init.lua
+          cp -r ${./lua}/* $out/lua/
+          cp -r ${./after}/* $out/after/  # If after/ exists
+          cp -r ${./plugin}/* $out/plugin/  # If plugin/ exists
+        '';
 
         neovimConfig = pkgs.wrapNeovimUnstable pkgs.neovim-unwrapped {
           configure = {
