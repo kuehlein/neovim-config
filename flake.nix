@@ -44,47 +44,36 @@
 	    cp -r lua $out/
 	    cp -r after $out/
 	    cp init.lua $out/
-
-	    # Debug
-	    echo "Contents of $out:"
-	    ls -la $out/
-	    echo "Contents of $out/lua:"
-	    ls -la $out/lua/ || true
 	  '';
         };
 
-        neovimConfig = pkgs.wrapNeovimUnstable pkgs.neovim-unwrapped {
-          configure = {
-            customRC = ''
-	      lua << EOF
+        neovimConfig = pkgs.neovimUtils.makeNeovimConfig {
+	  viAlias = false;
+	  vimAlias = false;
+	  withPython3 = true;
+	  withRuby = true; # do i need this?
+	  withNodeJs = false; # can i add this?
 
-	      print("CustomRC is running...")
-	      print("Adding to runtimepath: ${configDir}")
+          plugins = map (plugin: {
+	    plugin = plugin;
+	  }) plugins.plugins;
 
-              vim.opt.runtimepath:prepend('${configDir}')
+          customRC = ''
+            set runtimepath^=${configDir}
+	    set runtimepath+=${configDir}/after
 
-              print("Current runtimepath:")
-	      print(vim.inspect(vim.opt.runtimepath:get()))
-	      print("Attempting to load init.lua from: ${configDir}/init.lua")
+	    lua << EOF
+	    vim.g.mapleader = " "
+	    vim.g.maplocalleader = "\\"
 
-	      local init_file = '${configDir}/init.lua'
-	      local f = io.open(init_file, "r")
+            dotfile('${configDir}/init.lua')
+	    EOF
+          '';
+	};
 
-	      if f then
-	        print(init.lua file exists and is readable")
-		f:close()
-		dotfile(init_file)
-	      else
-	        print("ERROR: Cannot open init.lua at " .. init_file)
-	      end
-
-	      EOF
-            '';
-            packages.myPlugins = {
-              start = plugins.plugins;
-            };
-          };
-        };
+        neovimWrapped = pkgs.wrapNeovimUnstable pkgs.neovim-unwrapped (neovimConfig // {
+	  wrapRc = true;
+	});
       in {
         packages = {
           default = neovimConfig;
