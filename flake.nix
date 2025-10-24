@@ -41,10 +41,13 @@
         #   paths = [ "${./.}" ];
         # };
 
-	configDir = pkgs.symlinkJoin {
-          name = "neovim-config";
-          paths = [ (builtins.path { path = ./.; name = "neovim-config-source"; filter = (p: t: true); }) ];
-        };
+        configDir = pkgs.runCommand "neovim-config" {} ''
+          mkdir -p $out/lua $out/after $out/plugin
+          cp ${./init.lua} $out/init.lua
+          cp -r ${./lua}/* $out/lua/
+          cp -r ${./after}/* $out/after/
+          cp -r ${./plugin}/* $out/plugin/
+       '';
 
         neovimConfig = pkgs.wrapNeovimUnstable pkgs.neovim-unwrapped {
           configure = {
