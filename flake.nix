@@ -35,30 +35,31 @@
         pkgs = import nixpkgs { inherit system; };
 	plugins = import ./plugins.nix { inherit pkgs; };
 
-        configDir = pkgs.symlinkJoin {
+        # Symlink your config dir into the store
+        configDir = pkgs.stdenv.mkDerivation {
           name = "neovim-config";
-          paths = [ (builtins.path { path = ./.; name = "neovim-config-source"; }) ];  # Force all files
+	  src = ./.;
+	  installPhase = ''
+	    mkdir -p $out
+	    cp -r lua $out/
+	    cp -r after $out/
+	    cp init.lua $out/
+	  '';
         };
 
-        wrapped = pkgs.wrapNeovimUnstable pkgs.neovim-unwrapped {
+        neovimConfig = pkgs.wrapNeovimUnstable pkgs.neovim-unwrapped {
           configure = {
-            luaRcContent = ''
-              vim.notify('LuaRC starting', vim.log.levels.INFO)
+            customRC = ''
+	      lua << EOF
               vim.opt.runtimepath:prepend('${configDir}')
-              vim.opt.runtimepath:append('${configDir}/after')
-              vim.opt.runtimepath:append('${configDir}/plugin')  # If plugin/ exists
-              vim.notify('rtp set: ' .. vim.inspect(vim.opt.runtimepath:get()), vim.log.levels.INFO)
-              vim.notify('Sourcing init.lua', vim.log.levels.INFO)
-              dofile('${configDir}/init.lua')
-              vim.notify('LuaRC done', vim.log.levels.INFO)
+              dotfile('${configDir}/init.lua')
+	      EOF
             '';
             packages.myPlugins = {
               start = plugins.plugins;
             };
           };
         };
-        neovimConfig = wrapped // { passthru = { configDir = configDir; }; };  # Expose for eval
-
       in {
         packages = {
           default = neovimConfig;

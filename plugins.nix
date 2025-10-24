@@ -6,7 +6,7 @@
 
 { pkgs }:
 let
-  inherit (pkgs) vimPlugins vimUtils;
+  inherit (pkgs) vimPlugins;
 
   # TODO: do we want the latest version of harpoon?
   # harpoon-2 = vimUtils.buildVimPlugin {
@@ -20,7 +20,7 @@ let
   #   version = "unstable";
   # };
 
-  plugins = nixpkgs.lib.unique (builtins.concatLists (builtins.attrValues {
+  plugins = pkgs.lib.unique (builtins.concatLists (builtins.attrValues {
     # TODO: mini.completion?
     autoCompletion = with vimPlugins; [
       cmp-buffer
