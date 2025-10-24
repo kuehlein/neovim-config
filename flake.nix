@@ -33,13 +33,13 @@
     flake-utils.lib.eachDefaultSystem (system:
       let
         pkgs = import nixpkgs { inherit system; };
-	plugins = import ./plugins.nix { inherit pkgs; };
+        plugins = import ./plugins.nix { inherit pkgs; };
 
         # Symlink your config dir into the store
         configDir = pkgs.stdenv.mkDerivation {
           name = "neovim-config";
-	  src = ./.;
-	  installPhase = ''
+          src = ./.;
+          installPhase = ''
 	    mkdir -p $out
 	    cp -r lua $out/
 	    cp -r after $out/
@@ -71,9 +71,7 @@
           '';
 	};
 
-        neovimWrapped = pkgs.wrapNeovimUnstable pkgs.neovim-unwrapped (neovimConfig // {
-	  wrapRc = true;
-	});
+        neovimWrapped = pkgs.wrapNeovimUnstable pkgs.neovim-unwrapped neovimConfig;
       in {
         packages = {
           default = neovimConfig;
