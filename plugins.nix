@@ -97,6 +97,12 @@ let
       nvim-treesitter
     ];
   };
+
+  # extraPackages = with pkgs; [
+  #   delve
+  #   lua-language-server
+  #   nil
+  # ];
 in {
-  inherit plugins;
+  inherit plugins; # extraPackages;
 };

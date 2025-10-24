@@ -1,5 +1,15 @@
 -- TODO: mini.pick instead of telescope?
 
+
+-- vim.notify("init.lua loaded", vim.log.levels.INFO)
+--
+-- local ok, remap = pcall(require, "remap")
+--
+-- if ok then vim.notify("remap loaded successfully", vim.log.levels.INFO) else vim.notify("remap failed: " .. remap, vim.log.levels.ERROR) end
+--
+
+print("init.lua loaded...")
+
 vim.g.mapleader = " "
 vim.g.maplocalleader = "\\"
 
@@ -28,3 +38,5 @@ vim.o.winboarder = "rounded" -- border around popups
 vim.keymap.set("n", "<leader>lf", vim.lsp.buf.format) -- format file
 
 -- maybe <leader>xd and <leader>xy for delete/yank with no clipboard
+
+print("init.lua finished running.")
