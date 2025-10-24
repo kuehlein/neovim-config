@@ -35,30 +35,21 @@
         pkgs = import nixpkgs { inherit system; };
 	plugins = import ./plugins.nix { inherit pkgs; };
 
-        # Symlink your config dir into the store (handles subfiles automatically)
-        # configDir = pkgs.symlinkJoin {
-        #   name = "neovim-config";
-        #   paths = [ "${./.}" ];
-        # };
+        configDir = pkgs.symlinkJoin {
+          name = "neovim-config";
+          paths = [ (builtins.path { path = ./.; name = "neovim-config-source"; }) ];  # Force all files
+        };
 
-        configDir = pkgs.runCommand "neovim-config" {} ''
-          mkdir -p $out/lua $out/after $out/plugin
-          cp ${./init.lua} $out/init.lua
-          cp -r ${./lua}/* $out/lua/
-          cp -r ${./after}/* $out/after/
-          cp -r ${./plugin}/* $out/plugin/
-       '';
-
-        neovimConfig = pkgs.wrapNeovimUnstable pkgs.neovim-unwrapped {
+        wrapped = pkgs.wrapNeovimUnstable pkgs.neovim-unwrapped {
           configure = {
-            customRC = ''
-	      vim.notify('LuaRC starting', vim.log.levels.INFO)
+            luaRcContent = ''
+              vim.notify('LuaRC starting', vim.log.levels.INFO)
               vim.opt.runtimepath:prepend('${configDir}')
               vim.opt.runtimepath:append('${configDir}/after')
-              vim.opt.runtimepath:append('${configDir}/plugin')
+              vim.opt.runtimepath:append('${configDir}/plugin')  # If plugin/ exists
               vim.notify('rtp set: ' .. vim.inspect(vim.opt.runtimepath:get()), vim.log.levels.INFO)
               vim.notify('Sourcing init.lua', vim.log.levels.INFO)
-              dofile('${configDir}/init.lua')  -- Lua equivalent of luafile
+              dofile('${configDir}/init.lua')
               vim.notify('LuaRC done', vim.log.levels.INFO)
             '';
             packages.myPlugins = {
@@ -66,6 +57,8 @@
             };
           };
         };
+        neovimConfig = wrapped // { passthru = { configDir = configDir; }; };  # Expose for eval
+
       in {
         packages = {
           default = neovimConfig;
