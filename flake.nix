@@ -44,6 +44,12 @@
 	    cp -r lua $out/
 	    cp -r after $out/
 	    cp init.lua $out/
+
+	    # Debug
+	    echo "Contents of $out:"
+	    ls -la $out/
+	    echo "Contents of $out/lua:"
+	    ls -la $out/lua/ || true
 	  '';
         };
 
@@ -51,8 +57,27 @@
           configure = {
             customRC = ''
 	      lua << EOF
+
+	      print("CustomRC is running...")
+	      print("Adding to runtimepath: ${configDir}")
+
               vim.opt.runtimepath:prepend('${configDir}')
-              dotfile('${configDir}/init.lua')
+
+              print("Current runtimepath:")
+	      print(vim.inspect(vim.opt.runtimepath:get()))
+	      print("Attempting to load init.lua from: ${configDir}/init.lua")
+
+	      local init_file = '${configDir}/init.lua'
+	      local f = io.open(init_file, "r")
+
+	      if f then
+	        print(init.lua file exists and is readable")
+		f:close()
+		dotfile(init_file)
+	      else
+	        print("ERROR: Cannot open init.lua at " .. init_file)
+	      end
+
 	      EOF
             '';
             packages.myPlugins = {
