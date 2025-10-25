@@ -9,7 +9,7 @@ require("overwrite")
 require("theme")
 
 -- Configuration for plugins
-require("config.comment")
+-- require("config.comment")
 require("config.completion")
 require("config.dap")
 require("config.harpoon")
