@@ -12,10 +12,3 @@ if vim.g.graphql_ftplugin_is_active then
 end
 
 vim.g.graphql_ftplugin_is_active = true
-
--- unpack vim.g.ale_linters (etc.) and apply language specific updates (vim.g.ale_linters = { unpack(vim.g.ale_linters, javascript = { "eslint" } })
-
--- linting/formatting
--- vim.g.ale_linters = { javascript = { "eslint" } };
--- vim.g.ale_fixers = { javascript = { "prettier" } };
--- vim.g.ale_fix_on_save = 1;
