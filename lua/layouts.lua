@@ -60,7 +60,7 @@ end
 vim.api.nvim_create_user_command("Colemak", colemak, { nargs = 0 })
 vim.api.nvim_create_user_command("Qwerty", qwerty, { nargs = 0 })
 
--- return remaps to invoke in init.lua
+-- Return remaps to invoke in init.lua
 return {
 	colemak = colemak,
 	qwerty = qwerty,

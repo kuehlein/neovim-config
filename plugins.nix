@@ -58,19 +58,9 @@ let
       harpoon # harpoon-2
     ];
 
-    # TODO: does this change now? use easy lsp setup for now
-    # lsp = with vimPlugins; [
-    #   lua_ls
-    #   nil
-    #
-    #   # conform-nvim
-    #   # fidget-nvim
-    #   # mason-lspconfig-nvim
-    #   # mason-tool-installer-nvim
-    #   # neodev-nvim
-    #   # nvim-lspconfig
-    #   # SchemaStore-nvim
-    # ];
+    lsp = with vimPlugins; [
+      nvim-lspconfig
+    ];
 
     mini = with vimPlugins; [
       mini-nvim
@@ -97,12 +87,6 @@ let
       nvim-treesitter
     ];
   }));
-
-  # extraPackages = with pkgs; [
-  #   delve
-  #   lua-language-server
-  #   nil
-  # ];
 in {
-  inherit plugins; # extraPackages;
+  inherit plugins;
 }

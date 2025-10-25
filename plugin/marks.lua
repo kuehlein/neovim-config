@@ -2,10 +2,6 @@
 -- Custom plugin for displaying local marks in the sign column
 --
 
--- local theme_utils = require("utils.theme")
---
--- local p = theme_utils.palette -- commonly used colors
-
 local SIGN_COLUMN_MARK_INDICATOR_HIGHLIGHT_GROUP = "SignColumnMarkIndicator"
 
 function PlaceMarkIndicator(char)
@@ -57,6 +53,7 @@ vim.api.nvim_create_autocmd({
 	callback = DisplayMarkIndicator,
 })
 
+local gruvbox_orange = "#d65d0e"
+
 -- Ensure that marks are correctly highlighted
--- vim.api.nvim_set_hl(0, SIGN_COLUMN_MARK_INDICATOR_HIGHLIGHT_GROUP, { fg = p.fg.orange })
-vim.api.nvim_set_hl(0, SIGN_COLUMN_MARK_INDICATOR_HIGHLIGHT_GROUP, { fg = "#bd561d" })
+vim.api.nvim_set_hl(0, SIGN_COLUMN_MARK_INDICATOR_HIGHLIGHT_GROUP, { fg = gruvbox_orange })
