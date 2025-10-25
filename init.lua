@@ -1,5 +1,3 @@
-print("init.lua loaded...")
-
 vim.g.mapleader = " "
 vim.g.maplocalleader = "\\"
 
@@ -20,9 +18,7 @@ require("config.harpoon")
 require("config.treesitter")
 
 local layouts = require("layouts")
-layouts.qwerty() -- layouts.colemak()
-
-vim.o.winboarder = "rounded" -- border around popups
+layouts.colemak() -- layouts.colemak()
 
 -- new keymaps..?
 vim.keymap.set("n", "<leader>lf", vim.lsp.buf.format) -- format file
