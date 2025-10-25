@@ -15,7 +15,7 @@ require("config.dap")
 require("config.harpoon")
 -- require("config.lspconfig")
 -- require("config.mini")
-require("config.neogit")
+-- require("config.neogit")
 -- require("config.telescope")
 require("config.treesitter")
 
