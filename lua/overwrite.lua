@@ -15,8 +15,8 @@ vim.keymap.set("n", "<C-u>", "<C-u>zz")
 vim.keymap.set("n", "J", "mzJ`z", opts)
 
 -- Swap lines in visual mode
-vim.keymap.set("v", "j", ":m '>+1<CR>gv=gv", opts)
-vim.keymap.set("v", "k", ":m '<-2<CR>gv=gv", opts)
+-- vim.keymap.set("v", "j", ":m '>+1<CR>gv=gv", opts)
+-- vim.keymap.set("v", "k", ":m '<-2<CR>gv=gv", opts)
 
 -- disable `Ex` mode
 vim.keymap.set("n", "Q", [[<Cmd>echo "Ex mode disabled."<CR>]], opts)

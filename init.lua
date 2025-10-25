@@ -1,15 +1,3 @@
--- TODO: mini.pick instead of telescope?
-
-
--- vim.notify("init.lua loaded", vim.log.levels.INFO)
---
--- local ok, remap = pcall(require, "remap")
---
--- if ok then vim.notify("remap loaded successfully", vim.log.levels.INFO) else vim.notify("remap failed: " .. remap, vim.log.levels.ERROR) end
---
-
-vim.notify("init.lua loaded successfully", vim.log.levels.INFO)
-
 print("init.lua loaded...")
 
 vim.g.mapleader = " "

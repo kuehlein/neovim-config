@@ -55,7 +55,7 @@
           vim.g.mapleader = " "
           vim.g.maplocalleader = "\\"
 
-          dotfile('${configDir}/init.lua')
+          dofile('${configDir}/init.lua')
           EOF
         '';
 
