@@ -20,7 +20,6 @@ let
   #   version = "unstable";
   # };
 
-  # plugins = nixpkgs.lib.unique (builtins.concatLists (builtins.attrValues {
   plugins = pkgs.lib.unique (builtins.concatLists (builtins.attrValues {
     # TODO: mini.completion?
     autoCompletion = with vimPlugins; [
@@ -75,7 +74,7 @@ let
 
     mini = with vimPlugins; [
       mini-nvim
-    ]; 
+    ];
 
     neogit = with vimPlugins; [
       diffview-nvim
@@ -97,7 +96,7 @@ let
     treesitter = with vimPlugins; [
       nvim-treesitter
     ];
-  };
+  }));
 
   # extraPackages = with pkgs; [
   #   delve
