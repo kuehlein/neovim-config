@@ -47,31 +47,25 @@
 	  '';
         };
 
-        neovimConfig = pkgs.neovimUtils.makeNeovimConfig {
-	  viAlias = false;
-	  vimAlias = false;
-	  withPython3 = true;
-	  withRuby = true; # do i need this?
-	  withNodeJs = false; # can i add this?
+        customRC = ''
+          set runtimepath^=${configDir}
+          set runtimepath+=${configDir}/after
 
-          plugins = map (plugin: {
-	    plugin = plugin;
-	  }) plugins.plugins;
+          lua << EOF
+          vim.g.mapleader = " "
+          vim.g.maplocalleader = "\\"
 
-          customRC = ''
-            set runtimepath^=${configDir}
-	    set runtimepath+=${configDir}/after
+          dotfile('${configDir}/init.lua')
+          EOF
+        '';
 
-	    lua << EOF
-	    vim.g.mapleader = " "
-	    vim.g.maplocalleader = "\\"
-
-            dotfile('${configDir}/init.lua')
-	    EOF
-          '';
+        neovimConfig = pkgs.wrapNeovim pkgs.neovim-unwrapped {
+	  configure = {
+            customRC = customRC;
+	    packages.myPlugins.start = plugins.plugins;
+	  };
 	};
 
-        neovimWrapped = pkgs.wrapNeovimUnstable pkgs.neovim-unwrapped neovimConfig;
       in {
         packages = {
           default = neovimConfig;
