@@ -20,6 +20,7 @@ let
   #   version = "unstable";
   # };
 
+  # plugins = nixpkgs.lib.unique (builtins.concatLists (builtins.attrValues {
   plugins = pkgs.lib.unique (builtins.concatLists (builtins.attrValues {
     # TODO: mini.completion?
     autoCompletion = with vimPlugins; [
