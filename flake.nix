@@ -50,9 +50,12 @@
             customRC = customRC;
             packages.myPlugins.start = plugins.plugins;
           };
-          extraMakeWrapperArgs = ''
-            --prefix PATH : ${pkgs.lib.makeBinPath lspServers}
-          '';
+          extraMakeWrapperArgs = pkgs.lib.concatStringsSep "" [
+            "--prefix"
+            "PATH"
+            ":"
+            "${pkgs.lib.makeBinPath lspServers}"
+          ];
         };
 
       in {
