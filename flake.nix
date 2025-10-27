@@ -38,9 +38,6 @@
           set runtimepath+=${configDir}/after
 
           lua << EOF
-          vim.g.mapleader = " "
-          vim.g.maplocalleader = "\\"
-
           dofile('${configDir}/init.lua')
           EOF
         '';
@@ -50,12 +47,12 @@
             customRC = customRC;
             packages.myPlugins.start = plugins.plugins;
           };
-          extraMakeWrapperArgs = pkgs.lib.concatStringsSep "" [
-            "--prefix"
-            "PATH"
-            ":"
-            "${pkgs.lib.makeBinPath lspServers}"
-          ];
+          # extraMakeWrapperArgs = pkgs.lib.concatStringsSep "" [
+          #   "--prefix"
+          #   "PATH"
+          #   ":"
+          #   "${pkgs.lib.makeBinPath lspServers}"
+          # ];
         };
 
       in {
