@@ -38,6 +38,9 @@
           set runtimepath+=${configDir}/after
 
           lua << EOF
+          vim.g.mapleader = " "
+          vim.g.maplocalleader = "\\"
+
           dofile('${configDir}/init.lua')
           EOF
         '';
