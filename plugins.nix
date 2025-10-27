@@ -58,10 +58,6 @@ let
       harpoon # harpoon-2
     ];
 
-    lsp = with vimPlugins; [
-      nvim-lspconfig
-    ];
-
     mini = with vimPlugins; [
       mini-nvim
     ];

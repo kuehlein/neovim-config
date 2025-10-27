@@ -1,4 +1,7 @@
-require("gruvbox").setup({
+local gruvbox = require("gruvbox")
+local p = gruvbox.palette -- https://github.com/ellisonleao/gruvbox.nvim/blob/main/lua/gruvbox.lua
+
+gruvbox.setup({
   bold = false,
   contrast = "hard",
   italic = {
@@ -7,6 +10,12 @@ require("gruvbox").setup({
     fold = false,
     operators = false,
     strings = false,
+  },
+  overrides = {
+    ["LspInlayHint"] = { bg = p.faded_blue, fg = p.bright_blue },
+    ["Todo"] = { bg = p.faded_orange, fg = p.bright_orange },
+
+    ["@lsp.mod.mutable.rust"] = { bold = true, bg = p.faded_red, fg = p.bright_red },
   },
   terminal_colors = true,
 })

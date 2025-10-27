@@ -1,6 +1,5 @@
 # TODO: config to make this work for non-linux? (do this later)
 # TODO: clean up github repos & history
-# TODO: rice zsh
 
 {
   description = "Neovim config.";
@@ -16,9 +15,17 @@
         pkgs = import nixpkgs { inherit system; };
         plugins = import ./plugins.nix { inherit pkgs; };
 
-        lspServers = with pkgs; [
-          lua-language-server
-          nil
+        languageServers = with pkgs; [
+          bash-language-server # Bash
+          clang-tools # C
+          haskell-language-server # Haskell
+          lua-language-server # Lua
+          nil # Nix
+          rust-analyzer # Rust
+          taplo # TOML
+          typescript-language-server # Typescript/Javascript
+          vscode-langservers-extracted # CSS, HTML, JSON
+          yaml-language-server # YAML
         ];
 
         # Symlink your config dir into the store
@@ -46,18 +53,23 @@
           EOF
         '';
 
-        neovimConfig = pkgs.wrapNeovim pkgs.neovim-unwrapped {
-          configure = {
-            customRC = customRC;
-            packages.myPlugins.start = plugins.plugins;
-          };
-          # extraMakeWrapperArgs = pkgs.lib.concatStringsSep "" [
-          #   "--prefix"
-          #   "PATH"
-          #   ":"
-          #   "${pkgs.lib.makeBinPath lspServers}"
-          # ];
-        };
+        neovimConfig =
+          let
+            baseNeovimConfig = pkgs.neovimUtils.makeNeovimConfig {
+              customRC = customRC;
+              plugins = plugins.plugins;
+            };
+            wrappedNeovimConfig = pkgs.wrapNeovimUnstable pkgs.neovim-unwrapped baseNeovimConfig;
+          in
+            pkgs.symlinkJoin {
+              buildInputs = [ pkgs.makeWrapper ];
+              name = "neovim-with-lsp";
+              paths = [ wrappedNeovimConfig ];
+              postBuild = ''
+                wrapProgram $out/bin/nvim \
+                  --prefix PATH : ${pkgs.lib.makeBinPath languageServers}
+              '';
+            };
 
       in {
         packages = {

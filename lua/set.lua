@@ -50,11 +50,11 @@ vim.opt.colorcolumn = "80,100"
 -- Highlight the line the cursor is currently on.
 vim.o.cursorline = true
 
--- Netrw
+-- NetRW
 vim.g.netrw_banner = 0
 
 -- Spell check (`z=` to see suggestions, `zg` to add word to dictionary, `zw` to mark word as wrong)
-vim.opt.spell = true
+vim.opt.spell = false
 
 -- Better colors
 vim.opt.termguicolors = true
