@@ -25,6 +25,7 @@
         configDir = pkgs.stdenv.mkDerivation {
           name = "neovim-config";
           src = ./.;
+          # TODO: does this need to also copy plugin/
           installPhase = ''
             mkdir -p $out
             cp -r lua $out/
