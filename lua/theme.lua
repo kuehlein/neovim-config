@@ -13,6 +13,7 @@ gruvbox.setup({
   },
   overrides = {
     ["LspInlayHint"] = { bg = p.faded_blue, fg = p.bright_blue },
+    ["SignColumn"] = { bg = p.dark0_hard },
     ["Todo"] = { bg = p.faded_orange, fg = p.bright_orange },
 
     -- Rust

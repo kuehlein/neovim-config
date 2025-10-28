@@ -14,9 +14,6 @@ vim.keymap.set("n", "<leader>e", "<Nop>", {
   silent = true,
 })
 
--- Jump out of current buffer and open Netrw
-vim.keymap.set("n", "<leader>-", vim.cmd.Ex, opts)
-
 -- Copy to system clipboard in visual mode
 vim.keymap.set({ "n", "v" }, "<leader>y", '"+y', opts)
 vim.keymap.set("n", "<leader>Y", '"+Y', opts)
