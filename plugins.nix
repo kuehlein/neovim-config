@@ -1,5 +1,4 @@
 # TODO: new plugins?
-#        - mini.snippets (or lua snips?)
 #        - mini.keymap?
 #        - mini.pairs?
 #        - basically anything mini? should probably be one of the last things to do
@@ -21,6 +20,7 @@ let
     version = "unstable";
   };
 
+  # TODO: if the list of plugins is actually pretty small, then maybe keep it a list
   plugins = pkgs.lib.unique (
     builtins.concatLists (
       builtins.attrValues {
@@ -35,13 +35,8 @@ let
           vim-dadbod-ui
         ];
 
-        debugger = with vimPlugins; [
-          mason-nvim # TODO: what is this?
-          nvim-dap
-          nvim-dap-go
-          nvim-dap-ui
-          nvim-dap-virtual-text
-          nvim-nio
+        fileTree = with vimPlugins; [
+          oil-nvim
         ];
 
         harpoon = with vimPlugins; [
@@ -66,7 +61,13 @@ let
 
         # TODO: or fzf-lua??
         search = with vimPlugins; [
+          fzf-lua
           # mini-pick-nvim
+          # telescope
+        ];
+
+        snippets = with vimPlugins; [
+          mini-snippets
         ];
 
         theme = with vimPlugins; [

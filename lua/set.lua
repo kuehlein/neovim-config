@@ -3,20 +3,20 @@ vim.opt.relativenumber = true
 
 -- Use 4 spaces for indents (overridden based on filetype in `after/ftplugin/`).
 vim.opt.expandtab = true
-vim.opt.shiftwidth = 4
-vim.opt.softtabstop = 4
-vim.opt.tabstop = 4
+vim.opt.shiftwidth = 2
+vim.opt.softtabstop = 2
+vim.opt.tabstop = 2
 
 vim.opt.wrap = false
 
 -- Prevent auto-continuation of comments when pressing Enter, o or O.
 -- Although this is rather janky, this is the standard way to do it.
 vim.api.nvim_create_autocmd("FileType", {
-	pattern = "*",
-	callback = function()
-		-- Prevent comment continuation for all filetypes.
-		vim.opt.formatoptions:remove({ "c", "r", "o" })
-	end,
+  pattern = "*",
+  callback = function()
+    -- Prevent comment continuation for all filetypes.
+    vim.opt.formatoptions:remove({ "c", "r", "o" })
+  end,
 })
 
 -- Disables swapfiles/backup files.
@@ -51,7 +51,8 @@ vim.opt.colorcolumn = "80,100"
 vim.o.cursorline = true
 
 -- NetRW
-vim.g.netrw_banner = 0
+vim.g.netrw_banner = 0     -- No banner
+vim.g.netrw_fastbrowse = 0 -- Remember cursor position
 
 -- Spell check (`z=` to see suggestions, `zg` to add word to dictionary, `zw` to mark word as wrong)
 vim.opt.spell = false

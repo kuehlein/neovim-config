@@ -24,11 +24,11 @@ gruvbox.setup({
 vim.opt.background = "dark"
 vim.opt.list = true -- show white space
 vim.opt.listchars = {
-	tab = "→ ",
-	space = "·",
-	nbsp = "⎵",
-	precedes = "«",
-	extends = "»",
+  tab = "→ ",
+  space = "·",
+  nbsp = "⎵",
+  precedes = "«",
+  extends = "»",
 }
 
 vim.cmd("colorscheme gruvbox")
