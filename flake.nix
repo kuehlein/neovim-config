@@ -23,6 +23,7 @@
           nil # Nix
           rust-analyzer # Rust
           taplo # TOML
+          texlab # LaTeX
           typescript-language-server # Typescript/Javascript
           vscode-langservers-extracted # CSS, HTML, JSON
           yaml-language-server # YAML
@@ -47,8 +48,8 @@
           set runtimepath+=${configDir}/after
 
           lua << EOF
-          vim.g.mapleader = " "
-          vim.g.maplocalleader = "\\"
+          vim.g.mapleader = ' '
+          vim.g.maplocalleader = '\\'
 
           dofile('${configDir}/init.lua')
           EOF

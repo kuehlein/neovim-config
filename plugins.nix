@@ -7,6 +7,8 @@
 let
   inherit (pkgs) vimPlugins vimUtils;
 
+  # TODO: fugitive?, undotree?
+
   # `harpoon2` is the most up-to-date version, use this unti `harpoon-2` is merged to `master`
   harpoon-2 = vimUtils.buildVimPlugin {
     doCheck = false;
@@ -19,6 +21,25 @@ let
     };
     version = "unstable";
   };
+
+  # Have Nix manage installing language parsers instead of Treesitter
+  treesitter = (vimPlugins.nvim-treesitter.withPlugins (p: [
+    p.bash
+    p.c
+    p.css
+    p.haskell
+    p.html
+    p.javascript
+    p.json
+    p.latex
+    p.lua
+    p.nix
+    p.rust
+    p.toml
+    p.tsx
+    p.typescript
+    p.yaml
+  ]));
 
   # TODO: if the list of plugins is actually pretty small, then maybe keep it a list
   plugins = pkgs.lib.unique (
@@ -70,13 +91,15 @@ let
           mini-snippets
         ];
 
+        textObjects = with vimPlugins; [
+          mini-ai
+        ];
+
         theme = with vimPlugins; [
           gruvbox-nvim
         ];
 
-        treesitter = with vimPlugins; [
-          nvim-treesitter
-        ];
+        treesitter = treesitter;
       }
     )
   );

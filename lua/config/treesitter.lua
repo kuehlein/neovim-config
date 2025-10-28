@@ -1,36 +1,21 @@
--- -- local treesitter = require "nvim-treesitter"
 --
--- local M = {}
+-- Treesitter configuration
 --
--- -- TODO: this might have to be overhauled.....
---
--- M.setup = function()
---   local group = vim.api.nvim_create_augroup("custom-treesitter", { clear = true })
---
---   require("nvim-treesitter").setup() -- {
---   --   ensure_install = "community",
---   -- });
---
---   -- TODO: add to this??
---   local syntax_on = {
---     -- elixir = true,
---     -- php = true,
---   }
---
---   vim.api.nvim_create_autocmd("FileType", {
---     group = group,
---     callback = function(args)
---       local bufnr = args.buf
---       local ft = vim.bo[bufnr].filetype
---       pcall(vim.treesitter.start)
---
---       if syntax_on[ft] then
---         vim.bo[bufnr].syntax = "on"
---       end
---     end,
---   })
--- end
---
--- M.setup()
---
--- return M
+
+require('nvim-treesitter.configs').setups({
+  highlight = {
+    enable = true,
+    additional_vim_regex_highlighting = false,
+
+    -- Disable Treesitter on files that are too big to prevent lag
+    disable = function(lang, buf)
+      local max_filesize = 100 * 1024 -- 100 KB
+      local ok, stats = pcall(vim.loop.fs_stat, vim.api.nvim_buf_get_name(buf))
+
+      if ok and stats and stats.size > max_filesize then
+        return true
+      end
+    end,
+  },
+  indent = { enable = true },
+})

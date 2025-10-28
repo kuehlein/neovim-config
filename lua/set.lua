@@ -11,11 +11,11 @@ vim.opt.wrap = false
 
 -- Prevent auto-continuation of comments when pressing Enter, o or O.
 -- Although this is rather janky, this is the standard way to do it.
-vim.api.nvim_create_autocmd("FileType", {
-  pattern = "*",
+vim.api.nvim_create_autocmd('FileType', {
+  pattern = '*',
   callback = function()
     -- Prevent comment continuation for all filetypes.
-    vim.opt.formatoptions:remove({ "c", "r", "o" })
+    vim.opt.formatoptions:remove({ 'c', 'r', 'o' })
   end,
 })
 
@@ -25,7 +25,7 @@ vim.opt.backup = false
 
 -- Enables undo even after closing and reopening a file.
 vim.opt.undofile = true
-vim.opt.undodir = vim.fn.stdpath("state") .. "/undo"
+vim.opt.undodir = vim.fn.stdpath('state') .. '/undo'
 
 -- Search
 vim.opt.incsearch = true -- Incremental search - show search matches as you type.
@@ -36,16 +36,16 @@ vim.opt.scrolloff = 8
 vim.opt.sidescrolloff = 8
 
 -- Column to the left of line numbers with error indication.
-vim.opt.signcolumn = "yes"
+vim.opt.signcolumn = 'yes'
 
--- Enable "@" character in filenames for `gf` - go-to file (e.g. @types/node).
-vim.opt.isfname:append("@-@")
+-- Enable '@' character in filenames for `gf` - go-to file (e.g. @types/node).
+vim.opt.isfname:append('@-@')
 
 -- Time in milliseconds to wait before `CursorHold` - e.g. make LSP diagnostics appear quicker.
 vim.opt.updatetime = 200
 
 -- Column markers
-vim.opt.colorcolumn = "80,100"
+vim.opt.colorcolumn = '80,100'
 
 -- Highlight the line the cursor is currently on.
 vim.o.cursorline = true

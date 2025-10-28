@@ -5,7 +5,7 @@ vim.opt_local.tabstop = 4
 
 -- don't reapply config if it is already active
 if vim.g.javascript_ftplugin_is_active then
-	return
+  return
 end
 
 vim.g.javascript_ftplugin_is_active = true

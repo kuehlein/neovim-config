@@ -20,6 +20,9 @@ vim.lsp.enable('html')
 -- JSON
 vim.lsp.enable('jsonls')
 
+-- LaTeX
+vim.lsp.enable('texlab')
+
 -- Lua
 vim.lsp.enable('lua_ls')
 vim.lsp.config('lua_ls', {
@@ -74,4 +77,4 @@ vim.lsp.enable('yamlls')
 --
 
 -- Set default border for all LSP floating windows
-vim.lsp.util.default_border = "rounded"
+vim.lsp.util.default_border = 'rounded'
