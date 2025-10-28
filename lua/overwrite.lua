@@ -16,4 +16,4 @@ vim.keymap.set('n', '<C-u>', '<C-u>zz')
 vim.keymap.set('n', 'J', 'mzJ`z', opts)
 
 -- disable `Ex` mode
-vim.keymap.set('n', 'Q', '<Cmd>echo 'Ex mode disabled.'<CR>', opts)
+vim.keymap.set('n', 'Q', "<Cmd>echo 'Ex mode disabled.'<CR>", opts)
