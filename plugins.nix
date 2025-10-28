@@ -99,7 +99,7 @@ let
           gruvbox-nvim
         ];
 
-        treesitter = treesitter;
+        treesitter = [treesitter];
       }
     )
   );
