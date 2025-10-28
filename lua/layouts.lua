@@ -12,6 +12,13 @@ local colemak = function()
 	vim.keymap.set({ "n", "v" }, "ge", "gk", opts) -- Move up (with wrap)
 	vim.keymap.set({ "n", "v" }, "gi", "gl", opts) -- Move right (with wrap)
 
+  vim.keymap.set({ "n", "v" }, "zm", "zh", opts) -- Move screen left
+  vim.keymap.set({ "n", "v" }, "zn", "zj", opts) -- Move screen down
+  vim.keymap.set({ "n", "v" }, "ze", "zk", opts) -- Move screen up
+  vim.keymap.set({ "n", "v" }, "zi", "zl", opts) -- Move screen right
+  vim.keymap.set({ "n", "v" }, "zM", "zH", opts) -- Move screen all the way left
+  vim.keymap.set({ "n", "v" }, "zI", "zL", opts) -- Move screen all the way right
+
 	vim.keymap.set({ "n", "v" }, "t", "i", opts) -- (t)ype replaces (i)nsert
 	vim.keymap.set({ "n", "v" }, "T", "I", opts) -- (T)ype at bol replaces (I)nsert
 
@@ -43,6 +50,13 @@ local qwerty = function()
 	vim.keymap.set({ "n", "v" }, "gk", "gk", opts)
 	vim.keymap.set({ "n", "v" }, "gl", "gl", opts)
 
+  vim.keymap.set({ "n", "v" }, "zh", "zh", opts)
+  vim.keymap.set({ "n", "v" }, "zj", "zj", opts)
+  vim.keymap.set({ "n", "v" }, "zk", "zk", opts)
+  vim.keymap.set({ "n", "v" }, "zl", "zl", opts)
+  vim.keymap.set({ "n", "v" }, "zH", "zH", opts)
+  vim.keymap.set({ "n", "v" }, "zL", "zL", opts)
+
 	vim.keymap.set({ "n", "v" }, "i", "i", opts)
 	vim.keymap.set({ "n", "v" }, "I", "I", opts)
 
@@ -60,7 +74,7 @@ end
 vim.api.nvim_create_user_command("Colemak", colemak, { nargs = 0 })
 vim.api.nvim_create_user_command("Qwerty", qwerty, { nargs = 0 })
 
--- Return remaps to invoke in init.lua
+-- return remaps to invoke in init.lua
 return {
 	colemak = colemak,
 	qwerty = qwerty,

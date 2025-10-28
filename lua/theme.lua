@@ -15,6 +15,7 @@ gruvbox.setup({
     ["LspInlayHint"] = { bg = p.faded_blue, fg = p.bright_blue },
     ["Todo"] = { bg = p.faded_orange, fg = p.bright_orange },
 
+    -- Rust
     ["@lsp.mod.mutable.rust"] = { bold = true, bg = p.faded_red, fg = p.bright_red },
   },
   terminal_colors = true,
@@ -31,3 +32,9 @@ vim.opt.listchars = {
 }
 
 vim.cmd("colorscheme gruvbox")
+
+
+--
+-- Overrides
+--
+vim.api.nvim_set_hl(0, "@lsp.type.comment.nix", {})

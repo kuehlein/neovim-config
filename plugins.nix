@@ -6,87 +6,80 @@
 
 { pkgs }:
 let
-  inherit (pkgs) vimPlugins;
+  inherit (pkgs) vimPlugins vimUtils;
 
-  # TODO: do we want the latest version of harpoon?
-  # harpoon-2 = vimUtils.buildVimPlugin {
-  #   pname = "harpoon";
-  #   src = pkgs.fetchFromGitHub {
-  #     hash = "sha256-XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX="; # replace with output from `nix-prefetch-github`
-  #     owner = "ThePrimeagen";
-  #     repo = "harpoon";
-  #     rev = "harpoon2";
-  #   };
-  #   version = "unstable";
-  # };
+  # `harpoon2` is the most up-to-date version, use this unti `harpoon-2` is merged to `master`
+  harpoon-2 = vimUtils.buildVimPlugin {
+    doCheck = false;
+    pname = "harpoon2";
+    src = pkgs.fetchFromGitHub {
+      hash = "sha256-L7FvOV6KvD58BnY3no5IudiKTdgkGqhpS85RoSxtl7U=";
+      owner = "ThePrimeagen";
+      repo = "harpoon";
+      rev = "harpoon2";
+    };
+    version = "unstable";
+  };
 
-  plugins = pkgs.lib.unique (builtins.concatLists (builtins.attrValues {
-    # TODO: mini.completion?
-    autoCompletion = with vimPlugins; [
-      cmp-buffer
-      cmp_luasnip
-      cmp-path
-      cmp-nvim-lsp
-      cmp-nvim-lua
-      lspkind-nvim
-      luasnip
-      nvim-cmp
-    ];
+  plugins = pkgs.lib.unique (
+    builtins.concatLists (
+      builtins.attrValues {
+        autoCompletion = with vimPlugins; [
+          mini-completion
+        ];
 
-    # TODO: mini.comment?
-    comment = with vimPlugins; [
-      comment-nvim
-    ];
+        # TODO: what does this do?
+        dadbod = with vimPlugins; [
+          vim-dadbod
+          vim-dadbod-completion
+          vim-dadbod-ui
+        ];
 
-    # TODO: what does this do?
-    dadbod = with vimPlugins; [
-      vim-dadbod
-      vim-dadbod-completion
-      vim-dadbod-ui
-    ];
+        debugger = with vimPlugins; [
+          mason-nvim # TODO: what is this?
+          nvim-dap
+          nvim-dap-go
+          nvim-dap-ui
+          nvim-dap-virtual-text
+          nvim-nio
+        ];
 
-    debugger = with vimPlugins; [
-      mason-nvim # TODO: what is this?
-      nvim-dap
-      nvim-dap-go
-      nvim-dap-ui
-      nvim-dap-virtual-text
-      nvim-nio
-    ];
+        harpoon = with vimPlugins; [
+          harpoon-2
+          plenary-nvim
+        ];
 
-    harpoon = with vimPlugins; [
-      harpoon # harpoon-2
-    ];
+        lsp = with vimPlugins; [
+          nvim-lspconfig
+        ];
 
-    lsp = with vimPlugins; [
-      nvim-lspconfig
-    ];
+        mini = with vimPlugins; [
+          mini-nvim
+        ];
 
-    mini = with vimPlugins; [
-      mini-nvim
-    ];
+        neogit = with vimPlugins; [
+          diffview-nvim
+          neogit
+          plenary-nvim
+          telescope-nvim
+        ];
 
-    neogit = with vimPlugins; [
-      diffview-nvim
-      neogit
-      plenary-nvim
-      telescope-nvim
-    ];
+        # TODO: or fzf-lua??
+        search = with vimPlugins; [
+          # mini-pick-nvim
+        ];
 
-    # TODO: or fzf-lua??
-    search = with vimPlugins; [
-      # mini-pick-nvim
-    ];
+        theme = with vimPlugins; [
+          gruvbox-nvim
+        ];
 
-    # TODO: is this ok?
-    theme = with vimPlugins; [
-      gruvbox-nvim
-    ];
-
-    treesitter = with vimPlugins; [
-      nvim-treesitter
-    ];
-  }));
-in {
+        treesitter = with vimPlugins; [
+          nvim-treesitter
+        ];
+      }
+    )
+  );
+in
+{
   inherit plugins;
 }

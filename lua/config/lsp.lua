@@ -67,3 +67,11 @@ vim.lsp.enable('ts_ls')
 
 -- Yaml
 vim.lsp.enable('yamlls')
+
+
+--
+-- ...
+--
+
+-- Set default border for all LSP floating windows
+vim.lsp.util.default_border = "rounded"

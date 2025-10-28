@@ -55,4 +55,4 @@ vim.api.nvim_create_autocmd({
 })
 
 -- Ensure that marks are correctly highlighted
-vim.api.nvim_set_hl(0, SIGN_COLUMN_MARK_INDICATOR_HIGHLIGHT_GROUP, { fg = p.neutral_orange })
+vim.api.nvim_set_hl(0, SIGN_COLUMN_MARK_INDICATOR_HIGHLIGHT_GROUP, { fg = p.bright_orange })
