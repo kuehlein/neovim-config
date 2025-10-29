@@ -16,7 +16,9 @@ require('config.oil')
 require('config.snippets')
 require('config.text_objects')
 require('config.treesitter')
-require('config.undotree')
+require('config.undo')
+
+
 
 local layouts = require('layouts')
 layouts.colemak()
