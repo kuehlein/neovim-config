@@ -2,8 +2,13 @@
 -- Undotree configuration
 --
 
-vim.g.undotree_HighlightChangedText = 1     -- Highlight changed text
-vim.g.undotree_HighlightChangedWithSign = 0 -- Disable symbols in sign column
+-- Disable signs from being inserted into sign column
+-- vim.g.undotree_SignAdded = '  '
+-- vim.g.undotree_SignChanged = '  '
+-- vim.g.undotree_SignDeleted = '  '
+-- vim.g.undotree_SignDeletedEnd = '  '
+-- vim.g.undotree_HighlightChangedWithSign = 0
+
 vim.g.undotree_SetFocusWhenToggle = 1       -- Shift focus to Undo window when toggled open
 vim.g.undotree_ShortIndicators = 1          -- Uses abbreviated time indicators
 vim.g.undotree_SplitWidth = 40              -- Width of undo panel

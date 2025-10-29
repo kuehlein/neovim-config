@@ -37,68 +37,29 @@ let
     ])
   );
 
-  # TODO: if the list of plugins is actually pretty small, then maybe keep it a list
+  # Some plugins may require peer dependencies that are duplicates.
+  # We filter the duplicates out here.
   plugins = pkgs.lib.unique (
     builtins.concatLists (
       builtins.attrValues {
-        autoCompletion = with vimPlugins; [
-          mini-completion
-        ];
+        autoCompletion = with vimPlugins; [ mini-completion ];
 
         # TODO: what does this do?
-        dadbod = with vimPlugins; [
-          vim-dadbod
-          vim-dadbod-completion
-          vim-dadbod-ui
-        ];
-
-        git = with vimPlugins; [
-          gitsigns-nvim
-          vim-fugitive
-        ];
-
-        fileTree = with vimPlugins; [
-          oil-nvim
-        ];
-
-        fuzzy_find = with vimPlugins; [
-          fzf-lua
-        ];
-
-        harpoon = with vimPlugins; [
-          harpoon-2
-          plenary-nvim
-        ];
-
-        lsp = with vimPlugins; [
-          nvim-lspconfig
-        ];
-
-        mini = with vimPlugins; [
-          mini-nvim
-        ];
-
-        snippets = with vimPlugins; [
-          mini-snippets
-        ];
-
-        textObjects = with vimPlugins; [
-          mini-ai
-        ];
-
-        theme = with vimPlugins; [
-          gruvbox-nvim
-        ];
-
+        dadbod = with vimPlugins; [ vim-dadbod vim-dadbod-completion vim-dadbod-ui ];
+        git = with vimPlugins; [ vim-fugitive ];
+        fileTree = with vimPlugins; [ oil-nvim ];
+        fuzzy_find = with vimPlugins; [ fzf-lua ];
+        harpoon = with vimPlugins; [ harpoon-2 plenary-nvim ];
+        lsp = with vimPlugins; [ nvim-lspconfig ];
+        mini = with vimPlugins; [ mini-nvim ];
+        snippets = with vimPlugins; [ mini-snippets ];
+        textObjects = with vimPlugins; [ mini-ai ];
+        theme = with vimPlugins; [ gruvbox-nvim ];
         treesitter = [ treesitter ];
-
-        undo = with vimPlugins; [
-          undotree
-        ];
+        undo = with vimPlugins; [ undotree ];
       }
     )
   );
-in
-{
+in {
   inherit plugins;
 }

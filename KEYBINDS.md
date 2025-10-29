@@ -14,6 +14,10 @@ Leader key: `Space`
 ## Git
 - `<leader>gs` - Git status
 - `<leader>gc` - Git commit
+- `<leader>gp` - Git push
+- `<leader>gl` - Git pull
+- `<leader>gb` - Git blame
+- `<leader>gd` - Git diff
 
 ## LSP
 - `<leader>f` - Format buffer
