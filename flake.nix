@@ -6,17 +6,12 @@
 # TODO: linting requirements?
 # TODO: use issues?
 
-# ....... bugs ........
-# TODO: <C-y> not working
-
-# TODO: undotree
-# TODO: dap??
-# TODO: mini.snips
 # TODO: lualine
 # TODO: other mini plugins?
 # TODO: other plugins?
 # TODO: overwrite assigning mark to toggle (e.g. <C-m>x assigns `x` mark or removes it if already present
 # TODO: finish keybinds.md file
+# TODO: change highlight colors for search
 
 {
   description = "Neovim config.";

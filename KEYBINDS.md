@@ -20,9 +20,19 @@ Leader key: `Space`
 - `K` - Hover documentation
 
 ## Completion
-- `<C-n>` - Move to next in menu
-- `<C-p>` - Move to previous in menu
-- `<C-y>` - Select current item in menu
+- `<C-n>` - Move to next in completion menu
+- `<C-p>` - Move to previous in completion menu
+- `<C-y>` - Select current item in completion menu
+
+## Undotree
+- `<leader>u` - Toggle Undotree
+
+## Snippets
+### Rust
+`` -
+
+### Lua
+`` -
 
 ## Cool stuff i should remember
 ```

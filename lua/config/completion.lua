@@ -45,9 +45,5 @@ vim.keymap.set('i', '<C-e>', function()
 end, { expr = true })
 
 vim.keymap.set('i', '<C-y>', function()
-  return vim.fn.pumvisible() == 1 and '<C-y>' or '<C-e>'
-end, { expr = true })
-
-vim.keymap.set('i', '<CR>', function()
-  return vim.fn.pumvisible() == 1 and '<C-y>' or '<CR>'
+  return vim.fn.pumvisible() == 1 and '<C-y>' or '<C-y>'
 end, { expr = true })

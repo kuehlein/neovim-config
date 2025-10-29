@@ -28,22 +28,16 @@ function DisplayMarkIndicator()
 
   vim.fn.sign_unplace('MarkSignGroup')
 
+  -- Special marks (Note: sort invokation from least significan to most)
+  PlaceMarkIndicator('[') -- Start of last modification
+  PlaceMarkIndicator(']') -- End of last modification
+  PlaceMarkIndicator('.') -- Last change position
+  PlaceMarkIndicator("'") -- Last jump position (line)
+
   -- a-z marks
   for i = string.byte('a'), string.byte('z') do
     PlaceMarkIndicator(string.char(i))
   end
-
-  -- Special marks
-  PlaceMarkIndicator("'") -- Last jump position (line)
-  PlaceMarkIndicator('"') -- Last jump position (exact cursor position)
-  PlaceMarkIndicator('^') -- Last insert position
-  PlaceMarkIndicator('.') -- Last change position
-  PlaceMarkIndicator('[') -- Start of last modification
-  PlaceMarkIndicator(']') -- End of last modification
-  PlaceMarkIndicator('{') -- Start of last undo block
-  PlaceMarkIndicator('}') -- End of last undo block
-  PlaceMarkIndicator('<') -- Start of last visual selection
-  PlaceMarkIndicator('>') -- End of last visual selection
 end
 
 vim.api.nvim_create_autocmd({

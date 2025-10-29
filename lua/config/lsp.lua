@@ -82,4 +82,3 @@ vim.diagnostic.config({
   virtual_lines = true, -- Displays diagnostics below line
   -- virtual_text = true, -- Displays diagnostics inline
 })
-
