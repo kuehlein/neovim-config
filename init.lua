@@ -14,9 +14,9 @@ require('config.lsp')
 -- require('config.neogit')
 require('config.oil')
 -- require('config.snippets')
--- require('config.telescope')
+-- require('config.telescope') -- TODO: this next
 require('config.text_objects')
--- require('config.treesitter') -- TODO: this one next
+require('config.treesitter')
 
 local layouts = require('layouts')
 layouts.colemak()

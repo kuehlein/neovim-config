@@ -2,13 +2,13 @@
 -- Treesitter configuration
 --
 
-require('nvim-treesitter.configs').setups({
+require('nvim-treesitter.configs').setup({
   highlight = {
     enable = true,
     additional_vim_regex_highlighting = false,
 
     -- Disable Treesitter on files that are too big to prevent lag
-    disable = function(lang, buf)
+    disable = function(_, buf)
       local max_filesize = 100 * 1024 -- 100 KB
       local ok, stats = pcall(vim.loop.fs_stat, vim.api.nvim_buf_get_name(buf))
 

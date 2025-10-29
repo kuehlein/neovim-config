@@ -73,8 +73,13 @@ vim.lsp.enable('yamlls')
 
 
 --
--- Additional settings
+-- Other LSP configuration
 --
+vim.diagnostic.config({
+  severity_sort = true, -- Sort diagnostic messages by severity
+  underline = true,
+  update_in_insert = false,
+  virtual_lines = true, -- Displays diagnostics below line
+  -- virtual_text = true, -- Displays diagnostics inline
+})
 
--- Set default border for all LSP floating windows
-vim.lsp.util.default_border = 'rounded'

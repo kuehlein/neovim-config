@@ -12,9 +12,14 @@ gruvbox.setup({
     strings = false,
   },
   overrides = {
+    ['DiagnosticSignError'] = { bg = p.dark0_hard, fg = p.bright_red },
+    ['DiagnosticSignWarn'] = { bg = p.dark0_hard, fg = p.bright_yellow },
+    ['DiagnosticSignInfo'] = { bg = p.dark0_hard, fg = p.bright_blue },
+    ['DiagnosticSignHint'] = { bg = p.dark0_hard, fg = p.bright_aqua },
+    ['ErrorMsg'] = { bold = true },
     ['LspInlayHint'] = { bg = p.faded_blue, fg = p.bright_blue },
     ['SignColumn'] = { bg = p.dark0_hard },
-    ['Todo'] = { bg = p.faded_orange, fg = p.bright_orange },
+    ['Todo'] = { bold = true, bg = p.faded_orange, fg = p.bright_orange },
 
     -- Rust
     ['@lsp.mod.mutable.rust'] = { bold = true, bg = p.faded_red, fg = p.bright_red },
@@ -39,3 +44,4 @@ vim.cmd('colorscheme gruvbox')
 -- Additional overrides
 --
 vim.api.nvim_set_hl(0, '@lsp.type.comment.nix', {})
+vim.api.nvim_set_hl(0, '@lsp.type.comment.lua', {})

@@ -1,13 +1,6 @@
-# TODO: new plugins?
-#        - mini.keymap?
-#        - mini.pairs?
-#        - basically anything mini? should probably be one of the last things to do
-
 { pkgs }:
 let
   inherit (pkgs) vimPlugins vimUtils;
-
-  # TODO: fugitive?, undotree?
 
   # `harpoon2` is the most up-to-date version, use this unti `harpoon-2` is merged to `master`
   harpoon-2 = vimUtils.buildVimPlugin {
@@ -26,6 +19,7 @@ let
   treesitter = (vimPlugins.nvim-treesitter.withPlugins (p: [
     p.bash
     p.c
+    p.comment
     p.css
     p.haskell
     p.html
@@ -56,8 +50,17 @@ let
           vim-dadbod-ui
         ];
 
+        git = with vimPlugins; [
+          gitsigns-nvim
+          vim-fugitive
+        ];
+
         fileTree = with vimPlugins; [
           oil-nvim
+        ];
+
+        fuzzy_find = with vimPlugins; [
+          fzf-lua
         ];
 
         harpoon = with vimPlugins; [
@@ -71,20 +74,6 @@ let
 
         mini = with vimPlugins; [
           mini-nvim
-        ];
-
-        neogit = with vimPlugins; [
-          diffview-nvim
-          neogit
-          plenary-nvim
-          telescope-nvim
-        ];
-
-        # TODO: or fzf-lua??
-        search = with vimPlugins; [
-          fzf-lua
-          # mini-pick-nvim
-          # telescope
         ];
 
         snippets = with vimPlugins; [

@@ -1,5 +1,22 @@
 # TODO: config to make this work for non-linux? (do this later)
-# TODO: clean up github repos & history
+# TODO: clean up git history
+# TODO: README
+# TODO: version 1.0.0
+# TODO: protected branch, github actions, etc?
+# TODO: linting requirements?
+# TODO: use issues?
+
+# ....... bugs ........
+# TODO: <C-y> not working
+
+# TODO: undotree
+# TODO: dap??
+# TODO: mini.snips
+# TODO: lualine
+# TODO: other mini plugins?
+# TODO: other plugins?
+# TODO: overwrite assigning mark to toggle (e.g. <C-m>x assigns `x` mark or removes it if already present
+# TODO: finish keybinds.md file
 
 {
   description = "Neovim config.";
@@ -33,7 +50,6 @@
         configDir = pkgs.stdenv.mkDerivation {
           name = "neovim-config";
           src = ./.;
-          # TODO: does this need to also copy plugin/
           installPhase = ''
             mkdir -p $out
             cp -r lua $out/
@@ -42,6 +58,7 @@
             cp init.lua $out/
           '';
         };
+
 
         customRC = ''
           set runtimepath^=${configDir}

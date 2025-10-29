@@ -15,10 +15,13 @@ mini_completion.setup({
     -- Remove type `Text` from completion menu
     process_items = function(items)
       return vim.tbl_filter(function(item)
-        return item.kind ~= 1 -- 1 = Text
+        return item.kind ~= 1  -- Filter out Text items
       end, items)
-    end
+    end,
   },
+
+  -- Avoid having completion menu littered with useless entries
+  fallback_action = function() end,
 
   mappings = {
     force_twostep = '<C-Space>',
