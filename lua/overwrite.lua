@@ -1,7 +1,6 @@
 --
 -- Overwrite/modify existing behavior
 --
-
 local opts = { noremap = true, silent = true }
 
 -- Center screen (zz) with every previous(n) search or next(N) search

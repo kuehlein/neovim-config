@@ -2,10 +2,10 @@ vim.g.mapleader = ' '
 vim.g.maplocalleader = '\\'
 
 -- General configuration
-require('remap')
+require('keymaps')
 require('set')
 require('overwrite')
-require('theme') -- TODO: lualine?
+require('theme')
 
 -- Configuration for plugins
 require('config.completion')

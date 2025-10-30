@@ -1,7 +1,6 @@
 --
 -- Harpoon configuration
 --
-
 local harpoon = require('harpoon')
 local ui = harpoon.ui
 

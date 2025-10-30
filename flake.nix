@@ -6,12 +6,14 @@
 # TODO: linting requirements?
 # TODO: use issues?
 
-# TODO: lualine
+# TODO: luasnips
 # TODO: other mini plugins?
 # TODO: other plugins?
 # TODO: overwrite assigning mark to toggle (e.g. <C-m>x assigns `x` mark or removes it if already present
 # TODO: finish keybinds.md file
 # TODO: change highlight colors for search
+# TODO: why can't i move up/down in visual (non-full-line) after moving left or right
+# TODO: it doesn't seem like `plugin/marks.lua` is running anymore
 
 {
   description = "Neovim config.";
@@ -60,9 +62,6 @@
           set runtimepath+=${configDir}/after
 
           lua << EOF
-          vim.g.mapleader = ' '
-          vim.g.maplocalleader = '\\'
-
           dofile('${configDir}/init.lua')
           EOF
         '';

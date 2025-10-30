@@ -1,6 +1,7 @@
 --
 -- Git plugin configuration
 --
+require('mini.diff').setup()
 
 vim.keymap.set('n', '<leader>gs', ':Git<CR>', { desc = 'Git status' })
 vim.keymap.set('n', '<leader>gc', ':Git commit<CR>', { desc = 'Git commit' })

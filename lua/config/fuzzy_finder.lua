@@ -1,7 +1,6 @@
 --
 -- FZF configuration
 --
-
 local fzf = require('fzf-lua')
 
 fzf.setup({

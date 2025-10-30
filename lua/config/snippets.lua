@@ -1,8 +1,10 @@
 --
 -- Code snippet short-cuts
 --
-
-
+-- TODO: this is still being done..
+-- TODO: this is still being done..
+-- TODO: this is still being done..
+-- TODO: this is still being done..
 
 local snippets = require('mini.snippets')
 local gen_loader = snippets.gen_loader
@@ -32,8 +34,6 @@ snippets.setup({
         description = '...',
       },
     },
-
-
 
     -- Load custom file with global snippets first (adjust for Windows)
     gen_loader.from_file('~/.config/nvim/snippets/global.json'),

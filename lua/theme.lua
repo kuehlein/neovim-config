@@ -1,3 +1,6 @@
+--
+-- Theme
+--
 local gruvbox = require('gruvbox')
 local p = gruvbox.palette -- https://github.com/ellisonleao/gruvbox.nvim/blob/main/lua/gruvbox.lua
 
@@ -39,9 +42,68 @@ vim.opt.listchars = {
 
 vim.cmd('colorscheme gruvbox')
 
-
---
--- Additional overrides
---
+-- Clear certain highlight groups so that above overrides work
 vim.api.nvim_set_hl(0, '@lsp.type.comment.nix', {})
 vim.api.nvim_set_hl(0, '@lsp.type.comment.lua', {})
+
+
+--
+-- Lualine
+--
+require('lualine').setup({
+  options = {
+    component_separators = '',
+    section_separators = { left = '\u{e0b0}', right = '\u{e0b2}' },
+    theme = {
+      normal = {
+        a = { fg = p.dark0_hard, bg = p.neutral_orange, gui = 'bold' },
+        b = { fg = p.light1, bg = p.dark1 },
+        c = { fg = 'NONE', bg = 'NONE' },
+      },
+      insert = {
+        a = { fg = p.dark0_hard, bg = p.bright_red, gui = 'bold' },
+        b = { fg = p.light1, bg = p.dark1 },
+        c = { fg = 'NONE', bg = 'NONE' },
+      },
+      visual = {
+        a = { fg = p.dark0_hard, bg = p.bright_green, gui = 'bold' },
+        b = { fg = p.light1, bg = p.dark1 },
+        c = { fg = 'NONE', bg = 'NONE' },
+      },
+      replace = {
+        a = { fg = p.dark0_hard, bg = p.neutral_purple, gui = 'bold' },
+        b = { fg = p.light1, bg = p.dark1 },
+        c = { fg = 'NONE', bg = 'NONE' },
+      },
+      command = {
+        a = { fg = p.dark0_hard, bg = p.neutral_yellow, gui = 'bold' },
+        b = { fg = p.light1, bg = p.dark1 },
+        c = { fg = 'NONE', bg = 'NONE' },
+      },
+      inactive = {
+        a = { fg = p.light1, bg = 'NONE' },
+        b = { fg = p.light1, bg = 'NONE' },
+        c = { fg = p.light1, bg = 'NONE' },
+      },
+    },
+  },
+  sections = {
+    lualine_a = {
+      -- Pad the mode text to keep them the same length
+      {
+        'mode',
+        fmt = function(str)
+          local modes = {
+            ['INSERT'] = 'INSERT ',
+            ['NORMAL'] = 'NORMAL ',
+            ['VISUAL'] = 'VISUAL ',
+            ['V-BLOCK'] = 'VISUAL ',
+            ['V-LINE'] = 'VISUAL ',
+          }
+          return modes[str] or str
+        end,
+      },
+    },
+    lualine_x = { 'filetype' },
+  },
+})

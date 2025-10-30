@@ -46,15 +46,14 @@ let
 
         # TODO: what does this do?
         dadbod = with vimPlugins; [ vim-dadbod vim-dadbod-completion vim-dadbod-ui ];
-        git = with vimPlugins; [ vim-fugitive ];
+        git = with vimPlugins; [ mini-diff vim-fugitive ];
         fileTree = with vimPlugins; [ oil-nvim ];
         fuzzy_find = with vimPlugins; [ fzf-lua ];
         harpoon = with vimPlugins; [ harpoon-2 plenary-nvim ];
         lsp = with vimPlugins; [ nvim-lspconfig ];
-        mini = with vimPlugins; [ mini-nvim ];
         snippets = with vimPlugins; [ mini-snippets ];
         textObjects = with vimPlugins; [ mini-ai ];
-        theme = with vimPlugins; [ gruvbox-nvim ];
+        theme = with vimPlugins; [ gruvbox-nvim lualine-nvim ];
         treesitter = [ treesitter ];
         undo = with vimPlugins; [ undotree ];
       }

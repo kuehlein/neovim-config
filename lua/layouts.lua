@@ -1,3 +1,6 @@
+--
+-- Keymaps for alternative keyboard layouts
+--
 local opts = { noremap = true, silent = true }
 
 local colemak = function()

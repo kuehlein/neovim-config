@@ -1,7 +1,6 @@
 --
 -- Language Server Protocol Configuration
 --
-
 -- Bash
 vim.lsp.enable('bashls')
 

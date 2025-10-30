@@ -1,7 +1,6 @@
 --
 -- Keymaps for new behavior
 --
-
 local opts = { noremap = true, silent = true }
 
 vim.keymap.set('n', '<leader>e', '<Nop>', {
@@ -13,10 +12,6 @@ vim.keymap.set('n', '<leader>e', '<Nop>', {
   noremap = true,
   silent = true,
 })
-
--- Copy to system clipboard in visual mode
-vim.keymap.set({ 'n', 'v' }, '<leader>y', '"+y', opts)
-vim.keymap.set('n', '<leader>Y', '"+Y', opts)
 
 -- TODO: not sure i need these... figure it out
 -- vim.keymap.set('x', '<leader>p', '"_dP', opts)         -- deletes and pastes without yanking into any register
