@@ -1,51 +1,35 @@
 --
 -- Code snippet short-cuts
 --
--- TODO: this is still being done..
--- TODO: this is still being done..
--- TODO: this is still being done..
--- TODO: this is still being done..
-
 local snippets = require('mini.snippets')
-local gen_loader = snippets.gen_loader
+-- local gen_loader = snippets.gen_loader
 
 snippets.setup({
   snippets = {
     _ = {}, -- Global snippets
 
-    lua = {
-      p = {
-        body = 'print($0)',
-        description = '...',
-      },
-      t = {
-        body = '-- TODO: $0',
-        description = '...',
-      },
+    {
+      prefix = 'p',
+      body = 'print($0)',
+      description = '...',
+    },
+    {
+      prefix = 'ff',
+      body = '-- TODO: $0',
+      description = '...',
     },
 
-    rust = {
-      p = {
-        body = 'println!("{}", $0);',
-        description = '...',
-      },
-      t = {
-        body = '// TODO: $0',
-        description = '...',
-      },
-    },
-
-    -- Load custom file with global snippets first (adjust for Windows)
-    gen_loader.from_file('~/.config/nvim/snippets/global.json'),
-
-    -- Simple text replacement
-    { prefix = 'fn', body = 'function $1($2)\n  $0\nend' },
-
-    -- With description
-    { prefix = 'if', body = 'if $1 then\n  $0\nend', desc = 'if statement' },
-
-    -- JavaScript arrow function
-    { prefix = 'af', body = 'const $1 = ($2) => {\n  $0\n}' },
+    -- -- Load custom file with global snippets first (adjust for Windows)
+    -- gen_loader.from_file('~/.config/nvim/snippets/global.json'),
+    --
+    -- -- Simple text replacement
+    -- { prefix = 'fn', body = 'function $1($2)\n  $0\nend' },
+    --
+    -- -- With description
+    -- { prefix = 'if', body = 'if $1 then\n  $0\nend', desc = 'if statement' },
+    --
+    -- -- JavaScript arrow function
+    -- { prefix = 'af', body = 'const $1 = ($2) => {\n  $0\n}' },
   },
 
   expand = {
@@ -61,3 +45,6 @@ snippets.setup({
     stop = '<CR>',
   },
 })
+
+-- ...
+-- snippets.start_lsp_server()

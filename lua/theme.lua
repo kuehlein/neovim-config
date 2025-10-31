@@ -46,6 +46,10 @@ vim.cmd('colorscheme gruvbox')
 vim.api.nvim_set_hl(0, '@lsp.type.comment.nix', {})
 vim.api.nvim_set_hl(0, '@lsp.type.comment.lua', {})
 
+vim.api.nvim_set_hl(0, 'Search', { bg = p.neutral_yellow, fg = p.dark0 })
+vim.api.nvim_set_hl(0, 'IncSearch', { bold = true, bg = p.bright_purple, fg = p.faded_red })
+vim.api.nvim_set_hl(0, 'CurSearch', { bold = true, bg = p.neutral_orange, fg = p.dark0 })
+
 
 --
 -- Lualine

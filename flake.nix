@@ -6,14 +6,16 @@
 # TODO: linting requirements?
 # TODO: use issues?
 
-# TODO: luasnips
-# TODO: other mini plugins?
-# TODO: other plugins?
-# TODO: overwrite assigning mark to toggle (e.g. <C-m>x assigns `x` mark or removes it if already present
+# TODO: undercurl missing?
+# TODO: limit number of virtual lines
+# TODO: delay on virtual line rendering
+
+# TODO: when completion menu opens, make it select first option by default?
 # TODO: finish keybinds.md file
-# TODO: change highlight colors for search
+# TODO: luasnips
+# TODO: other mini plugins? TODO: other plugins? TODO: preview for md/tex?
 # TODO: why can't i move up/down in visual (non-full-line) after moving left or right
-# TODO: it doesn't seem like `plugin/marks.lua` is running anymore
+# TODO: mini.ai `t` seems to not really work well
 
 {
   description = "Neovim config.";

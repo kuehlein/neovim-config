@@ -1,7 +1,6 @@
 --
 -- Custom plugin for displaying local marks in the sign column
 --
-
 local p = require('gruvbox').palette
 local SIGN_COLUMN_MARK_INDICATOR_HIGHLIGHT_GROUP = 'SignColumnMarkIndicator'
 
@@ -46,10 +45,41 @@ vim.api.nvim_create_autocmd({
 }, {
   pattern = '*',
   callback = function()
+    local mode = vim.fn.mode()
+
+    -- Don't run in visual mode (for performance)
+    if mode:match('[vV\22]') then return end
     if vim.tbl_contains({ 'oil', 'harpoon' }, vim.bo.filetype) then return end
+
     DisplayMarkIndicator()
   end,
 })
 
--- Ensure that marks are correctly highlighted
+function ToggleMark(char)
+  local current_line = vim.api.nvim_win_get_cursor(0)[1]
+  local mark_pos = vim.api.nvim_buf_get_mark(0, char)
+
+  if mark_pos[1] == current_line then
+    vim.cmd('delmarks ' .. char)
+  else
+    vim.cmd('normal! m' .. char)
+  end
+
+    DisplayMarkIndicator()
+end
+
+
+-- Create a keymap for toggling marks a-z
+for i = string.byte('a'), string.byte('z') do
+  local char = string.char(i)
+
+  vim.keymap.set(
+    { 'n', 'v' },
+    '<C-m>' .. char,
+    function() ToggleMark(char) end,
+    { desc = 'Toggle mark', noremap = true, silent = true }
+  )
+end
+
+-- Use the correct colors for highlighting marks
 vim.api.nvim_set_hl(0, SIGN_COLUMN_MARK_INDICATOR_HIGHLIGHT_GROUP, { fg = p.bright_orange })
