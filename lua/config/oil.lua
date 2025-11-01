@@ -2,6 +2,7 @@
 -- Oil.nvim configuration
 --
 require('oil').setup({
+  -- TODO: are these settings correct?
   watch_for_changes = false,  -- Disable file watching (improves performance)
 
   use_default_keymaps = true,

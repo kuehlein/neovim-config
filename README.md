@@ -13,6 +13,7 @@ link to colemak dh
 
 ...
 
+
 ## Installation
 Install Nix, then `nix shell .#neovim-config` to run
 

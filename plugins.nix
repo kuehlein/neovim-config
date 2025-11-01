@@ -52,6 +52,7 @@ let
         harpoon = with vimPlugins; [ harpoon-2 plenary-nvim ];
         lsp = with vimPlugins; [ nvim-lspconfig ];
         pairs = with vimPlugins; [ mini-pairs ];
+        preview = with vimPlugins; [ render-markdown-nvim ];
         snippets = with vimPlugins; [ mini-snippets ];
         textObjects = with vimPlugins; [ mini-ai ];
         theme = with vimPlugins; [ gruvbox-nvim lualine-nvim ];

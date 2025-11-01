@@ -78,6 +78,11 @@ vim.diagnostic.config({
   severity_sort = true, -- Sort diagnostic messages by severity
   underline = true,
   update_in_insert = false,
-  virtual_lines = true, -- Displays diagnostics below line
-  -- virtual_text = true, -- Displays diagnostics inline
+  virtual_lines = {
+    current_line = true,
+    severity = { min = vim.diagnostic.severity.ERROR }
+  },
+  virtual_text = {
+    severity = { min = vim.diagnostic.severity.WARN },
+  },
 })

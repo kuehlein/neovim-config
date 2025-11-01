@@ -131,7 +131,7 @@ See [Colemak DH Notes](ColemakDH.md) for layout details.
 
 ## Miscellaneous
 
-- `<leader>e` - Open diagnostics window (`:q` to close)
+- `<leader>e` - Open diagnostics window (`q` to close)
 - `<leader>f` - Format current buffer
 - `+` / `-` - Increment/decrement number under cursor
 

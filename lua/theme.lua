@@ -15,14 +15,17 @@ gruvbox.setup({
     strings = false,
   },
   overrides = {
+    ['ErrorMsg'] = { bold = true },
+    ['SignColumn'] = { bg = p.dark0_hard },
+    ['Todo'] = { bold = true, bg = p.faded_orange, fg = p.bright_orange },
+
+    -- LSP
     ['DiagnosticSignError'] = { bg = p.dark0_hard, fg = p.bright_red },
     ['DiagnosticSignWarn'] = { bg = p.dark0_hard, fg = p.bright_yellow },
     ['DiagnosticSignInfo'] = { bg = p.dark0_hard, fg = p.bright_blue },
     ['DiagnosticSignHint'] = { bg = p.dark0_hard, fg = p.bright_aqua },
-    ['ErrorMsg'] = { bold = true },
+    ['DiagnosticUnnecessary'] = { undercurl = true, italic = true, fg = p.gray },
     ['LspInlayHint'] = { bg = p.faded_blue, fg = p.bright_blue },
-    ['SignColumn'] = { bg = p.dark0_hard },
-    ['Todo'] = { bold = true, bg = p.faded_orange, fg = p.bright_orange },
 
     -- Rust
     ['@lsp.mod.mutable.rust'] = { bold = true, bg = p.faded_red, fg = p.bright_red },

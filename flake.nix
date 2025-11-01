@@ -4,18 +4,12 @@
 # TODO: version 1.0.0
 # TODO: protected branch, github actions, etc?
 # TODO: linting requirements?
-# TODO: use issues?
-
-# TODO: undercurl missing?
-# TODO: limit number of virtual lines
-# TODO: delay on virtual line rendering
 
 # TODO: when completion menu opens, make it select first option by default?
 # TODO: finish keybinds.md file
 # TODO: luasnips
-# TODO: other mini plugins? TODO: other plugins? TODO: preview for md/tex?
-# TODO: why can't i move up/down in visual (non-full-line) after moving left or right
 # TODO: mini.ai `t` seems to not really work well
+# TODO: obsidian.nvim
 
 {
   description = "Neovim config.";
