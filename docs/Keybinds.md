@@ -149,12 +149,6 @@
 - `<leader>e` - Show diagnostic (`q` to close)
   - Shortcut for `<C-w>d<C-w>w`
 
-these are fake
-**Workspaces**
-- `<leader>wa` - Add workspace folder
-- `<leader>wr` - Remove workspace folder
-- `<leader>wl` - List workspace folders
-
 ---
 
 ## Mini.ai (Textobjects)

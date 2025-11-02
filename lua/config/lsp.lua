@@ -84,6 +84,14 @@ vim.diagnostic.config({
   },
 })
 
--- TODO: 2 leader e's???
+-- Shortcut for `<C-w>d<C-w>w`
+vim.keymap.set('n', '<leader>e', '<Nop>', {
+  callback = function()
+    -- first call opens the error window, second jumps inside
+    vim.diagnostic.open_float()
+    vim.diagnostic.open_float()
+  end,
+  noremap = true,
+  silent = true,
+})
 vim.keymap.set('n', '<leader>f', vim.lsp.buf.format, { desc = 'Format buffer' })
-vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float, { desc = 'Show diagnostic' })

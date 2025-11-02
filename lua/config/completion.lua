@@ -3,6 +3,8 @@
 --
 local mini_completion = require('mini.completion')
 
+-- TODO: consider using `nvim-cmp`, check tj_dev's vid on dadbod
+
 mini_completion.setup({
   delay = {
     completion = 200,
@@ -11,7 +13,8 @@ mini_completion.setup({
   },
 
   -- Avoid having completion menu littered with useless entries
-  fallback_action = function() end,
+  fallback_action = '<C-x><C-o>', -- TODO: ?????????????????
+  -- fallback_action = function() end,
 
   lsp_completion = {
     -- Remove type `Text` from completion menu
