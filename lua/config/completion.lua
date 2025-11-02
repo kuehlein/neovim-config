@@ -3,8 +3,6 @@
 --
 local mini_completion = require('mini.completion')
 
--- TODO: for some reason, <C-e> isn't updating the text correctly?
-
 mini_completion.setup({
   delay = {
     completion = 200,
@@ -37,13 +35,20 @@ mini_completion.setup({
   },
 })
 
+-- Enable immediate selection when completion menu opens
+vim.opt.completeopt = { 'menu', 'menuone', 'noinsert' }
+
 vim.keymap.set('i', '<C-n>', function()
   return vim.fn.pumvisible() == 1 and '<Down>' or '<C-n>'
 end, { expr = true })
 
 vim.keymap.set('i', '<C-e>', function()
-  return vim.fn.pumvisible() == 1 and '<Up>' or '<C-e>'
-end, { expr = true })
+  if vim.fn.pumvisible() == 1 then
+    return '<C-p>' -- Go to previous item
+  else
+    return '<C-e>' -- Normal <C-e> behavior when menu closed
+  end
+end, { expr = true, replace_keycodes = true })
 
 vim.keymap.set('i', '<C-y>', function()
   return vim.fn.pumvisible() == 1 and '<C-y>' or '<C-y>'

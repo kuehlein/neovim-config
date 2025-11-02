@@ -4,7 +4,6 @@
 # TODO: protected branch, github actions, etc?
 # TODO: linting requirements?
 
-# TODO: when completion menu opens, make it select first option by default?
 # TODO: mini.ai `t` seems to not really work well
 # TODO: dadbod
 # TODO: mini.snippets
