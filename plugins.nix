@@ -42,9 +42,7 @@ let
     builtins.concatLists (
       builtins.attrValues {
         autoCompletion = with vimPlugins; [ mini-completion ];
-
-        # TODO: what does this do?
-        dadbod = with vimPlugins; [ vim-dadbod vim-dadbod-completion vim-dadbod-ui ];
+        db = with vimPlugins; [ vim-dadbod vim-dadbod-completion vim-dadbod-ui ];
         git = with vimPlugins; [ mini-diff mini-git vim-fugitive ];
         fileTree = with vimPlugins; [ oil-nvim ];
         fuzzy_find = with vimPlugins; [ fzf-lua ];

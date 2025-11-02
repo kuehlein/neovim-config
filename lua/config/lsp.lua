@@ -83,3 +83,7 @@ vim.diagnostic.config({
     severity = { min = vim.diagnostic.severity.WARN },
   },
 })
+
+-- TODO: 2 leader e's???
+vim.keymap.set('n', '<leader>f', vim.lsp.buf.format, { desc = 'Format buffer' })
+vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float, { desc = 'Show diagnostic' })

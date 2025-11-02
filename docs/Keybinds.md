@@ -24,18 +24,22 @@
 **Quick Reference - Most Used:**
 | Action | Key | Plugin |
 |--------|-----|--------|
+| Leader key | `Space` | |
 | Find files | `<leader>ff` | Fuzzy finder |
 | Live grep | `<leader>fg` | Fuzzy finder |
 | File explorer | `<leader>-` | Oil.nvim |
 | Quick files | `<leader><leader>` | Harpoon |
+| Select quick files | `<C-1>`-`<C-5>` | Harpoon |
 | Git status | `<leader>gs` | Fugitive |
-| Format code | `<leader>f` | LSP |
+| Go to definition | `gd` | LSP |
+| Show references | `grr` | LSP |
 | Show docs | `K` | LSP |
+| Rename symbol | `grn` | LSP |
+| Code action | `gra` | LSP |
+| Format code | `<leader>f` | LSP |
 | Diagnostics | `<leader>e` | LSP |
+| Next/Prev Diagnostic | `]d`/`[d` | LSP |
 
----
-
-**Leader key:** `Space`
 
 ---
 
@@ -48,7 +52,6 @@
 - **`n`/`N` → `;`/`,`** - Search next/previous remapped due to navigation conflicts.
   - `;` - Jump to next search result (centers page)
   - `,` - Jump to previous search result (centers page)
-  <!-- TODO: `;` and `,` don't seem to be working -->
 
 - **`<C-m> + <char>`** - Toggle mark in local buffer (a-z marks).
   - Default `m` command overwritten due to Colemak DH navigation.
@@ -121,7 +124,36 @@
 
 ## LSP & Treesitter
 
-- `K` - Show hover documentation
+**Navigation**
+- `gd` - Go to definition
+- `gD` - Go to declaration
+- `gri` - Go to implementation
+- `grr` - Show references
+- `gt` - Go to type definition
+
+**Information**
+- `K` - Hover documentation
+- `<C-k>` - Signature help
+- `gO` - Document symbols
+
+**Editing**
+- `grn` - Rename symbol
+- `gra` - Code action
+- `<leader>f` - Format buffer
+
+**Diagnostics**
+- `[d` - Previous diagnostic
+- `]d` - Next diagnostic
+- `[D` - First diagnostic
+- `]D` - Last diagnostic
+- `<leader>e` - Show diagnostic (`q` to close)
+  - Shortcut for `<C-w>d<C-w>w`
+
+these are fake
+**Workspaces**
+- `<leader>wa` - Add workspace folder
+- `<leader>wr` - Remove workspace folder
+- `<leader>wl` - List workspace folders
 
 ---
 
@@ -139,6 +171,15 @@ Default `i` (inside) prefix conflicts with navigation, so we use `t` instead:
 **Examples:**
 - `dtt` - Delete inside word
 - `ct"` - Change inside quotes
+
+---
+
+## Dadbod.vim (Database UI)
+
+- `<leader>db` - Toggle DB UI
+- `<leader>df` - Find DB buffer
+- `<leader>dr` - Rename DB buffer
+- `<leader>dq` - Last query info
 
 ---
 
@@ -178,23 +219,6 @@ See [Colemak DH Notes](ColemakDH.md) for layout details.
 
 ## Miscellaneous
 
-- `<leader>e` - Open diagnostics window (`:q` to close)
-- `<leader>f` - Format current buffer
 - `<leader>p` - Paste without yanking to clipboard
 - `<leader>d` - Delete without yanking to clipboard
 - `+` / `-` - Increment/decrement number under cursor
-
----
-
-## Built-in Keybindings Worth Remembering
-
-**Diagnostics** (available by default in Neovim):
-- `]d` - Next diagnostic
-- `[d` - Previous diagnostic  
-- `]D` - Last diagnostic in buffer
-- `[D` - First diagnostic in buffer
-- `<C-w>d` - Show diagnostic in floating window
-<!-- TODO: also <leader>e does same thing as above, except moves cursor to the menu  -->
-
-**Miscellaneous:**
-- `gx` - Open URL under cursor in browser

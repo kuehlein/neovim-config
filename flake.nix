@@ -1,12 +1,19 @@
-# TODO: config to make this work for non-linux? (do this later)
 # TODO: clean up git history
 # TODO: version 1.0.0
 # TODO: protected branch, github actions, etc?
 # TODO: linting requirements?
+# TODO: check for updates for plugins/neovim
 
+# TODO: selecting via harpoon is slow -- similar to problem with oil
+# TODO: rethink harpoon mappings...
 # TODO: mini.ai `t` seems to not really work well
-# TODO: dadbod
 # TODO: mini.snippets
+# TODO: <C-m> vs h for marks
+# TODO: remove colorcolumn from text files... (maybe only md?)
+
+# TODO: fix the click paste behavior
+# TODO: make this work for non-nixos
+# TODO: wtf are vim tabs?
 
 {
   description = "Neovim config.";

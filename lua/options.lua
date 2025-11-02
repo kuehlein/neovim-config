@@ -80,6 +80,7 @@ vim.api.nvim_create_autocmd('FileType', {
   callback = function()
     vim.opt_local.wrap = true
     vim.opt_local.breakindent = true -- Maintain indentation when wrapping
+    vim.opt_local.colorcolumn = '' -- Remove colum markers (creates visual bugs)
     vim.opt_local.linebreak = true -- Break at words, not characters
     vim.opt_local.showbreak = '↪ ' -- Visual indicator for wrapped lines
     vim.opt_local.textwidth = 0 -- Don't auto-insert newlines

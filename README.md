@@ -2,47 +2,11 @@
 
 Personal Neovim configuration built with Nix, optimized for the Colemak DH keyboard layout.
 
----
-
-## Overview
-
-This is a fully reproducible Neovim setup managed as a Nix flake. It includes LSP support, fuzzy finding, Git integration, and custom keybindings designed for ergonomic editing with Colemak DH.
-
 **Key Features:**
 - **Nix-managed** - Reproducible, declarative configuration
 - **Colemak DH optimized** - All keybindings adapted for Colemak DH
 - **LSP** - Full language server support
 - **Gruvbox theme** - Easy on the eyes
-
----
-
-## Structure
-```
-.
-├── flake.nix              # Nix flake & plugin management
-├── plugins.nix            # Plugin declarations
-├── init.lua               # Main entry point
-├── lua/
-│   ├── config/
-│   │   ├── completion.lua # Mini.completion setup
-│   │   ├── fzf.lua        # Fuzzy finder
-│   │   ├── harpoon.lua    # Quick file navigation
-│   │   ├── lsp.lua        # Language server configuration
-│   │   ├── obsidian.lua   # Note-taking
-│   │   ├── oil.lua        # File explorer
-│   │   ├── preview.lua    # Markdown preview
-│   │   ├── snippets.lua   # Code snippets
-│   │   ├── treesitter.lua # Syntax highlighting
-│   │   └── ...
-│   ├── keymaps.lua        # Useful keymaps
-│   ├── layouts.lua        # Colemak DH keybindings
-│   ├── options.lua        # Vim options
-│   ├── overwrite.lua      # Overload existing vim motions
-│   └── theme.lua          # Setup theme
-├── after/ftplugin/        # Language-specific settings
-├── docs/                  # Misc. documentation
-└── README.md
-```
 
 ---
 
@@ -86,6 +50,36 @@ This is a fully reproducible Neovim setup managed as a Nix flake. It includes LS
 **[Colemak DH Guide](docs/ColemakDH.md)** - How navigation keys are remapped and why
 
 **[Adding Languages](docs/Languages.md)** - How to add support for new languages
+
+---
+
+## Structure
+```
+.
+├── flake.nix              # Nix flake & plugin management
+├── plugins.nix            # Plugin declarations
+├── init.lua               # Main entry point
+├── lua/
+│   ├── config/
+│   │   ├── completion.lua # Mini.completion setup
+│   │   ├── fzf.lua        # Fuzzy finder
+│   │   ├── harpoon.lua    # Quick file navigation
+│   │   ├── lsp.lua        # Language server configuration
+│   │   ├── obsidian.lua   # Note-taking
+│   │   ├── oil.lua        # File explorer
+│   │   ├── preview.lua    # Markdown preview
+│   │   ├── snippets.lua   # Code snippets
+│   │   ├── treesitter.lua # Syntax highlighting
+│   │   └── ...
+│   ├── keymaps.lua        # Useful keymaps
+│   ├── layouts.lua        # Colemak DH keybindings
+│   ├── options.lua        # Vim options
+│   ├── overwrite.lua      # Overload existing vim motions
+│   └── theme.lua          # Setup theme
+├── after/ftplugin/        # Language-specific settings
+├── docs/                  # Misc. documentation
+└── README.md
+```
 
 ---
 

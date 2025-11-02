@@ -33,6 +33,9 @@ local colemak = function()
   -- TODO: replace `<C-m>` with `h`?
   -- vim.keymap.set(nx, 'h', 'm', opts)   -- (h)ighlight replaces (m)ark
 
+  vim.keymap.set('n', ';', 'nzzzv')             -- Next search (;) & center screen (zz)
+  vim.keymap.set('n', ',', 'Nzzzv')             -- Previous search (,) & center screen (zz)
+
   vim.keymap.set('n', '<C-w>m', '<C-w>h', opts) -- move to the left window
   vim.keymap.set('n', '<C-w>n', '<C-w>j', opts) -- move to the below window
   vim.keymap.set('n', '<C-w>e', '<C-w>k', opts) -- move to the above window
@@ -61,9 +64,10 @@ local qwerty = function()
   vim.keymap.set(nx, 'I', 'I', opts)
 
   vim.keymap.set(nx, 'e', 'e', opts)
-  vim.keymap.set(nx, 'n', 'n', opts)
-  vim.keymap.set(nx, 'N', 'N', opts)
   vim.keymap.set(nx, 'm', 'm', opts)
+
+  vim.keymap.set('n', 'n', 'nzzzv') -- Add center screen (zz) to (n)ext search
+  vim.keymap.set('n', 'N', 'Nzzzv') -- Add center screen (zz) to previous search (N)
 
   vim.keymap.set('n', '<C-w>h', '<C-w>h', opts)
   vim.keymap.set('n', '<C-w>j', '<C-w>j', opts)

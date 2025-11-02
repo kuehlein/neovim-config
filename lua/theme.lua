@@ -15,7 +15,7 @@ gruvbox.setup({
     strings = false,
   },
   overrides = {
-    ['ErrorMsg'] = { bold = true },
+    ['ErrorMsg'] = { bold = true, bg = p.faded_red, fg = p.bright_red },
     ['SignColumn'] = { bg = p.dark0_hard },
     ['Todo'] = { bold = true, bg = p.faded_orange, fg = p.bright_orange },
 

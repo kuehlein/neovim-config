@@ -2,13 +2,14 @@ vim.g.mapleader = ' '
 vim.g.maplocalleader = '\\'
 
 -- General configuration
-require('keymaps')
-require('options')
-require('overwrite')
-require('theme')
+require('keymaps') -- Create new mappings
+require('options') -- Set Vim options
+require('overwrite') -- Expand behavior of existing Vim motions
+require('theme') -- Gruvbox, Lualine and highlight group overrides
 
 -- Configuration for plugins
 require('config.completion')
+require('config.db')
 require('config.fuzzy_finder')
 require('config.git')
 require('config.harpoon')
