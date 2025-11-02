@@ -7,13 +7,13 @@ require('obsidian').setup({
     min_chars = 2,
   },
   daily_notes = {
-    folder = "daily",
+    folder = 'daily',
   },
   legacy_commands = false,
   workspaces = {
     {
-      name = "notes",
-      path = "~/Documents/obsidian-vault",
+      name = 'notes',
+      path = vim.fn.expand('~/Documents/obsidian-vault')
     },
   },
 })

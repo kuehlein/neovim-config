@@ -5,28 +5,28 @@ local oil_actions = require('oil.actions')
 
 require('oil').setup({
   columns = {
-    "icon",
+    'icon',
     {
-      "permissions",
+      'permissions',
       highlight = function(permission_str)
         -- Highlight based on permission type
-        if permission_str:match("^d") then
-          return "Directory" -- Directories
-        elseif permission_str:match("x") then
-          return "String"    -- Executable files
+        if permission_str:match('^d') then
+          return 'Directory' -- Directories
+        elseif permission_str:match('x') then
+          return 'String'    -- Executable files
         else
-          return "Comment"   -- Regular files (grayed out)
+          return 'Comment'   -- Regular files (grayed out)
         end
       end,
     },
     {
-      "size",
-      highlight = "Number",
+      'size',
+      highlight = 'Number',
     },
     {
-      "mtime",
-      highlight = "Comment",
-      format = "%m-%d-%Y", -- Date format
+      'mtime',
+      highlight = 'Comment',
+      format = '%m-%d-%Y', -- Date format
     },
   },
 

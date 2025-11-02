@@ -19,7 +19,7 @@ mini_completion.setup({
     -- Remove type `Text` from completion menu
     process_items = function(items)
       return vim.tbl_filter(function(item)
-        return item.kind ~= 1  -- Filter out Text items
+        return item.kind ~= 1 -- Filter out Text items
       end, items)
     end,
   },
