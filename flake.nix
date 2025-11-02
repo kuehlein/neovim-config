@@ -1,15 +1,13 @@
 # TODO: config to make this work for non-linux? (do this later)
 # TODO: clean up git history
-# TODO: README
 # TODO: version 1.0.0
 # TODO: protected branch, github actions, etc?
 # TODO: linting requirements?
 
 # TODO: when completion menu opens, make it select first option by default?
-# TODO: finish keybinds.md file
-# TODO: luasnips
 # TODO: mini.ai `t` seems to not really work well
-# TODO: obsidian.nvim
+# TODO: dadbod
+# TODO: mini.snippets
 
 {
   description = "Neovim config.";
@@ -33,7 +31,6 @@
           nil # Nix
           rust-analyzer # Rust
           taplo # TOML
-          texlab # LaTeX
           typescript-language-server # Typescript/Javascript
           vscode-langservers-extracted # CSS, HTML, JSON
           yaml-language-server # YAML
@@ -51,7 +48,6 @@
             cp init.lua $out/
           '';
         };
-
 
         customRC = ''
           set runtimepath^=${configDir}

@@ -29,6 +29,8 @@ local colemak = function()
   vim.keymap.set(nx, 'T', 'I', opts)   -- (T)ype at bol replaces (I)nsert
 
   vim.keymap.set(nx, 'l', 'e', opts)   -- (l)ast replaces (e)nd
+
+  -- TODO: replace `<C-m>` with `h`?
   -- vim.keymap.set(nx, 'h', 'm', opts)   -- (h)ighlight replaces (m)ark
 
   vim.keymap.set('n', '<C-w>m', '<C-w>h', opts) -- move to the left window

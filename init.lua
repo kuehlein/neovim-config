@@ -1,11 +1,9 @@
 vim.g.mapleader = ' '
 vim.g.maplocalleader = '\\'
 
--- TODO: if using `AI` coding tool, look at **supermaven**
-
 -- General configuration
 require('keymaps')
-require('set')
+require('options')
 require('overwrite')
 require('theme')
 
@@ -15,7 +13,7 @@ require('config.fuzzy_finder')
 require('config.git')
 require('config.harpoon')
 require('config.lsp')
--- require('config.obsidian')
+require('config.obsidian')
 require('config.oil')
 require('config.pairs')
 require('config.preview')

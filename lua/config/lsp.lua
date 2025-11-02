@@ -19,9 +19,6 @@ vim.lsp.enable('html')
 -- JSON
 vim.lsp.enable('jsonls')
 
--- LaTeX
-vim.lsp.enable('texlab')
-
 -- Lua
 vim.lsp.enable('lua_ls')
 vim.lsp.config('lua_ls', {

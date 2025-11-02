@@ -1,6 +1,39 @@
 # Keybindings
 
-<!-- TODO: table of contents? -->
+## Keybindings Index
+
+**Quick Navigation:**
+- [Navigation Overwrites](#navigation-overwrites) - Colemak DH adaptations
+- [General Overwrites](#general-overwrites) - Quality of life improvements
+- [File Navigation & Search](#file-navigation--search) - Finding files and content
+- [Oil.nvim](#oilnvim) - File explorer
+- [Completion](#completion) - Autocompletion menu
+- [Harpoon](#harpoon) - Quick file switching
+- [Git](#git-vim-fugitive) - Version control
+- [LSP & Treesitter](#lsp--treesitter) - Code intelligence
+- [Mini.ai](#miniai-textobjects) - Text objects
+- [Undotree](#undotree) - Undo history
+- [Markdown Preview](#markdown-preview) - Live preview
+- [Snippets](#snippets) - Code templates
+- [Custom Commands](#custom-commands) - Layout switching
+- [Miscellaneous](#miscellaneous) - Other utilities
+- [Built-in Keybindings](#built-in-keybindings-worth-remembering) - Neovim defaults
+
+---
+
+**Quick Reference - Most Used:**
+| Action | Key | Plugin |
+|--------|-----|--------|
+| Find files | `<leader>ff` | Fuzzy finder |
+| Live grep | `<leader>fg` | Fuzzy finder |
+| File explorer | `<leader>-` | Oil.nvim |
+| Quick files | `<leader><leader>` | Harpoon |
+| Git status | `<leader>gs` | Fugitive |
+| Format code | `<leader>f` | LSP |
+| Show docs | `K` | LSP |
+| Diagnostics | `<leader>e` | LSP |
+
+---
 
 **Leader key:** `Space`
 
@@ -42,7 +75,15 @@
 - `<leader>fb` - Find buffers
 - `<leader>fh` - Search help tags
 - `<leader>fo` - Recent files
-- `<leader>-` - Open parent directory (oil.nvim)
+
+---
+
+## Oil.nvim
+
+- `<leader>-` - Open parent directory
+- `<CR>` - Select file/directory
+- `<C-p>` - Open/close preview
+- `<C-r>` - Refresh display
 
 ---
 
@@ -107,6 +148,12 @@ Default `i` (inside) prefix conflicts with navigation, so we use `t` instead:
 
 ---
 
+## Markdown Preview
+
+- `<leader>tp` - Toggle preview (for `.md` files)
+
+---
+
 ## Snippets
 
 ### Global
@@ -131,8 +178,10 @@ See [Colemak DH Notes](ColemakDH.md) for layout details.
 
 ## Miscellaneous
 
-- `<leader>e` - Open diagnostics window (`q` to close)
+- `<leader>e` - Open diagnostics window (`:q` to close)
 - `<leader>f` - Format current buffer
+- `<leader>p` - Paste without yanking to clipboard
+- `<leader>d` - Delete without yanking to clipboard
 - `+` / `-` - Increment/decrement number under cursor
 
 ---

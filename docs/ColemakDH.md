@@ -2,6 +2,39 @@
 
 This document describes keybinding changes made to accommodate the Colemak DH keyboard layout in Neovim.
 
+## Colemak DH Accommodations - Index
+
+**Quick Navigation:**
+- [Core Philosophy](#core-philosophy) - Why and how we remap
+- [Navigation Remaps](#navigation-remaps) - All movement keys
+  - [Basic Movement](#basic-movement) - `mnei` for `hjkl`
+  - [Display Line Movement](#display-line-movement-with-wrap) - `g` prefix movements
+  - [Screen Scrolling](#screen-scrolling) - `z` prefix scrolling
+  - [Window Navigation](#window-navigation) - `<C-w>` prefix
+- [Cascading Remaps](#cascading-remaps) - Displaced commands
+  - [Insert Mode](#insert-mode) - `t` for insert
+  - [Word Movement](#word-movement) - `l` for end
+  - [Marks](#marks) - `h` or `<C-m>` for marks
+- [Search Navigation](#search-navigation) - `;` and `,` for search
+- [Plugin Accommodations](#plugin-accommodations) - Plugin-specific changes
+  - [Mini.ai](#miniai-textobjects) - `t` for textobjects
+- [Switching Layouts](#switching-layouts) - Toggle between layouts
+- [Resources](#resources) - External links
+
+---
+
+**Quick Reference - Key Remaps:**
+
+| Category | Colemak DH | QWERTY | Why Changed |
+|----------|------------|--------|-------------|
+| **Navigation** | `mnei` | `hjkl` | Core Colemak adaptation |
+| **Insert** | `t` / `T` | `i` / `I` | `i` used for navigation |
+| **End of word** | `l` | `e` | `e` used for navigation |
+| **Search next** | `;` / `,` | `n` / `N` | `n` used for navigation |
+| **Marks** | `<C-m>` | `m` | `m` used for navigation |
+| **Textobjects** | `t` | `i` | `i` used for navigation |
+
+
 ---
 
 ## Core Philosophy

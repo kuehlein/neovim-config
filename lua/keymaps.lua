@@ -13,9 +13,8 @@ vim.keymap.set('n', '<leader>e', '<Nop>', {
   silent = true,
 })
 
--- TODO: not sure i need these... figure it out
--- vim.keymap.set({ 'n', 'x' }, '<leader>p', '"_dP', opts)         -- deletes and pastes without yanking into any register
--- vim.keymap.set({ 'n', 'x' }, '<leader>d', '"_d', opts) -- deletes without yanking into any register
+vim.keymap.set({ 'n', 'x' }, '<leader>p', '"_dP', opts) -- deletes and pastes without yanking into any register
+vim.keymap.set({ 'n', 'x' }, '<leader>d', '"_d', opts)  -- deletes without yanking into any register
 
 -- apply formatting to current buffer
 vim.keymap.set('n', '<leader>f', vim.lsp.buf.format, opts)

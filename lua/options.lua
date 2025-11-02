@@ -1,5 +1,5 @@
 --
--- Vim settings
+-- Vim options
 --
 vim.opt.nu = true
 vim.opt.relativenumber = true
@@ -9,8 +9,6 @@ vim.opt.expandtab = true
 vim.opt.shiftwidth = 2
 vim.opt.softtabstop = 2
 vim.opt.tabstop = 2
-
-vim.opt.wrap = false
 
 -- Prevent auto-continuation of comments when pressing Enter, o or O.
 -- Although this is rather janky, this is the standard way to do it.
@@ -66,3 +64,24 @@ vim.opt.termguicolors = true
 -- Move cursor to new split
 vim.opt.splitbelow = true
 vim.opt.splitright = true
+
+vim.opt.wrap = false
+
+-- Enable wrap for text/text-like files
+vim.api.nvim_create_autocmd('FileType', {
+  pattern = {
+    'markdown',
+    'text',
+    'txt',
+    'gitcommit',
+    'org',
+    'rst',
+  },
+  callback = function()
+    vim.opt_local.wrap = true
+    vim.opt_local.breakindent = true -- Maintain indentation when wrapping
+    vim.opt_local.linebreak = true -- Break at words, not characters
+    vim.opt_local.showbreak = '↪ ' -- Visual indicator for wrapped lines
+    vim.opt_local.textwidth = 0 -- Don't auto-insert newlines
+  end,
+})

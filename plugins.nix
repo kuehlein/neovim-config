@@ -26,7 +26,6 @@ let
       p.html
       p.javascript
       p.json
-      p.latex
       p.lua
       p.nix
       p.rust
@@ -51,6 +50,7 @@ let
         fuzzy_find = with vimPlugins; [ fzf-lua ];
         harpoon = with vimPlugins; [ harpoon-2 plenary-nvim ];
         lsp = with vimPlugins; [ nvim-lspconfig ];
+        obsidian = with vimPlugins; [ obsidian-nvim ];
         pairs = with vimPlugins; [ mini-pairs ];
         preview = with vimPlugins; [ render-markdown-nvim ];
         snippets = with vimPlugins; [ mini-snippets ];

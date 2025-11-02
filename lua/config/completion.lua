@@ -31,18 +31,6 @@ mini_completion.setup({
     scroll_up = '<C-e>',   -- (p)revious
   },
 
-  -- For mini.snippets
-  source_func = function()
-    -- TODO: ????
-    local snippets_source = require('mini.snippets').gen_completion()
-    local lsp_items = mini_completion.completion.default_lsp_completion()
-    local snippet_items = snippets_source()
-
-    print('SNIPPETS... ', snippet_items)
-
-    return vim.list_extend(lsp_items or {}, snippet_items or {})
-  end,
-
   window = {
     info = { border = 'bold' },
     signature = { border = 'bold' },
