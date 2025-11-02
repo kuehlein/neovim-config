@@ -26,7 +26,7 @@ require('oil').setup({
     {
       "mtime",
       highlight = "Comment",
-      format = "%Y-%m-%d %H:%M", -- Custom date format
+      format = "%m-%d-%Y", -- Date format
     },
   },
 
