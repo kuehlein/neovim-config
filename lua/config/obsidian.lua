@@ -13,7 +13,7 @@ require('obsidian').setup({
   workspaces = {
     {
       name = 'notes',
-      path = vim.fn.expand('~/Documents/obsidian-vault')
+      path = os.getenv('HOME') .. '/Documents/obsidian-vault',
     },
   },
 })
