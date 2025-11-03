@@ -17,3 +17,32 @@ vim.keymap.set('n', '<C-5>', function() harpoon:list():select(5) end, { desc = '
 
 vim.keymap.set('n', '<C-n>', function() harpoon:list():next({ ui_nav_wrap = true }) end, { desc = 'Jump to the next file in the list.' }) -- (n)ext
 vim.keymap.set('n', '<C-p>', function() harpoon:list():prev({ ui_nav_wrap = true }) end, { desc = 'Jump to the previous file in the list.' }) -- (p)revious
+
+-- harpoon:extend({
+--   UI_CREATE = function(cx)
+--     -- vim.keymap.set("n", "<C-v>", function()
+--     --   harpoon.ui:select_menu_item({ vsplit = true })
+--     -- end, { buffer = cx.bufnr })
+--
+--     vim.keymap.set("n", "<CR>", function()
+--       harpoon.ui:select_menu_item()
+--     end, { nowait = true })
+--
+--     -- vim.keymap.set("n", "<C-t>", function()
+--     --   harpoon.ui:select_menu_item({ tabedit = true })
+--     -- end, { buffer = cx.bufnr })
+--   end,
+-- })
+
+-- -- Override the default behavior of `select` (with `<CR>`) to add `nowait`.
+-- -- Without `nowait`, harpoon will wait `vim.opt.timeoutlen` (e.g. 1000ms) before performing a select.
+-- vim.api.nvim_create_autocmd('FileType', {
+--   pattern = 'harpoon',
+--   callback = function()
+--     vim.keymap.set('n', '<CR>', function()
+--       print('selecting........')
+--       harpoon:select()
+--       print('selecting........')
+--     end, { buffer = true, nowait = true, silent = true })
+--   end
+-- })

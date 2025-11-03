@@ -173,7 +173,6 @@ Default `i` (inside) prefix conflicts with navigation, so we use `t` instead:
 - `<leader>db` - Toggle DB UI
 - `<leader>df` - Find DB buffer
 - `<leader>dr` - Rename DB buffer
-- `<leader>de` - Execute query
 - `<leader>dq` - Last query info
 
 ---
