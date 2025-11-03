@@ -10,6 +10,7 @@
 # TODO: mini.snippets
 # TODO: <C-m> vs h for marks
 # TODO: remove colorcolumn from text files... (maybe only md?)
+# TODO: make sure that ordering of `Keybinds.md`'s index (and other docs) is correct, we've messed with the section orders
 
 # TODO: fix the click paste behavior
 # TODO: make this work for non-nixos
@@ -23,8 +24,15 @@
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
   };
 
-  outputs = { self, flake-utils, nixpkgs, ... }:
-    flake-utils.lib.eachDefaultSystem (system:
+  outputs =
+    {
+      self,
+      flake-utils,
+      nixpkgs,
+      ...
+    }:
+    flake-utils.lib.eachDefaultSystem (
+      system:
       let
         pkgs = import nixpkgs { inherit system; };
         plugins = import ./plugins.nix { inherit pkgs; };
@@ -36,6 +44,7 @@
           lua-language-server # Lua
           nil # Nix
           rust-analyzer # Rust
+          sqls # SQL
           taplo # TOML
           typescript-language-server # Typescript/Javascript
           vscode-langservers-extracted # CSS, HTML, JSON
@@ -72,17 +81,18 @@
             };
             wrappedNeovimConfig = pkgs.wrapNeovimUnstable pkgs.neovim-unwrapped baseNeovimConfig;
           in
-            pkgs.symlinkJoin {
-              buildInputs = [ pkgs.makeWrapper ];
-              name = "neovim-with-lsp";
-              paths = [ wrappedNeovimConfig ];
-              postBuild = ''
-                wrapProgram $out/bin/nvim \
-                  --prefix PATH : ${pkgs.lib.makeBinPath languageServers}
-              '';
-            };
+          pkgs.symlinkJoin {
+            buildInputs = [ pkgs.makeWrapper ];
+            name = "neovim-with-lsp";
+            paths = [ wrappedNeovimConfig ];
+            postBuild = ''
+              wrapProgram $out/bin/nvim \
+                --prefix PATH : ${pkgs.lib.makeBinPath languageServers}
+            '';
+          };
 
-      in {
+      in
+      {
         packages = {
           default = neovimConfig;
           neovim-config = neovimConfig;

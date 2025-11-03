@@ -58,6 +58,9 @@ vim.lsp.enable('nil_ls')
 -- Rust
 vim.lsp.enable('rust_analyzer')
 
+-- SQL
+vim.lsp.enable('sqls')
+
 -- TOML
 vim.lsp.enable('taplo')
 

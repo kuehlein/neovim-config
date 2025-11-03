@@ -13,8 +13,8 @@ mini_completion.setup({
   },
 
   -- Avoid having completion menu littered with useless entries
-  fallback_action = '<C-x><C-o>', -- TODO: ?????????????????
-  -- fallback_action = function() end,
+  -- fallback_action = '<C-x><C-o>', -- TODO: ?????????????????
+  fallback_action = function() end,
 
   lsp_completion = {
     -- Remove type `Text` from completion menu

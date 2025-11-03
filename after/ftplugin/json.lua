@@ -1,11 +1,12 @@
+--
+-- JSON
+--
 vim.opt_local.expandtab = true
 vim.opt_local.shiftwidth = 2
 vim.opt_local.softtabstop = 2
 vim.opt_local.tabstop = 2
 
--- don't reapply config if it is already active
-if vim.g.javascript_ftplugin_is_active then
-  return
+-- Use jq for formatting if it exists
+if vim.fn.executable('jq') == 1 then
+  vim.opt_local.formatprg = 'jq .'
 end
-
-vim.g.javascript_ftplugin_is_active = true
