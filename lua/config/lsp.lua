@@ -87,6 +87,9 @@ vim.diagnostic.config({
   },
 })
 
+-- Enable inlay hints globally
+vim.lsp.inlay_hint.enable(true)
+
 -- Shortcut for `<C-w>d<C-w>w`
 vim.keymap.set('n', '<leader>e', '<Nop>', {
   callback = function()
