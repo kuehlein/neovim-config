@@ -1,6 +1,8 @@
 --
 -- Keymaps for alternative keyboard layouts
 --
+local marks = require('marks')
+
 local opts = { noremap = true, nowait = true, silent = true }
 
 -- Modes
@@ -8,30 +10,27 @@ local nx = { 'n', 'x' }
 
 local colemak = function()
   -- Colemak mnei(hjkl), t(i), <C-n>(f), l(e)
-  vim.keymap.set(nx, 'm', 'h', opts)   -- Move left
-  vim.keymap.set(nx, 'n', 'j', opts)   -- Move down
-  vim.keymap.set(nx, 'e', 'k', opts)   -- Move up
-  vim.keymap.set(nx, 'i', 'l', opts)   -- Move right
+  vim.keymap.set(nx, 'm', 'h', opts)            -- Move left
+  vim.keymap.set(nx, 'n', 'j', opts)            -- Move down
+  vim.keymap.set(nx, 'e', 'k', opts)            -- Move up
+  vim.keymap.set(nx, 'i', 'l', opts)            -- Move right
 
-  vim.keymap.set(nx, 'gm', 'gh', opts) -- Move left (with wrap)
-  vim.keymap.set(nx, 'gn', 'gj', opts) -- Move down (with wrap)
-  vim.keymap.set(nx, 'ge', 'gk', opts) -- Move up (with wrap)
-  vim.keymap.set(nx, 'gi', 'gl', opts) -- Move right (with wrap)
+  vim.keymap.set(nx, 'gm', 'gh', opts)          -- Move left (with wrap)
+  vim.keymap.set(nx, 'gn', 'gj', opts)          -- Move down (with wrap)
+  vim.keymap.set(nx, 'ge', 'gk', opts)          -- Move up (with wrap)
+  vim.keymap.set(nx, 'gi', 'gl', opts)          -- Move right (with wrap)
 
-  vim.keymap.set(nx, 'zm', 'zh', opts) -- Move screen left
-  vim.keymap.set(nx, 'zn', 'zj', opts) -- Move screen down
-  vim.keymap.set(nx, 'ze', 'zk', opts) -- Move screen up
-  vim.keymap.set(nx, 'zi', 'zl', opts) -- Move screen right
-  vim.keymap.set(nx, 'zM', 'zH', opts) -- Move screen all the way left
-  vim.keymap.set(nx, 'zI', 'zL', opts) -- Move screen all the way right
+  vim.keymap.set(nx, 'zm', 'zh', opts)          -- Move screen left
+  vim.keymap.set(nx, 'zn', 'zj', opts)          -- Move screen down
+  vim.keymap.set(nx, 'ze', 'zk', opts)          -- Move screen up
+  vim.keymap.set(nx, 'zi', 'zl', opts)          -- Move screen right
+  vim.keymap.set(nx, 'zM', 'zH', opts)          -- Move screen all the way left
+  vim.keymap.set(nx, 'zI', 'zL', opts)          -- Move screen all the way right
 
-  vim.keymap.set(nx, 't', 'i', opts)   -- (t)ype replaces (i)nsert
-  vim.keymap.set(nx, 'T', 'I', opts)   -- (T)ype at bol replaces (I)nsert
+  vim.keymap.set(nx, 't', 'i', opts)            -- (t)ype replaces (i)nsert
+  vim.keymap.set(nx, 'T', 'I', opts)            -- (T)ype at bol replaces (I)nsert
 
-  vim.keymap.set(nx, 'l', 'e', opts)   -- (l)ast replaces (e)nd
-
-  -- TODO: replace `<C-m>` with `h`?
-  -- vim.keymap.set(nx, 'h', 'm', opts)   -- (h)ighlight replaces (m)ark
+  vim.keymap.set(nx, 'l', 'e', opts)            -- (l)ast replaces (e)nd
 
   vim.keymap.set('n', ';', 'nzzzv')             -- Next search (;) & center screen (zz)
   vim.keymap.set('n', ',', 'Nzzzv')             -- Previous search (,) & center screen (zz)
@@ -40,6 +39,8 @@ local colemak = function()
   vim.keymap.set('n', '<C-w>n', '<C-w>j', opts) -- move to the below window
   vim.keymap.set('n', '<C-w>e', '<C-w>k', opts) -- move to the above window
   vim.keymap.set('n', '<C-w>i', '<C-w>l', opts) -- move to the right window
+
+  marks.setup_keymaps('h')                      -- (h)ighlight replaces (m)ark
 end
 
 local qwerty = function()
@@ -73,6 +74,8 @@ local qwerty = function()
   vim.keymap.set('n', '<C-w>j', '<C-w>j', opts)
   vim.keymap.set('n', '<C-w>k', '<C-w>k', opts)
   vim.keymap.set('n', '<C-w>l', '<C-w>l', opts)
+
+  marks.setup_keymaps('m')
 end
 
 vim.api.nvim_create_user_command('Colemak', colemak, { nargs = 0 })

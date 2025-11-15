@@ -4,6 +4,8 @@
 local p = require('gruvbox').palette
 local SIGN_COLUMN_MARK_INDICATOR_HIGHLIGHT_GROUP = 'SignColumnMarkIndicator'
 
+local M = {}
+
 function PlaceMarkIndicator(char)
   local mark_pos = vim.api.nvim_buf_get_mark(0, char)
 
@@ -12,7 +14,7 @@ function PlaceMarkIndicator(char)
 
     vim.fn.sign_define(sign_name, { text = char, texthl = SIGN_COLUMN_MARK_INDICATOR_HIGHLIGHT_GROUP })
     vim.fn.sign_place(
-      0,            -- Sign ID (0 allows automatic assignment)
+      0,               -- Sign ID (0 allows automatic assignment)
       'MarkSignGroup', -- Group name to place/unplace marks
       sign_name,
       vim.api.nvim_get_current_buf(),
@@ -40,7 +42,7 @@ function DisplayMarkIndicator()
 end
 
 vim.api.nvim_create_autocmd({
-  'BufEnter',  -- Triggered after switching to a new buffer
+  'BufEnter',   -- Triggered after switching to a new buffer
   'CursorHold', -- Triggered when the cursor stops moving
 }, {
   pattern = '*',
@@ -65,21 +67,31 @@ function ToggleMark(char)
     vim.cmd('normal! m' .. char)
   end
 
-    DisplayMarkIndicator()
+  DisplayMarkIndicator()
 end
 
+function M.setup_keymaps(prefix)
+  -- Clear any existing mark keymaps
+  for i = string.byte('a'), string.byte('z') do
+    local char = string.char(i)
+    pcall(vim.keymap.del, 'n', prefix .. char)
+    pcall(vim.keymap.del, 'v', prefix .. char)
+  end
 
--- Create a keymap for toggling marks a-z
-for i = string.byte('a'), string.byte('z') do
-  local char = string.char(i)
+  -- Create a keymap for toggling marks a-z
+  for i = string.byte('a'), string.byte('z') do
+    local char = string.char(i)
 
-  vim.keymap.set(
-    { 'n', 'v' },
-    '<C-m>' .. char,
-    function() ToggleMark(char) end,
-    { desc = 'Toggle mark', noremap = true, silent = true }
-  )
+    vim.keymap.set(
+      { 'n', 'v' },
+      prefix .. char,
+      function() ToggleMark(char) end,
+      { desc = 'Toggle mark ' .. char, noremap = true, silent = true }
+    )
+  end
 end
 
 -- Use the correct colors for highlighting marks
 vim.api.nvim_set_hl(0, SIGN_COLUMN_MARK_INDICATOR_HIGHLIGHT_GROUP, { fg = p.bright_orange })
+
+return M

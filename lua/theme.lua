@@ -25,7 +25,8 @@ gruvbox.setup({
     ['DiagnosticSignInfo'] = { bg = p.dark0_hard, fg = p.bright_blue },
     ['DiagnosticSignHint'] = { bg = p.dark0_hard, fg = p.bright_aqua },
     ['DiagnosticUnnecessary'] = { undercurl = true, italic = true, fg = p.gray },
-    ['LspInlayHint'] = { bold = true, italic = true, bg = p.dark_aqua, fg = p.bright_aqua },
+    -- ['LspInlayHint'] = { bold = true, italic = true, bg = p.dark_aqua, fg = p.bright_aqua },
+    ['LspInlayHint'] = { bold = true, italic = true, bg = p.dark0, fg = p.dark1 },
 
     -- Rust
     ['@lsp.mod.mutable.rust'] = { bold = true, bg = p.faded_red, fg = p.bright_red },

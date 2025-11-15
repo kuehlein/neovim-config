@@ -5,6 +5,9 @@ vim.g.db_ui_use_nerd_fonts = 1
 vim.g.db_ui_show_database_icon = 1
 vim.g.db_ui_force_echo_notifications = 1
 
+-- TODO: add way to easily use db from current project
+-- TODO: maybe that means .env vars, ??
+
 -- Save queries config
 vim.g.db_ui_save_location = vim.fn.stdpath('config') .. '/db_ui_queries'
 
@@ -49,6 +52,7 @@ end
 -- TODO: temporary until the above is fixed
 vim.g.dbs = {
   ['local'] = get_db({ prefix = 'sqlite:', path = '~/data/local.db' }),
+  ['personal_local'] = get_db({ prefix = 'sqlite:', path = '~/dev/personal_site/personal_site.db' }),
 }
 
 -- Log out database connection information
