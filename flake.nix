@@ -9,7 +9,6 @@
 # TODO: rethink harpoon mappings...
 # TODO: mini.ai `t` seems to not really work well
 # TODO: mini.snippets
-# TODO: <C-m> vs h for marks (definitely do h for marks...)
 # TODO: remove colorcolumn from text files... (maybe only md?)
 # TODO: make sure that ordering of `Keybinds.md`'s index (and other docs) is correct, we've messed with the section orders
 # TODO: colorcolumn still messing with markdown files
@@ -66,7 +65,7 @@
             mkdir -p $out
             cp -r lua $out/
             cp -r after $out/
-            cp -r plugin $out/
+            # cp -r plugin $out/
             cp init.lua $out/
           '';
         };
