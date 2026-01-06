@@ -9,7 +9,6 @@ require('oil').setup({
     {
       'permissions',
       highlight = function(permission_str)
-        -- Highlight based on permission type
         if permission_str:match('^d') then
           return 'Directory' -- Directories
         elseif permission_str:match('x') then

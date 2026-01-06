@@ -45,39 +45,46 @@ Personal Neovim configuration built with Nix, optimized for the Colemak DH keybo
 
 ## Documentation
 
-**[Keybindings Reference](docs/Keybinds.md)** - Complete list of all keybindings and commands
+**[Keybindings Reference](docs/KEYBINDS.md)** - Complete list of all keybindings and commands
 
-**[Colemak DH Guide](docs/ColemakDH.md)** - How navigation keys are remapped and why
+**[Colemak DH Guide](docs/COLEMAKDH.md)** - How navigation keys are remapped and why
 
-**[Adding Languages](docs/Languages.md)** - How to add support for new languages
+**[Development](docs/DEVELOPMENT.md)** - Notes on local development
+
+**[Adding Languages](docs/LANGUAGES.md)** - How to add support for new languages
 
 ---
 
 ## Structure
+
 ```
 .
-├── flake.nix              # Nix flake & plugin management
-├── plugins.nix            # Plugin declarations
-├── init.lua               # Main entry point
+├── flake.nix                   # Nix flake & plugin management
+├── plugins.nix                 # Plugin declarations
+├── init.lua                    # Main entry point
 ├── lua/
 │   ├── config/
-│   │   ├── completion.lua # Mini.completion setup
-│   │   ├── fzf.lua        # Fuzzy finder
-│   │   ├── harpoon.lua    # Quick file navigation
-│   │   ├── lsp.lua        # Language server configuration
-│   │   ├── obsidian.lua   # Note-taking
-│   │   ├── oil.lua        # File explorer
-│   │   ├── preview.lua    # Markdown preview
-│   │   ├── snippets.lua   # Code snippets
-│   │   ├── treesitter.lua # Syntax highlighting
+│   │   ├── completion.lua      # Mini.completion setup
+│   │   ├── fzf.lua             # Fuzzy finder
+│   │   ├── harpoon.lua         # Quick file navigation
+│   │   ├── lsp.lua             # Language server configuration
+│   │   ├── obsidian.lua        # Note-taking
+│   │   ├── oil.lua             # File explorer
+│   │   ├── preview.lua         # Markdown preview
+│   │   ├── snippets.lua        # Code snippets
+│   │   ├── treesitter.lua      # Syntax highlighting
 │   │   └── ...
-│   ├── keymaps.lua        # Useful keymaps
-│   ├── layouts.lua        # Colemak DH keybindings
-│   ├── options.lua        # Vim options
-│   ├── overwrite.lua      # Overload existing vim motions
-│   └── theme.lua          # Setup theme
-├── after/ftplugin/        # Language-specific settings
-├── docs/                  # Misc. documentation
+│   ├── utils/
+│   │   ├── dadbod.lua          # Extend dadbod.nvim's behavior
+│   │   ├── floating-window.lua # Util for creating floating windows
+│   │   └── layout.lua          # Util for toggling layouts
+│   ├── keymaps.lua             # Useful keymaps
+│   ├── layouts.lua             # Colemak DH keybindings
+│   ├── options.lua             # Vim options
+│   ├── overwrite.lua           # Overload existing vim motions
+│   └── theme.lua               # Setup theme
+├── after/ftplugin/             # Language-specific settings
+├── docs/                       # Misc. documentation
 └── README.md
 ```
 
@@ -109,4 +116,4 @@ environment.systemPackages = [
 
 ## Notes
 
-This is my personal configuration. I haven't made this config with anyone other than myself in mind. Feel free to fork it or copy/paste as you please.
+This is my personal configuration, it wasn't made with anyone other than myself in mind. Feel free to fork it or copy/paste as you please.

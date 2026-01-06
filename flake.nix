@@ -1,29 +1,24 @@
 # TODO: clean up git history
 # TODO: version 1.0.0
 # TODO: protected branch, github actions, etc?
-# TODO: linting requirements?
-# TODO: check for updates for plugins/neovim
+# TODO: change log, versioning, etc.
+# TODO: linting requirements (via CI)
+# TODO: check for updates for plugins/neovim (and add docs for this)
 
-# TODO: rust completion menu is kinda fucked up?
-# TODO: selecting via harpoon is slow -- similar to problem with oil
-# TODO: rethink harpoon mappings...
+# TODO: consider ayu theme
+# TODO: some lsp functionality doesn't seem to work in rust...? (e.g. `gd`)
+# TODO: harpoon keybinds conflict with <C-e> for moving page (<C-e> and <C-y>)
 # TODO: mini.ai `t` seems to not really work well
 # TODO: mini.snippets
-# TODO: remove colorcolumn from text files... (maybe only md?)
-# TODO: make sure that ordering of `Keybinds.md`'s index (and other docs) is correct, we've messed with the section orders
-# TODO: colorcolumn still messing with markdown files
-# TODO: add way for dadbod to add new dbs on the fly (e.g. while working on a new project)
-# TODO: configure pairs to not activate when space after cursor has a non-whitespace character
-
-# TODO: fix the click paste behavior
-# TODO: make this work for non-nixos
-# TODO: wtf are vim tabs?
-
-# to run build without rebuilding os
-# nix build .#neovim-config && ./result/bin/nvim
+# TODO: completion menu is kinda fucked... sometimes it inserts these weird characters?
+# TODO: have ai generate types for lua code
+# TODO: add git shortcuts
+# TODO: shortcut for `:term` (<leader>t?) - maybe in floating window?
+# TODO: decrement under cursor keymap is overwritten by oil.nvim
+# TODO: improve obsidian configuration
 
 {
-  description = "Neovim config.";
+  description = "Neovim config";
 
   inputs = {
     flake-utils.url = "github:numtide/flake-utils";

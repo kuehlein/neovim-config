@@ -2,6 +2,7 @@
 -- Keymaps for alternative keyboard layouts
 --
 local marks = require('marks')
+local layout_util = require('utils.layout')
 
 local opts = { noremap = true, nowait = true, silent = true }
 
@@ -9,7 +10,7 @@ local opts = { noremap = true, nowait = true, silent = true }
 local nx = { 'n', 'x' }
 
 local colemak = function()
-  -- Colemak mnei(hjkl), t(i), <C-n>(f), l(e)
+  -- Colemak mnei(hjkl), t(i), l(e)
   vim.keymap.set(nx, 'm', 'h', opts)            -- Move left
   vim.keymap.set(nx, 'n', 'j', opts)            -- Move down
   vim.keymap.set(nx, 'e', 'k', opts)            -- Move up
@@ -40,7 +41,7 @@ local colemak = function()
   vim.keymap.set('n', '<C-w>e', '<C-w>k', opts) -- move to the above window
   vim.keymap.set('n', '<C-w>i', '<C-w>l', opts) -- move to the right window
 
-  marks.setup_keymaps('h')                      -- (h)ighlight replaces (m)ark
+  layout_util.set_layout(layout_util.LAYOUTS.colemak)
 end
 
 local qwerty = function()
@@ -75,9 +76,10 @@ local qwerty = function()
   vim.keymap.set('n', '<C-w>k', '<C-w>k', opts)
   vim.keymap.set('n', '<C-w>l', '<C-w>l', opts)
 
-  marks.setup_keymaps('m')
+  layout_util.set_layout(layout_util.LAYOUTS.qwerty)
 end
 
+marks.setup_keymaps()
 vim.api.nvim_create_user_command('Colemak', colemak, { nargs = 0 })
 vim.api.nvim_create_user_command('Qwerty', qwerty, { nargs = 0 })
 

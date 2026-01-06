@@ -12,12 +12,12 @@
 - [Git](#git-vim-fugitive) - Version control
 - [LSP & Treesitter](#lsp--treesitter) - Code intelligence
 - [Mini.ai](#miniai-textobjects) - Text objects
+- [Dadbod.vim](#dadbodvim) - Database UI
 - [Undotree](#undotree) - Undo history
 - [Markdown Preview](#markdown-preview) - Live preview
 - [Snippets](#snippets) - Code templates
 - [Custom Commands](#custom-commands) - Layout switching
 - [Miscellaneous](#miscellaneous) - Other utilities
-- [Built-in Keybindings](#built-in-keybindings-worth-remembering) - Neovim defaults
 
 ---
 
@@ -27,7 +27,7 @@
 | Leader key | `Space` | |
 | Find files | `<leader>ff` | Fuzzy finder |
 | Live grep | `<leader>fg` | Fuzzy finder |
-| File explorer | `<leader>-` | Oil.nvim |
+| File explorer | `-` | Oil.nvim |
 | Quick files | `<leader><leader>` | Harpoon |
 | Select quick files | `<C-1>`-`<C-5>` | Harpoon |
 | Git status | `<leader>gs` | Fugitive |
@@ -45,15 +45,16 @@
 
 ## Navigation Overwrites
 
-*Changes to default Vim behavior due to [Colemak DH layout](ColemakDH.md)*
+*Changes to default Vim behavior due to [Colemak DH layout](COLEMAKDH.md)*
 
-- **`hjkl` → `mnei`** - Navigation keys remapped for Colemak DH. See [Colemak DH Notes](ColemakDH.md) for details.
+- **`hjkl` → `mnei`** - Navigation keys remapped for Colemak DH. See [Colemak DH Notes](COLEMAKDH.md) for details.
+  - **`<C-p>` → `<C-e>`** - Navigation to previous option in menu also remapped for Colemak DH.
 
 - **`n`/`N` → `;`/`,`** - Search next/previous remapped due to navigation conflicts.
   - `;` - Jump to next search result (centers page)
   - `,` - Jump to previous search result (centers page)
 
-- **`<C-m> + <char>`** - Toggle mark in local buffer (a-z marks).
+- **`h + <char>`** - Toggle mark in local buffer (a-z marks).
   - Default `m` command overwritten due to Colemak DH navigation.
   - Enhanced with toggle functionality: press again on same line to remove mark.
   - For global marks across files, use [Harpoon](#harpoon).
@@ -66,6 +67,7 @@
 
 - **`<C-d>`** - Page down and centers page
 - **`<C-u>`** - Page up and centers page
+- **`'[a-z]`** - Jumping to mark centers page
 - **`J`** - Join lines while preserving cursor position
 - **`Q`** - Disabled (Ex mode)
 
@@ -83,7 +85,7 @@
 
 ## Oil.nvim
 
-- `<leader>-` - Open parent directory
+- `-` - Open parent directory
 - `<CR>` - Select file/directory
 - `<C-p>` - Open/close preview
 - `<C-r>` - Refresh display
@@ -93,7 +95,8 @@
 ## Completion
 
 - `<C-n>` - Next item in completion menu
-- `<C-e>` - Previous item in completion menu
+- `<C-e>` - Previous item in completion menu (for Colemak bindings)
+  - `<C-p>` (for Qwerty bindings)
 - `<C-y>` - Accept selected completion
 - `<C-Space>` - Force two-step completion
 
@@ -105,13 +108,14 @@
 
 - `<leader>a` - Add current buffer to Harpoon list
 - `<leader><leader>` - Open Harpoon file list
-- `<C-1>` through `<C-5>` - Jump to file 1-5 in list
+- `<C-1>` through `<C-5>` - Jump to file 1-9 in list
 - `<C-n>` - Next file in Harpoon list
-- `<C-p>` - Previous file in Harpoon list
+- `<C-e>` - Previous file in Harpoon list (for Colemak bindings)
+  - `<C-p>` (for Qwerty bindings)
 
 ---
 
-## Git (vim-ugitive)
+## Git (vim-fugitive)
 
 - `<leader>gs` - Git status
 - `<leader>gc` - Git commit
@@ -174,6 +178,7 @@ Default `i` (inside) prefix conflicts with navigation, so we use `t` instead:
 - `<leader>df` - Find DB buffer
 - `<leader>dr` - Rename DB buffer
 - `<leader>dq` - Last query info
+- `<leader>da` - Add new database connection
 
 ---
 
@@ -207,7 +212,7 @@ Default `i` (inside) prefix conflicts with navigation, so we use `t` instead:
 - `:Colemak` - Enable Colemak DH keybindings (default)
 - `:Qwerty` - Switch to QWERTY keybindings
 
-See [Colemak DH Notes](ColemakDH.md) for layout details.
+See [Colemak DH Notes](COLEMAKDH.md) for layout details.
 
 ---
 
@@ -215,4 +220,4 @@ See [Colemak DH Notes](ColemakDH.md) for layout details.
 
 - `<leader>p` - Paste without yanking to clipboard
 - `<leader>d` - Delete without yanking to clipboard
-- `+` / `-` - Increment/decrement number under cursor
+- `+` / `-` - Increment/decrement number under cursor <!-- TODO: decrement is overwritten by oil -->

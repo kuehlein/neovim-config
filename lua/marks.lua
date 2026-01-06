@@ -2,6 +2,9 @@
 -- Custom plugin for displaying local marks in the sign column
 --
 local p = require('gruvbox').palette
+local dadbod_util = require('utils.dadbod')
+local layout_util = require('utils.layout')
+
 local SIGN_COLUMN_MARK_INDICATOR_HIGHLIGHT_GROUP = 'SignColumnMarkIndicator'
 
 local M = {}
@@ -51,7 +54,14 @@ vim.api.nvim_create_autocmd({
 
     -- Don't run in visual mode (for performance)
     if mode:match('[vV\22]') then return end
-    if vim.tbl_contains({ 'oil', 'harpoon' }, vim.bo.filetype) then return end
+    if vim.tbl_contains({
+          dadbod_util.filetype,
+          -- 'dadbod-connection-form',
+          'harpoon',
+          'oil',
+        }, vim.bo.filetype) then
+      return
+    end
 
     DisplayMarkIndicator()
   end,
@@ -66,29 +76,20 @@ function ToggleMark(char)
   else
     vim.cmd('normal! m' .. char)
   end
-
-  DisplayMarkIndicator()
 end
 
-function M.setup_keymaps(prefix)
-  -- Clear any existing mark keymaps
-  for i = string.byte('a'), string.byte('z') do
-    local char = string.char(i)
-    pcall(vim.keymap.del, 'n', prefix .. char)
-    pcall(vim.keymap.del, 'v', prefix .. char)
-  end
+---Create a keymap for toggling marks
+function M.setup_keymaps()
+  layout_util.set_keymap({ 'n', 'v' }, layout_util.ACTIONS.mark, function()
+    local char = vim.fn.getcharstr()
 
-  -- Create a keymap for toggling marks a-z
-  for i = string.byte('a'), string.byte('z') do
-    local char = string.char(i)
+    if not char:match('^[a-z]$') then
+      return
+    end
 
-    vim.keymap.set(
-      { 'n', 'v' },
-      prefix .. char,
-      function() ToggleMark(char) end,
-      { desc = 'Toggle mark ' .. char, noremap = true, silent = true }
-    )
-  end
+    ToggleMark(char)
+  end, { desc = 'Toggle mark', noremap = true, silent = true }
+  )
 end
 
 -- Use the correct colors for highlighting marks

@@ -29,7 +29,7 @@ gruvbox.setup({
     ['LspInlayHint'] = { bold = true, italic = true, bg = p.dark0, fg = p.dark1 },
 
     -- Rust
-    ['@lsp.mod.mutable.rust'] = { bold = true, bg = p.faded_red, fg = p.bright_red },
+    -- ['@lsp.mod.mutable.rust'] = { bold = true, bg = p.faded_red, fg = p.bright_red },
   },
   terminal_colors = true,
 })

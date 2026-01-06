@@ -37,7 +37,7 @@ snippets.setup({
     select = function() end,
   },
 
-  -- TODO: mappings => <C-n> & <C-p> & <C-y>
+  -- TODO: mappings => <C-n> & <C-p> & <C-y> ??? layout.util?
   mappings = {
     expand = '<Tab>',
     jump_next = '<Tab>',

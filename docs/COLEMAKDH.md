@@ -14,7 +14,7 @@ This document describes keybinding changes made to accommodate the Colemak DH ke
 - [Cascading Remaps](#cascading-remaps) - Displaced commands
   - [Insert Mode](#insert-mode) - `t` for insert
   - [Word Movement](#word-movement) - `l` for end
-  - [Marks](#marks) - `h` or `<C-m>` for marks
+  - [Marks](#marks) - `h` for marks
 - [Search Navigation](#search-navigation) - `;` and `,` for search
 - [Plugin Accommodations](#plugin-accommodations) - Plugin-specific changes
   - [Mini.ai](#miniai-textobjects) - `t` for textobjects
@@ -88,6 +88,13 @@ This creates conflicts with existing Vim commands, which are then remapped to ma
 | `<C-w>e` | `<C-w>k` | Move to above window |
 | `<C-w>i` | `<C-w>l` | Move to right window |
 
+### Menu Navigation
+
+| Colemak DH | QWERTY | Action |
+|------------|--------|--------|
+| `<C-n>` | `<C-n>` (unchanged) | Move to next item |
+| `<C-e>` | `<C-p>` | Move to previous item |
+
 ---
 
 ## Cascading Remaps
@@ -114,7 +121,7 @@ This creates conflicts with existing Vim commands, which are then remapped to ma
 |------------|--------|--------|----------|
 | `h` | `m` | Set mark | **h**ighlight position |
 
-**Note:** Due to `m` being used for navigation, the standard `m<char>` mark command is remapped to `<C-m><char>` for local marks. See [Keybindings](Keybinds.md#navigation-overwrites) for details.
+**Note:** Due to `m` being used for navigation, the standard `m<char>` mark command is remapped to `h<char>` for local marks. See [Keybindings](Keybinds.md#navigation-overwrites) for details.
 
 ---
 
@@ -145,7 +152,6 @@ The default `i` prefix for "inside" textobjects conflicts with right navigation.
 - `dtw` - Delete inside word
 - `ct"` - Change inside quotes
 - `vab` - Visual select around brackets
-<!-- TODO: make sure these work?? -->
 
 ---
 

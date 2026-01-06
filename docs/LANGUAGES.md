@@ -17,6 +17,7 @@ Adding support for new languages is a bit involved. Here is an overview of how t
 2. **Configure LSP** in `lua/config/lsp.lua`:
 ```lua
    vim.lsp.enable('your-language-server')
+   vim.lsp.config('your-language-server', { ... }) -- optional
 ```
 
 3. **Add Treesitter parser** in `plugins.nix`:

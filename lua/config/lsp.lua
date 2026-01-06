@@ -57,6 +57,15 @@ vim.lsp.enable('nil_ls')
 
 -- Rust
 vim.lsp.enable('rust_analyzer')
+vim.lsp.config('rust_analyzer', {
+  settings = {
+    ['rust-analyzer'] = {
+      diagnostics = {
+        disabled = { 'inactive-code' }
+      }
+    }
+  }
+})
 
 -- SQL
 vim.lsp.enable('sqls')

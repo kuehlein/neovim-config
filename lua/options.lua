@@ -70,12 +70,12 @@ vim.opt.wrap = false
 -- Enable wrap for text/text-like files
 vim.api.nvim_create_autocmd('FileType', {
   pattern = {
-    'markdown',
-    'text',
-    'txt',
     'gitcommit',
+    'markdown',
     'org',
     'rst',
+    'text',
+    'txt',
   },
   callback = function()
     vim.opt_local.breakindent = true -- Maintain indentation when wrapping
@@ -84,7 +84,7 @@ vim.api.nvim_create_autocmd('FileType', {
     vim.opt_local.textwidth = 0 -- Don't auto-insert newlines
     vim.opt_local.wrap = true
 
-    vim.opt_local.colorcolumn = '' -- Remove colum markers (creates visual bugs)
+    vim.opt_local.colorcolumn = '' -- Remove column markers (creates visual bugs with wrapping)
 
     vim.opt_local.spell = true
     vim.opt_local.spelllang = 'en_us'

@@ -2,8 +2,7 @@
 -- Mini.Completion configuration
 --
 local mini_completion = require('mini.completion')
-
--- TODO: consider using `nvim-cmp`, check tj_dev's vid on dadbod
+local layout_util = require('utils.layout')
 
 mini_completion.setup({
   delay = {
@@ -12,8 +11,7 @@ mini_completion.setup({
     signature = 50
   },
 
-  -- Avoid having completion menu littered with useless entries
-  -- fallback_action = '<C-x><C-o>', -- TODO: ?????????????????
+  -- Don't add values to completion menu when there are no matches
   fallback_action = function() end,
 
   lsp_completion = {
@@ -28,8 +26,8 @@ mini_completion.setup({
   mappings = {
     force_twostep = '<C-Space>',
     force_fallback = '',   -- disable
-    scroll_down = '<C-n>', -- (n)ext
-    scroll_up = '<C-e>',   -- (p)revious
+    scroll_down = '<C-f>', -- (f)orward
+    scroll_up = '<C-b>',   -- (b)ackward
   },
 
   window = {
@@ -41,18 +39,11 @@ mini_completion.setup({
 -- Enable immediate selection when completion menu opens
 vim.opt.completeopt = { 'menu', 'menuone', 'noinsert' }
 
-vim.keymap.set('i', '<C-n>', function()
-  return vim.fn.pumvisible() == 1 and '<Down>' or '<C-n>'
-end, { expr = true })
-
-vim.keymap.set('i', '<C-e>', function()
+layout_util.set_keymap('i', layout_util.ACTIONS.prev, function()
   if vim.fn.pumvisible() == 1 then
     return '<C-p>' -- Go to previous item
   else
-    return '<C-e>' -- Normal <C-e> behavior when menu closed
+    -- Normal behavior when menu closed
+    return layout_util.get_action_mapping(layout_util.ACTIONS.prev)
   end
 end, { expr = true, replace_keycodes = true })
-
-vim.keymap.set('i', '<C-y>', function()
-  return vim.fn.pumvisible() == 1 and '<C-y>' or '<C-y>'
-end, { expr = true })
