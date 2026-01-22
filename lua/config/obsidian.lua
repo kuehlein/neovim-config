@@ -1,6 +1,6 @@
---
+-- ============================================================================
 -- Obsidian configuration
---
+-- ============================================================================
 local vault_path = vim.fn.expand('~/Documents/obsidian-vault')
 
 -- TODO: is there a better way to do this?

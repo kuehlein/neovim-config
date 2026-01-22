@@ -1,6 +1,6 @@
---
+-- ============================================================================
 -- Undotree configuration
---
+-- ============================================================================
 vim.g.undotree_SetFocusWhenToggle = 1 -- Shift focus to Undo window when toggled open
 vim.g.undotree_ShortIndicators = 1    -- Uses abbreviated time indicators
 vim.g.undotree_SplitWidth = 25        -- Width of undo panel

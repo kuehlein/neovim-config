@@ -43,6 +43,7 @@ let
     builtins.concatLists (
       builtins.attrValues {
         autoCompletion = with vimPlugins; [ mini-completion ];
+        claude = with vimPlugins; [ claudecode-nvim ];
         db = with vimPlugins; [
           vim-dadbod
           vim-dadbod-completion
@@ -59,7 +60,7 @@ let
           harpoon-2
           plenary-nvim
         ];
-        lsp = with vimPlugins; [ nvim-lspconfig ];
+        lsp = with vimPlugins; [ lazydev-nvim luvit-meta nvim-lspconfig ];
         obsidian = with vimPlugins; [ obsidian-nvim ];
         pairs = with vimPlugins; [ mini-pairs ];
         preview = with vimPlugins; [ render-markdown-nvim ];

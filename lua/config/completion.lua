@@ -1,6 +1,6 @@
---
+-- ============================================================================
 -- Mini.Completion configuration
---
+-- ============================================================================
 local mini_completion = require('mini.completion')
 local layout_util = require('utils.layout')
 

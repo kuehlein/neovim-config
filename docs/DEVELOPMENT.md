@@ -26,3 +26,16 @@ Alternatively, use the impure flag:
 ```
 
 This will include files untracked by Git.
+
+## Updating Plugins
+
+Updating the plugins used in this configuration is as simple as running:
+```bash
+  nix flake update
+```
+
+For local development, you should be able to run everything normally, but to finalize the updates, commit any changes to git, push the repo, then update the inputs of your system as you normally would.
+
+**NOTE**: Breaking changes will obviously break the configuration after updating.
+
+

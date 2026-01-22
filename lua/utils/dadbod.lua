@@ -1,9 +1,11 @@
+-- ============================================================================
 ---@mod dadbod-connection-form Database connection form for vim-dadbod-ui
+-- ============================================================================
 ---@brief [[
 --- A floating form interface for creating database connections.
 --- Uses virtual text for immutable labels while allowing natural buffer editing.
 ---@brief ]]
-
+-- ============================================================================
 local floating_window_util = require('utils.floating-window')
 local layout_util = require('utils.layout')
 
@@ -59,6 +61,9 @@ local LABEL_WIDTH = 18
 
 ---@type FormState?
 M.current_state = nil
+
+---List of keymap ids - to be cleaned up when buffer is closed
+M.reactive_ids = {}
 
 local CONNECTIONS_FILE = 'connections.json'
 local DEFAULT_SAVE_LOCATION = vim.fn.stdpath('data') .. '/db_queries'
@@ -322,7 +327,7 @@ end
 
 ---Close the form and clean up
 ---@param state FormState
-local function close(state, ids)
+local function close(state)
   pcall(vim.api.nvim_del_augroup_by_id, state.autocmd_group)
   if vim.api.nvim_win_is_valid(state.win) then
     vim.api.nvim_win_close(state.win, true)
@@ -330,9 +335,12 @@ local function close(state, ids)
 
   -- Remove reactive keymaps from storage in utils.layouts (non-reactive keymaps are automatically
   -- cleaned up when the buffer is closed)
-  for _, id in ipairs(ids) do
+  for _, id in ipairs(M.reactive_ids) do
     layout_util.unmap(id)
   end
+
+  M.reactive_ids = {}
+  M.current_state = nil
 end
 
 ---Setup buffer-local keymaps
@@ -348,14 +356,15 @@ local function setup_keymaps(state)
     end
   end
 
-  -- Database type cycling
-  local next_id = layout_util.set_keymap('n', layout_util.ACTIONS.next, function() cycle_db_type(state, 1) end, base_opts)
-  local prev_id = layout_util.set_keymap('n', layout_util.ACTIONS.prev, function() cycle_db_type(state, -1) end, base_opts)
+  M.reactive_ids = {
+    next_id = layout_util.set_keymap('n', layout_util.ACTIONS.next, function() cycle_db_type(state, 1) end, base_opts),
+    prev_id = layout_util.set_keymap('n', layout_util.ACTIONS.prev, function() cycle_db_type(state, -1) end, base_opts),
+  }
 
   -- Close mappings
-  vim.keymap.set('n', 'q', function() close(state, { next_id, prev_id }) end, base_opts)
-  vim.keymap.set('n', '<Esc>', function() close(state, { next_id, prev_id }) end, base_opts)
-  vim.keymap.set({ 'n', 'i' }, '<C-c>', function() close(state, { next_id, prev_id }) end, base_opts)
+  vim.keymap.set('n', 'q', function() close(state) end, base_opts)
+  vim.keymap.set('n', '<Esc>', function() close(state) end, base_opts)
+  vim.keymap.set({ 'n', 'i' }, '<C-c>', function() close(state) end, base_opts)
 
   -- Submit
   vim.keymap.set('n', '<C-s>', function() submit(state) end, base_opts)
@@ -443,11 +452,11 @@ local function create_window()
     '[a-z]'
   )
 
-  buf, win = floating_window_util.create(width, height)
+  local buf, win = floating_window_util.create_window(width, height)
 
   vim.api.nvim_win_set_config(win, {
     title = " New Database Connection ",
-    footer = string.format(" <C-n/%s> DB type • <C-s> Save • q Close ", prev_action_mapping),
+    footer = string.format(" <C-n/%s> DB type • <C-s> Save • <Esc>/q Close ", prev_action_mapping),
     footer_pos = "center",
   })
 
@@ -494,7 +503,7 @@ end
 ---Toggle the connection form open or closed
 local function toggle()
   if M.current_state then
-    close(M.current_state)
+    vim.api.nvim_win_close(M.current_state.win, true)
     M.current_state = nil
     return
   end
@@ -506,6 +515,10 @@ local function toggle()
   setup_keymaps(M.current_state)
 end
 
+
+-- ============================================================================
+-- Setup
+-- ============================================================================
 function M.setup()
   vim.g.db_ui_save_location = vim.fn.stdpath('data') .. DEFAULT_SAVE_LOCATION
 

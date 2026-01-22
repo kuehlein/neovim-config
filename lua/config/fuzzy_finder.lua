@@ -1,6 +1,6 @@
---
+-- ============================================================================
 -- FZF configuration
---
+-- ============================================================================
 local fzf = require('fzf-lua')
 
 fzf.setup({
@@ -29,12 +29,14 @@ fzf.setup({
     }, ' '),
   },
 
+  ---@diagnostic disable: missing-fields
   winopts = {
     backdrop = 33,
     preview = {
-      scrollbar = false,
+      scrollbar = 'false',
     },
   },
+  ---@diagnostic enable: missing-fields
 })
 
 vim.keymap.set('n', '<leader>ff', fzf.files, { desc = 'Find files' })

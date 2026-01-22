@@ -1,6 +1,6 @@
---
+-- ============================================================================
 -- Keymaps for alternative keyboard layouts
---
+-- ============================================================================
 local marks = require('marks')
 local layout_util = require('utils.layout')
 

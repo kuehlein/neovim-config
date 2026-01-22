@@ -1,6 +1,6 @@
---
+-- ============================================================================
 -- Overwrite/modify existing behavior
---
+-- ============================================================================
 local opts = { noremap = true, silent = true }
 
 -- Overwrite page up / page down to add `zz`

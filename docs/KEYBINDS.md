@@ -7,6 +7,9 @@
 - [General Overwrites](#general-overwrites) - Quality of life improvements
 - [File Navigation & Search](#file-navigation--search) - Finding files and content
 - [Oil.nvim](#oilnvim) - File explorer
+- [Claude](#Claude) - Claude integration
+- [Floating Terminal](#floating-terminal) - Floating terminal
+- [Notepad](#notepad) - Notepad
 - [Completion](#completion) - Autocompletion menu
 - [Harpoon](#harpoon) - Quick file switching
 - [Git](#git-vim-fugitive) - Version control
@@ -89,6 +92,33 @@
 - `<CR>` - Select file/directory
 - `<C-p>` - Open/close preview
 - `<C-r>` - Refresh display
+
+---
+
+## Claude
+
+- `<leader>.` - Toggle the Claude Code terminal window
+- `<leader>cl` - List previous sessions
+- `<leader>cc` - Continue last session
+- `<leader>cm` - Select Claude model and open terminal
+- `<leader>cs` - Send current visual selection to Claude
+- `<leader>ct` - Add file to Claude's context (in oil/netrw)
+- `<leader>cda` - Accept diff changes proposed by Claude
+- `<leader>cdr` - Reject diff changes proposed by Claude
+
+---
+
+## Floating Terminal
+
+- `<leader>t` - Open floating terminal
+- `<Esc>` - Close floating terminal (state is preserved)
+
+---
+
+## Notepad
+
+- `<leader>n` - Open Notepad
+- `<C-s>` - Save note to workspace root
 
 ---
 
@@ -190,7 +220,7 @@ Default `i` (inside) prefix conflicts with navigation, so we use `t` instead:
 
 ## Markdown Preview
 
-- `<leader>tp` - Toggle preview (for `.md` files)
+- `<leader>pt` - Preview toggle (for `.md` files)
 
 ---
 

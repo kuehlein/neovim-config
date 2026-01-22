@@ -1,6 +1,6 @@
---
+-- ============================================================================
 -- Code snippet short-cuts
---
+-- ============================================================================
 local snippets = require('mini.snippets')
 -- local gen_loader = snippets.gen_loader
 

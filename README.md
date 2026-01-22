@@ -7,6 +7,7 @@ Personal Neovim configuration built with Nix, optimized for the Colemak DH keybo
 - **Colemak DH optimized** - All keybindings adapted for Colemak DH
 - **LSP** - Full language server support
 - **Gruvbox theme** - Easy on the eyes
+- **Floating terminal** - Floating persistent terminal
 
 ---
 
@@ -40,12 +41,15 @@ Personal Neovim configuration built with Nix, optimized for the Colemak DH keybo
 **Markdown & Notes:**
 - **render-markdown.nvim** - In-editor markdown rendering
 - **obsidian.nvim** - Obsidian vault integration
+- **notepad** - Floating, persistent notepad
 
 ---
 
 ## Documentation
 
 **[Keybindings Reference](docs/KEYBINDS.md)** - Complete list of all keybindings and commands
+
+**[Custom Plugins](docs/CUSTOM_PLUGINS.md)** - Documentation for custom plugins
 
 **[Colemak DH Guide](docs/COLEMAKDH.md)** - How navigation keys are remapped and why
 
@@ -80,8 +84,10 @@ Personal Neovim configuration built with Nix, optimized for the Colemak DH keybo
 │   │   └── layout.lua          # Util for toggling layouts
 │   ├── keymaps.lua             # Useful keymaps
 │   ├── layouts.lua             # Colemak DH keybindings
+│   ├── notepad.lua             # Floating, persistent notepad
 │   ├── options.lua             # Vim options
 │   ├── overwrite.lua           # Overload existing vim motions
+│   └── terminal.lua            # Floating, persistent terminal
 │   └── theme.lua               # Setup theme
 ├── after/ftplugin/             # Language-specific settings
 ├── docs/                       # Misc. documentation

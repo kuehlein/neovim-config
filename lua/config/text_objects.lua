@@ -1,6 +1,6 @@
---
+-- ============================================================================
 -- Mini.AI configuration
---
+-- ============================================================================
 -- TODO: these mappings don't seem to work at all
 require('mini.ai').setup({
   -- Colemak DH layout uses `i` instead of `l`. This creates a conflict between the remap and mini.

@@ -1,6 +1,6 @@
---
+-- ============================================================================
 -- Theme
---
+-- ============================================================================
 local gruvbox = require('gruvbox')
 local p = gruvbox.palette -- https://github.com/ellisonleao/gruvbox.nvim/blob/main/lua/gruvbox.lua
 
@@ -10,7 +10,7 @@ gruvbox.setup({
   italic = {
     comments = true,
     emphasis = true,
-    fold = false,
+    folds = true,
     operators = false,
     strings = false,
   },
@@ -55,9 +55,9 @@ vim.api.nvim_set_hl(0, 'IncSearch', { bold = true, bg = p.bright_purple, fg = p.
 vim.api.nvim_set_hl(0, 'CurSearch', { bold = true, bg = p.neutral_orange, fg = p.dark0 })
 
 
---
+-- ============================================================================
 -- Lualine
---
+-- ============================================================================
 require('lualine').setup({
   options = {
     component_separators = '',
@@ -93,6 +93,11 @@ require('lualine').setup({
         b = { fg = p.light1, bg = 'NONE' },
         c = { fg = p.light1, bg = 'NONE' },
       },
+      terminal = {
+        a = { fg = p.dark0_hard, bg = p.neutral_yellow, gui = 'bold' },
+        b = { fg = p.light1, bg = p.dark1 },
+        -- c = { fg = 'NONE', bg = 'NONE' },
+      },
     },
   },
   sections = {
@@ -107,6 +112,7 @@ require('lualine').setup({
             ['VISUAL'] = 'VISUAL ',
             ['V-BLOCK'] = 'VISUAL ',
             ['V-LINE'] = 'VISUAL ',
+            -- ['TERMINAL'] = 'TERMINAL', -- TODO: ???
           }
           return modes[str] or str
         end,

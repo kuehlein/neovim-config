@@ -1,6 +1,6 @@
---
+-- ============================================================================
 -- Custom plugin for displaying local marks in the sign column
---
+-- ============================================================================
 local p = require('gruvbox').palette
 local dadbod_util = require('utils.dadbod')
 local layout_util = require('utils.layout')
@@ -27,6 +27,10 @@ function PlaceMarkIndicator(char)
 end
 
 function DisplayMarkIndicator()
+  if vim.o.signcolumn == 'no' then
+    return
+  end
+
   -- Prevents sign column from resizing when inserting/removing marks
   vim.o.signcolumn = 'yes'
 
