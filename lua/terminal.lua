@@ -26,17 +26,11 @@ local function toggle_terminal()
 
   vim.cmd.startinsert()
 
-
-  -- Set up autocmd to create buffer-local keymap for terminal buffer
-  vim.api.nvim_create_autocmd("TermOpen", {
-    pattern = "*",
-    callback = function()
-      vim.keymap.set("t", "<Esc>", function()
-        vim.cmd.stopinsert()
-        toggle_terminal()
-      end, { buffer = term_buf, silent = true })
-    end,
-  })
+  -- Set up buffer-local keymap for terminal mode
+  vim.keymap.set("t", "<Esc>", function()
+    vim.cmd.stopinsert()
+    toggle_terminal()
+  end, { buffer = term_buf, silent = true })
 end
 
 function M.setup()

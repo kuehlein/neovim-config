@@ -35,7 +35,15 @@ vim.lsp.enable('lua_ls')
 vim.lsp.config('lua_ls', {
   settings = {
     Lua = {
-      workspace = { checkThirdParty = false },
+      diagnostics = {
+        globals = { 'vim' },
+      },
+      runtime = {
+        version = 'LuaJIT',
+      },
+      workspace = {
+        checkThirdParty = false,
+      },
     },
   },
 })
@@ -86,6 +94,36 @@ vim.diagnostic.config({
 
 -- Enable inlay hints globally
 vim.lsp.inlay_hint.enable(true)
+
+-- Set up LSP keymaps when a language server attaches to a buffer
+vim.api.nvim_create_autocmd('LspAttach', {
+  callback = function(args)
+    local function get_opts(description)
+      return {
+        buffer = args.buf,
+        desc = description,
+        noremap = true,
+        silent = true
+      }
+    end
+
+    -- Navigation
+    vim.keymap.set('n', 'gd', vim.lsp.buf.definition, get_opts("Go to definition."))
+    vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, get_opts("Go to declaration."))
+    vim.keymap.set('n', 'gm', vim.lsp.buf.implementation, get_opts("Go to implementation."))
+    vim.keymap.set('n', 'gr', vim.lsp.buf.references, get_opts("Show references."))
+    vim.keymap.set('n', 'gy', vim.lsp.buf.type_definition, get_opts("Go to type definition."))
+
+    -- Information
+    vim.keymap.set('n', 'K', vim.lsp.buf.hover, get_opts("Hover documentation."))
+    vim.keymap.set('n', '<C-k>', vim.lsp.buf.signature_help, get_opts("Signature help."))
+    vim.keymap.set('n', 'ds', vim.lsp.buf.document_symbol, get_opts("Document symbols."))
+
+    -- Editing
+    vim.keymap.set('n', '<leader>rn', vim.lsp.buf.rename, get_opts("Rename symbol."))
+    vim.keymap.set('n', '<leader>ra', vim.lsp.buf.code_action, get_opts("Code action."))
+  end,
+})
 
 -- Shortcut for `<C-w>d<C-w>w`
 vim.keymap.set('n', '<leader>e', '<Nop>', {

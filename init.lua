@@ -1,6 +1,8 @@
 vim.g.mapleader = ' '
 vim.g.maplocalleader = '\\'
 
+local layouts = require('layouts')
+
 -- General configuration
 require('keymaps')          -- Create new mappings
 require('notepad').setup()  -- Floating persistent notepad
@@ -27,5 +29,5 @@ require('config.treesitter')
 require('config.undo')
 
 -- Trigger Colemak keyboard layout
-local layouts = require('layouts')
+-- local layouts = require('layouts')
 layouts.colemak()

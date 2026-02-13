@@ -14,8 +14,8 @@ M.LAYOUTS = {
 ---@field colemak string
 ---@field qwerty string
 
----@type Layout
-M.current_layout = M.LAYOUTS.colemak
+---@type Layout?
+M.current_layout = M.LAYOUTS.colemak -- TODO: M.LAYOUTS.colemak
 
 ---Common key translations between layouts
 ---@type table<string, LayoutKeyPair>
@@ -24,8 +24,8 @@ local ACTION_MAPPINGS = {
   down = { colemak = 'n', qwerty = 'j' },
   up = { colemak = 'e', qwerty = 'k' },
   right = { colemak = 'i', qwerty = 'l' },
-  next = { colemak = '<C-n>', qwerty = '<C-n>' },
-  prev = { colemak = '<C-e>', qwerty = '<C-p>' },
+  next = { colemak = '<C-i>', qwerty = '<C-n>' },
+  prev = { colemak = '<C-m>', qwerty = '<C-p>' },
   insert = { colemak = 't', qwerty = 'i' },
   mark = { colemak = 'h', qwerty = 'm' },
 }
@@ -100,6 +100,19 @@ function M.set_keymap(modes, action, rhs, opts)
   return id
 end
 
+-- function M.clear_current_mappings()
+--   if #active_mappings == 0 then
+--     return
+--   end
+--
+--   for _, mapping in ipairs(active_mappings) do
+--     -- Remove old mappings
+--     for _, mode in ipairs(mapping.modes) do
+--       pcall(vim.keymap.del, mode, mapping.lhs[M.current_layout], { buffer = mapping.opts.buffer })
+--     end
+--   end
+-- end
+
 ---Set the active layout and rebind all reactive keymaps
 ---@param layout Layout
 function M.set_layout(layout)
@@ -107,12 +120,12 @@ function M.set_layout(layout)
     return
   end
 
-  if layout ~= M.LAYOUTS.colemak and layout ~= M.LAYOUTS.qwerty then
+  if layout ~= M.LAYOUTS.colemak and layout ~= M.LAYOUTS.qwerty and layout ~= nil then
     error(string.format('Unknown layout: %s', layout))
   end
 
   for _, mapping in ipairs(active_mappings) do
-    -- Remove old mappings
+    -- -- Remove old mappings
     for _, mode in ipairs(mapping.modes) do
       pcall(vim.keymap.del, mode, mapping.lhs[M.current_layout], { buffer = mapping.opts.buffer })
     end

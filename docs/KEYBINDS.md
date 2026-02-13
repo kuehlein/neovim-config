@@ -51,7 +51,8 @@
 *Changes to default Vim behavior due to [Colemak DH layout](COLEMAKDH.md)*
 
 - **`hjkl` → `mnei`** - Navigation keys remapped for Colemak DH. See [Colemak DH Notes](COLEMAKDH.md) for details.
-  - **`<C-p>` → `<C-e>`** - Navigation to previous option in menu also remapped for Colemak DH.
+  - **`<C-p>` → `<C-m>`** - Navigation to previous option in menu.
+  - **`<C-n>` → `<C-i>`** - Navigation to next option in menu.
 
 - **`n`/`N` → `;`/`,`** - Search next/previous remapped due to navigation conflicts.
   - `;` - Jump to next search result (centers page)
@@ -124,9 +125,10 @@
 
 ## Completion
 
-- `<C-n>` - Next item in completion menu
-- `<C-e>` - Previous item in completion menu (for Colemak bindings)
-  - `<C-p>` (for Qwerty bindings)
+- `<C-m>` - Previous item in completion menu
+  - `<C-p>` - For Qwerty bindings
+- `<C-i>` - Previous item in completion menu
+  - `<C-n>` - For Qwerty bindings
 - `<C-y>` - Accept selected completion
 - `<C-Space>` - Force two-step completion
 
@@ -139,9 +141,10 @@
 - `<leader>a` - Add current buffer to Harpoon list
 - `<leader><leader>` - Open Harpoon file list
 - `<C-1>` through `<C-5>` - Jump to file 1-9 in list
-- `<C-n>` - Next file in Harpoon list
-- `<C-e>` - Previous file in Harpoon list (for Colemak bindings)
-  - `<C-p>` (for Qwerty bindings)
+- `<C-m>` - Previous file in Harpoon list (for Colemak bindings)
+  - `<C-p>` (For Qwerty bindings)
+- `<C-i>` - Next file in Harpoon list (for Colemak bindings)
+  - `<C-n>` (for Qwerty bindings)
 
 ---
 
@@ -161,18 +164,18 @@
 **Navigation**
 - `gd` - Go to definition
 - `gD` - Go to declaration
-- `gri` - Go to implementation
-- `grr` - Show references
-- `gt` - Go to type definition
+- `gm` - Go to implementation
+- `gr` - Show references
+- `gy` - Go to type definition
 
 **Information**
 - `K` - Hover documentation
 - `<C-k>` - Signature help
-- `gO` - Document symbols
+- `ds` - Document symbols
 
 **Editing**
-- `grn` - Rename symbol
-- `gra` - Code action
+- `<leader>rn` - Rename symbol
+- `<leader>ra` - Code action
 - `<leader>f` - Format buffer
 
 **Diagnostics**

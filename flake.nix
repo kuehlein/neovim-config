@@ -4,13 +4,10 @@
 # TODO: change log, versioning, etc.
 # TODO: linting requirements (via CI)
 
-# TODO: some lsp functionality doesn't seem to work in rust...? (e.g. `gd`)
-# TODO: harpoon keybinds conflict with <C-e> for moving page (<C-e> and <C-y>)
 # TODO: mini.ai `t` seems to not really work well
 # TODO: mini.snippets
 # TODO: completion menu is kinda fucked... sometimes it inserts these weird characters?
 # TODO: add git shortcuts
-# TODO: decrement under cursor keymap is overwritten by oil.nvim
 # TODO: improve obsidian configuration
 # TODO: lualine not working for --Terminal--
 
