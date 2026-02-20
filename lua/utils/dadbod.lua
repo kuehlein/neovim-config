@@ -539,7 +539,7 @@ function M.setup()
     desc = 'Open database connection form',
   })
 
-  vim.keymap.set('n', '<leader>da', '<cmd>DBUIConnectionForm<CR>', { desc = 'Open form for adding a database connection' })
+  vim.keymap.set('n', '<leader>ba', '<cmd>DBUIConnectionForm<CR>', { desc = 'Open form for adding a database connection' })
 end
 
 return M
