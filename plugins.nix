@@ -22,6 +22,7 @@ let
       p.c
       p.comment
       p.css
+      p.dart
       p.haskell
       p.html
       p.javascript
@@ -44,10 +45,19 @@ let
       builtins.attrValues {
         autoCompletion = with vimPlugins; [ mini-completion ];
         claude = with vimPlugins; [ claudecode-nvim ];
+        dap = with vimPlugins; [
+          nvim-dap
+          nvim-dap-ui
+          nvim-nio
+        ];
         db = with vimPlugins; [
           vim-dadbod
           vim-dadbod-completion
           vim-dadbod-ui
+        ];
+        flutter = with vimPlugins; [
+          flutter-tools-nvim
+          plenary-nvim
         ];
         git = with vimPlugins; [
           mini-diff

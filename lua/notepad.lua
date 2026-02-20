@@ -41,9 +41,9 @@ local function load_tmp()
   ensure_save_dir()
 
   -- To ensure each workspace has its own tmp note file, name the tmp file the workspace's path
-  local workspace_path  = get_workspace_root()
-  local tmp_file_name = string.gsub(workspace_path, '/', '-')
-  save_file = SAVE_DIR .. '/' .. tmp_file_name .. '.txt'
+  local workspace_path = get_workspace_root()
+  local tmp_file_name  = string.gsub(workspace_path, '/', '-')
+  save_file            = SAVE_DIR .. '/' .. tmp_file_name .. '.txt'
 
   if vim.fn.filereadable(save_file) == 1 then
     local lines = vim.fn.readfile(save_file)
@@ -186,7 +186,7 @@ local function open_save_dialogue()
 
   -- Truncate workspace root if too long
   if #workspace_root > max_workspace_root_length then
-    workspace_root =  "..." .. workspace_root:sub(-(max_workspace_root_length - 3))
+    workspace_root = "..." .. workspace_root:sub(-(max_workspace_root_length - 3))
   end
 
   save_dialogue_buf, save_dialogue_win = floating_window_util.create_window(width, height, save_dialogue_buf, {

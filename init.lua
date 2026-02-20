@@ -1,7 +1,6 @@
 vim.g.mapleader = ' '
 vim.g.maplocalleader = '\\'
 
-local layouts = require('layouts')
 
 -- General configuration
 require('keymaps')          -- Create new mappings
@@ -14,7 +13,9 @@ require('theme')            -- Gruvbox, Lualine and highlight group overrides
 -- Configuration for plugins
 require('config.claude')
 require('config.completion')
+require('config.dap')
 require('config.db')
+require('config.flutter')
 require('config.fuzzy_finder')
 require('config.git')
 require('config.harpoon')
@@ -29,5 +30,5 @@ require('config.treesitter')
 require('config.undo')
 
 -- Trigger Colemak keyboard layout
--- local layouts = require('layouts')
+local layouts = require('layouts')
 layouts.colemak()

@@ -7,6 +7,7 @@
 - [General Overwrites](#general-overwrites) - Quality of life improvements
 - [File Navigation & Search](#file-navigation--search) - Finding files and content
 - [Oil.nvim](#oilnvim) - File explorer
+- [Debugging](#debugging) - Debugging (nvim-dap)
 - [Claude](#Claude) - Claude integration
 - [Floating Terminal](#floating-terminal) - Floating terminal
 - [Notepad](#notepad) - Notepad
@@ -15,6 +16,7 @@
 - [Git](#git-vim-fugitive) - Version control
 - [LSP & Treesitter](#lsp--treesitter) - Code intelligence
 - [Mini.ai](#miniai-textobjects) - Text objects
+- [Flutter](#Flutter) - Flutter app development
 - [Dadbod.vim](#dadbodvim) - Database UI
 - [Undotree](#undotree) - Undo history
 - [Markdown Preview](#markdown-preview) - Live preview
@@ -31,6 +33,8 @@
 | Find files | `<leader>ff` | Fuzzy finder |
 | Live grep | `<leader>fg` | Fuzzy finder |
 | File explorer | `-` | Oil.nvim |
+| Toggle breakpoints | `<leader>db` | nvim-dap |
+| Toggle debug UI | `<leader>du` | nvim-dap |
 | Quick files | `<leader><leader>` | Harpoon |
 | Select quick files | `<C-1>`-`<C-5>` | Harpoon |
 | Git status | `<leader>gs` | Fugitive |
@@ -50,15 +54,15 @@
 
 *Changes to default Vim behavior due to [Colemak DH layout](COLEMAKDH.md)*
 
-- **`hjkl` → `mnei`** - Navigation keys remapped for Colemak DH. See [Colemak DH Notes](COLEMAKDH.md) for details.
-  - **`<C-p>` → `<C-m>`** - Navigation to previous option in menu.
-  - **`<C-n>` → `<C-i>`** - Navigation to next option in menu.
+- `hjkl` → `mnei` - Navigation keys remapped for Colemak DH. See [Colemak DH Notes](COLEMAKDH.md) for details.
+  - `<C-p>` → `<C-m>` - Navigation to previous option in menu.
+  - `<C-n>` → `<C-i>` - Navigation to next option in menu.
 
-- **`n`/`N` → `;`/`,`** - Search next/previous remapped due to navigation conflicts.
+- `n`/`N` → `;`/`,` - Search next/previous remapped due to navigation conflicts.
   - `;` - Jump to next search result (centers page)
   - `,` - Jump to previous search result (centers page)
 
-- **`h + <char>`** - Toggle mark in local buffer (a-z marks).
+- `h + <char>` - Toggle mark in local buffer (a-z marks).
   - Default `m` command overwritten due to Colemak DH navigation.
   - Enhanced with toggle functionality: press again on same line to remove mark.
   - For global marks across files, use [Harpoon](#harpoon).
@@ -69,11 +73,11 @@
 
 *Quality of life improvements to default Vim behavior*
 
-- **`<C-d>`** - Page down and centers page
-- **`<C-u>`** - Page up and centers page
-- **`'[a-z]`** - Jumping to mark centers page
-- **`J`** - Join lines while preserving cursor position
-- **`Q`** - Disabled (Ex mode)
+- `<C-d>` - Page down and centers page
+- `<C-u>` - Page up and centers page
+- `'[a-z]` - Jumping to mark centers page
+- `J` - Join lines while preserving cursor position
+- `Q` - Disabled (Ex mode)
 
 ---
 
@@ -93,6 +97,18 @@
 - `<CR>` - Select file/directory
 - `<C-p>` - Open/close preview
 - `<C-r>` - Refresh display
+
+---
+
+## Debugging (nvim-dap)
+
+- `<leader>db` - Toggle breakpoints
+- `<leader>dc` - Continue execution
+- `<leader>di` - Step into function
+- `<leader>do` - Step over line
+- `<leader>dO` - Step out of function
+- `<leader>dt` - Terminate debug session
+- `<leader>du` - Toggle debug UI
 
 ---
 
@@ -205,13 +221,26 @@ Default `i` (inside) prefix conflicts with navigation, so we use `t` instead:
 
 ---
 
+## Flutter
+
+- `<leader>ls` - Run Flutter app
+- `<leader>lq` - Quit app
+- `<leader>ld` - Select device
+- `<leader>le` - Select emulator
+- `<leader>lr` - Hot reload (fast)
+- `<leader>lR` - Hot restart (full)
+- `<leader>lo` - Toggle widget outline
+- `<leader>ll` - Show dev logs
+
+---
+
 ## Dadbod.vim (Database UI)
 
-- `<leader>db` - Toggle DB UI
-- `<leader>df` - Find DB buffer
-- `<leader>dr` - Rename DB buffer
-- `<leader>dq` - Last query info
-- `<leader>da` - Add new database connection
+- `<leader>bo` - Toggle DB UI
+- `<leader>bf` - Find DB buffer
+- `<leader>br` - Rename DB buffer
+- `<leader>bq` - Last query info
+- `<leader>ba` - Add new database connection
 
 ---
 
@@ -253,4 +282,3 @@ See [Colemak DH Notes](COLEMAKDH.md) for layout details.
 
 - `<leader>p` - Paste without yanking to clipboard
 - `<leader>d` - Delete without yanking to clipboard
-- `+` / `-` - Increment/decrement number under cursor <!-- TODO: decrement is overwritten by oil -->

@@ -35,6 +35,7 @@
         languageServers = with pkgs; [
           bash-language-server # Bash
           clang-tools # C
+          dart # Dart (Flutter)
           haskell-language-server # Haskell
           lua-language-server # Lua
           nil # Nix

@@ -21,6 +21,9 @@ vim.lsp.enable('clangd')
 -- CSS,
 vim.lsp.enable('cssls')
 
+-- Dart
+vim.lsp.enable('dartls')
+
 -- Haskell
 vim.lsp.enable('hls')
 

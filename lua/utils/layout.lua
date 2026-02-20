@@ -15,7 +15,7 @@ M.LAYOUTS = {
 ---@field qwerty string
 
 ---@type Layout?
-M.current_layout = M.LAYOUTS.colemak -- TODO: M.LAYOUTS.colemak
+M.current_layout = M.LAYOUTS.colemak
 
 ---Common key translations between layouts
 ---@type table<string, LayoutKeyPair>
@@ -99,19 +99,6 @@ function M.set_keymap(modes, action, rhs, opts)
 
   return id
 end
-
--- function M.clear_current_mappings()
---   if #active_mappings == 0 then
---     return
---   end
---
---   for _, mapping in ipairs(active_mappings) do
---     -- Remove old mappings
---     for _, mode in ipairs(mapping.modes) do
---       pcall(vim.keymap.del, mode, mapping.lhs[M.current_layout], { buffer = mapping.opts.buffer })
---     end
---   end
--- end
 
 ---Set the active layout and rebind all reactive keymaps
 ---@param layout Layout

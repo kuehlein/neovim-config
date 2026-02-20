@@ -425,6 +425,11 @@ local function setup_keymaps(state)
   vim.keymap.set('n', '<C-4>', disabled('<C-4>'), nav_opts)
   vim.keymap.set('n', '<C-5>', disabled('<C-5>'), nav_opts)
 
+  vim.keymap.set({ 'n', 'i' }, '<C-e>', disabled('<C-e>'), nav_opts)
+  vim.keymap.set({ 'n', 'i' }, '<C-y>', disabled('<C-y>'), nav_opts)
+  vim.keymap.set({ 'n', 'i' }, '<C-d>', disabled('<C-d>'), nav_opts)
+  vim.keymap.set({ 'n', 'i' }, '<C-u>', disabled('<C-u>'), nav_opts)
+
   vim.keymap.set({ 'n', 'i' }, '<C-o>', disabled('<C-o>'), nav_opts)
   vim.keymap.set({ 'n', 'i' }, '<C-^>', disabled('<C-^>'), nav_opts)
   vim.keymap.set('i', '<C-6>', disabled('<C-6>'), nav_opts)
@@ -451,12 +456,20 @@ local function create_window()
     layout_util.get_action_mapping(layout_util.ACTIONS.prev),
     '[a-z]'
   )
+  local next_action_mapping = string.match(
+    layout_util.get_action_mapping(layout_util.ACTIONS.next),
+    '[a-z]'
+  )
 
   local buf, win = floating_window_util.create_window(width, height)
 
   vim.api.nvim_win_set_config(win, {
     title = " New Database Connection ",
-    footer = string.format(" <C-n/%s> DB type • <C-s> Save • <Esc>/q Close ", prev_action_mapping),
+    footer = string.format(
+      " <C-%s/%s> DB type • <C-s> Save • <Esc>/q Close ",
+      prev_action_mapping,
+      next_action_mapping
+    ),
     footer_pos = "center",
   })
 

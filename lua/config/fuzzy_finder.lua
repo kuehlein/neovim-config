@@ -39,6 +39,9 @@ fzf.setup({
   ---@diagnostic enable: missing-fields
 })
 
+-- Register fzf-lua as the handler for vim.ui.select
+fzf.register_ui_select()
+
 vim.keymap.set('n', '<leader>ff', fzf.files, { desc = 'Find files' })
 vim.keymap.set('n', '<leader>fg', fzf.live_grep, { desc = 'Live grep' })
 vim.keymap.set('n', '<leader>fb', fzf.buffers, { desc = 'Find buffers' })
