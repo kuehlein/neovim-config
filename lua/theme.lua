@@ -19,6 +19,13 @@ gruvbox.setup({
     ['SignColumn'] = { bg = p.dark0_hard },
     ['Todo'] = { bold = true, bg = p.faded_orange, fg = p.bright_orange },
 
+    -- Debugger
+    ['DapBreakpoint'] = { bg = p.dark0_hard, fg = p.bright_red },
+    ['DapBreakpointCondition'] = { bg = p.dark0_hard, fg = p.bright_red },
+    ['DapBreakpointRejected'] = { bg = p.dark0_hard, fg = p.bright_red },
+    ['DapLogPoint'] = { bg = p.dark0_hard, fg = p.bright_yellow },
+    ['DapStopped'] = { bg = p.dark0_hard, fg = p.bright_red },
+
     -- LSP
     ['DiagnosticSignError'] = { bg = p.dark0_hard, fg = p.bright_red },
     ['DiagnosticSignWarn'] = { bg = p.dark0_hard, fg = p.bright_yellow },

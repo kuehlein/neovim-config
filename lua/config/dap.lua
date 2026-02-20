@@ -4,6 +4,15 @@
 local dap = require('dap')
 local dapui = require('dapui')
 
+-- Customize breakpoint sign appearance
+vim.fn.sign_define('DapBreakpoint', { text = '●', texthl = 'DapBreakpoint', linehl = '', numhl = '' })
+vim.fn.sign_define('DapBreakpointCondition', { text = '◆', texthl = 'DapBreakpointCondition', linehl = '', numhl = '' })
+vim.fn.sign_define('DapBreakpointRejected', { text = '⨯', texthl = 'DapBreakpointRejected', linehl = '', numhl = '' })
+vim.fn.sign_define('DapLogPoint', { text = '⚑', texthl = 'DapLogPoint', linehl = '', numhl = '' })
+vim.fn.sign_define('DapStopped', { text = '→', texthl = 'DapStopped', linehl = 'DapStoppedLine', numhl = '' })
+
+dapui.setup()
+
 vim.keymap.set('n', '<leader>db', dap.toggle_breakpoint, { desc = 'DAP: Toggle Breakpoint' }) -- (d)ebug (b)reakpoint
 vim.keymap.set('n', '<leader>dc', dap.continue, { desc = 'DAP: Continue' })                   -- (d)ebug (c)ontinue
 vim.keymap.set('n', '<leader>di', dap.step_into, { desc = 'DAP: Step Into' })                 -- (d)ebug step (i)nto
