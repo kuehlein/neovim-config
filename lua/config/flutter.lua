@@ -24,13 +24,7 @@ flutter_tools.setup({
   flutter_lookup_cmd = 'which flutter',
   flutter_path = nil,
   lsp = {
-    color = {
-      enabled = true,
-      background = false,
-      foreground = false,
-      virtual_text = true,
-      virtual_text_str = '■',
-    },
+    color = { enabled = false },
     settings = {
       completeFunctionCalls = true,
       enableSnippets = true,
