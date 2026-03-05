@@ -112,16 +112,16 @@
 
 ---
 
-## Claude
+## AI (claude)
 
-- `<leader>.` - Toggle the Claude Code terminal window
-- `<leader>cl` - List previous sessions
-- `<leader>cc` - Continue last session
-- `<leader>cm` - Select Claude model and open terminal
-- `<leader>cs` - Send current visual selection to Claude
-- `<leader>ct` - Add file to Claude's context (in oil/netrw)
-- `<leader>cda` - Accept diff changes proposed by Claude
-- `<leader>cdr` - Reject diff changes proposed by Claude
+- `<leader>ai` - Toggle the AI terminal window (previous session)
+- `<leader>an` - Toggle the AI terminal window (new session)
+- `<leader>al` - List previous sessions
+- `<leader>am` - Select AI model and open terminal
+- `<leader>as` - Send current visual selection to AI
+- `<leader>at` - Add file to AI context (in oil/netrw)
+- `<leader>aa` - Accept diff changes proposed by AI
+- `<leader>ad` - Reject diff changes proposed by AI
 
 ---
 
@@ -135,6 +135,7 @@
 ## Notepad
 
 - `<leader>n` - Open Notepad
+- `<Esc>` - Close Notepad (when open in normal mode)
 - `<C-s>` - Save note to workspace root
 
 ---
@@ -154,7 +155,7 @@
 
 *Quick file navigation*
 
-- `<leader>a` - Add current buffer to Harpoon list
+- `<leader>ah` - Add current buffer to Harpoon list
 - `<leader><leader>` - Open Harpoon file list
 - `<C-1>` through `<C-5>` - Jump to file 1-9 in list
 - `<C-m>` - Previous file in Harpoon list (for Colemak bindings)

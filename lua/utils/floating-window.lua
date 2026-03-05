@@ -47,10 +47,9 @@ function M.create_window(width, height, buf, opts)
   local editor_width = ui and ui.width or vim.o.columns
   local editor_height = ui and ui.height or vim.o.lines
 
-  -- TODO: should `width` and `height` be defined in terms of % of view?
-
-  local w = width or math.floor(editor_width * 0.8)
-  local h = height or math.floor(editor_height * 0.6)
+  -- Convert percentage (0-1) to absolute size, or use absolute size
+  local w = width and (width <= 1 and math.floor(editor_width * width) or math.floor(width)) or math.floor(editor_width * 0.8)
+  local h = height and (height <= 1 and math.floor(editor_height * height) or math.floor(height)) or math.floor(editor_height * 0.6)
   local row = math.floor((editor_height - h) / 2)
   local col = math.floor((editor_width - w) / 2)
 

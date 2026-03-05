@@ -8,7 +8,7 @@ local ui = harpoon.ui
 
 harpoon:setup()
 
-vim.keymap.set('n', '<leader>a', function() harpoon:list():add() end, { desc = 'Add current buffer to the file list.' })
+vim.keymap.set('n', '<leader>ah', function() harpoon:list():add() end, { desc = 'Add current buffer to the file list.' })
 vim.keymap.set('n', '<leader><leader>', function() ui:toggle_quick_menu(harpoon:list()) end,
   { desc = 'Open the file list.' })
 

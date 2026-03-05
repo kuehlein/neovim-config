@@ -43,7 +43,7 @@ local function load_tmp()
   -- To ensure each workspace has its own tmp note file, name the tmp file the workspace's path
   local workspace_path = get_workspace_root()
   local tmp_file_name  = string.gsub(workspace_path, '/', '-')
-  save_file            = SAVE_DIR .. '/' .. tmp_file_name .. '.txt'
+  save_file            = SAVE_DIR .. '/' .. tmp_file_name .. '.md'
 
   if vim.fn.filereadable(save_file) == 1 then
     local lines = vim.fn.readfile(save_file)
@@ -239,6 +239,7 @@ local function open_notepad()
   if not note_buf or not vim.api.nvim_buf_is_valid(note_buf) then
     note_buf = floating_window_util.create_buffer(NOTE_BUF_NAME)
     vim.bo[note_buf].modifiable = true
+    vim.bo[note_buf].filetype = 'markdown'
 
     local content = load_tmp()
     if #content > 0 then

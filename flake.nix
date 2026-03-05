@@ -55,6 +55,7 @@
             mkdir -p $out
             cp -r lua $out/
             cp -r after $out/
+            cp -r docs $out/
             # cp -r plugin $out/
             cp init.lua $out/
           '';
