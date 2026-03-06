@@ -70,6 +70,7 @@ let
           harpoon-2
           plenary-nvim
         ];
+        hex_colors = with vimPlugins; [ nvim-colorizer-lua ];
         lsp = with vimPlugins; [ lazydev-nvim luvit-meta nvim-lspconfig ];
         obsidian = with vimPlugins; [ obsidian-nvim ];
         pairs = with vimPlugins; [ mini-pairs ];

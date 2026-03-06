@@ -13,6 +13,7 @@ require('theme')            -- Gruvbox, Lualine and highlight group overrides
 
 -- Configuration for plugins
 require('config.claude')
+require('config.colorizer')
 require('config.completion')
 require('config.dap')
 require('config.db')

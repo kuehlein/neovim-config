@@ -1,0 +1,20 @@
+require('colorizer').setup({
+  buftypes = {},
+  filetypes = { '*' },
+  user_default_options = {
+    AARRGGBB = true,
+    RGB = true,
+    RRGGBB = true,
+    RRGGBBAA = true,
+    always_update = false,
+    css = true,
+    css_fn = true,
+    hsl_fn = true,
+    mode = 'background',
+    names = false,
+    rgb_fn = true,
+    sass = { enable = false, parsers = { 'css' } },
+    tailwind = true,
+    virtualtext = '■',
+  },
+})
