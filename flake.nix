@@ -47,7 +47,7 @@
           yaml-language-server # YAML
         ];
 
-        # Symlink your config dir into the store
+        # Symlink config dir into the store
         configDir = pkgs.stdenv.mkDerivation {
           name = "neovim-config";
           src = ./.;

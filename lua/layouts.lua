@@ -6,6 +6,16 @@ local layout_util = require('utils.layout')
 
 local opts = { noremap = true, nowait = true, silent = true }
 
+local layout_group = vim.api.nvim_create_augroup("LayoutFileType", { clear = true })
+local text_files = {
+  'gitcommit',
+  'markdown',
+  'org',
+  'rst',
+  'text',
+  'txt',
+}
+
 -- Modes
 local nx = { 'n', 'x' }
 
@@ -16,10 +26,8 @@ local colemak = function()
   vim.keymap.set(nx, 'e', 'k', opts)            -- Move up
   vim.keymap.set(nx, 'i', 'l', opts)            -- Move right
 
-  vim.keymap.set(nx, 'gm', 'gh', opts)          -- Move left (with wrap)
   vim.keymap.set(nx, 'gn', 'gj', opts)          -- Move down (with wrap)
   vim.keymap.set(nx, 'ge', 'gk', opts)          -- Move up (with wrap)
-  vim.keymap.set(nx, 'gi', 'gl', opts)          -- Move right (with wrap)
 
   vim.keymap.set(nx, 'zm', 'zh', opts)          -- Move screen left
   vim.keymap.set(nx, 'zn', 'zj', opts)          -- Move screen down
@@ -42,6 +50,26 @@ local colemak = function()
   vim.keymap.set('n', '<C-w>i', '<C-w>l', opts) -- move to the right window
 
   layout_util.set_layout(layout_util.LAYOUTS.colemak)
+
+  -- Text file specific mappings
+  vim.api.nvim_clear_autocmds({ group = layout_group })
+  vim.api.nvim_create_autocmd("FileType", {
+    group = layout_group,
+    pattern = text_files,
+    callback = function(args)
+      local buf_opts = { noremap = true, nowait = true, silent = true, buffer = args.buf }
+
+      vim.keymap.set(nx, 'n', 'gj', buf_opts) -- Move down (with wrap)
+      vim.keymap.set(nx, 'e', 'gk', buf_opts) -- Move up (with wrap)
+    end,
+  })
+
+  -- Retrigger FileType for already-open text buffers
+  for _, buf in ipairs(vim.api.nvim_list_bufs()) do
+    if vim.api.nvim_buf_is_loaded(buf) and vim.tbl_contains(text_files, vim.bo[buf].filetype) then
+      vim.api.nvim_exec_autocmds("FileType", { buffer = buf })
+    end
+  end
 end
 
 local qwerty = function()
@@ -50,10 +78,8 @@ local qwerty = function()
   vim.keymap.set(nx, 'k', 'k', opts)
   vim.keymap.set(nx, 'l', 'l', opts)
 
-  vim.keymap.set(nx, 'gh', 'gh', opts)
   vim.keymap.set(nx, 'gj', 'gj', opts)
   vim.keymap.set(nx, 'gk', 'gk', opts)
-  vim.keymap.set(nx, 'gl', 'gl', opts)
 
   vim.keymap.set(nx, 'zh', 'zh', opts)
   vim.keymap.set(nx, 'zj', 'zj', opts)
@@ -77,6 +103,26 @@ local qwerty = function()
   vim.keymap.set('n', '<C-w>l', '<C-w>l', opts)
 
   layout_util.set_layout(layout_util.LAYOUTS.qwerty)
+
+  -- Text file specific mappings
+  vim.api.nvim_clear_autocmds({ group = layout_group })
+  vim.api.nvim_create_autocmd("FileType", {
+    group = layout_group,
+    pattern = text_files,
+    callback = function(args)
+      local buf_opts = { noremap = true, nowait = true, silent = true, buffer = args.buf }
+
+      vim.keymap.set(nx, 'j', 'gj', buf_opts) -- Move down (with wrap)
+      vim.keymap.set(nx, 'k', 'gk', buf_opts) -- Move up (with wrap)
+    end,
+  })
+
+  -- Retrigger FileType for already-open text buffers
+  for _, buf in ipairs(vim.api.nvim_list_bufs()) do
+    if vim.api.nvim_buf_is_loaded(buf) and vim.tbl_contains(text_files, vim.bo[buf].filetype) then
+      vim.api.nvim_exec_autocmds("FileType", { buffer = buf })
+    end
+  end
 end
 
 marks.setup_keymaps()
