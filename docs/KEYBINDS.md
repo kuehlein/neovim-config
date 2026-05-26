@@ -209,16 +209,17 @@
 
 *Remapped due to Colemak DH conflicts*
 
-<!-- TODO: this section seems wrong -->
-Default `i` (inside) prefix conflicts with navigation, so we use `t` instead:
+Default `i` (inside) prefix conflicts with navigation, so we use `r` instead (mnemonic: "inneR"):
 
-- `t` - Inside textobject
-- `tn` - Inside next textobject
-- `tl` - Inside last textobject
+- `r` - Inside textobject
+- `rn` - Inside next textobject
+- `rl` - Inside last textobject
+- `a` - Around textobject (default, unchanged)
 
 **Examples:**
-- `dtt` - Delete inside word
-- `ct"` - Change inside quotes
+- `drw` - Delete inside word
+- `cr"` - Change inside quotes
+- `dab` - Delete around brackets
 
 ---
 

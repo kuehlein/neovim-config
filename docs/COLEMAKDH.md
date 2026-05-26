@@ -32,7 +32,7 @@ This document describes keybinding changes made to accommodate the Colemak DH ke
 | **End of word** | `l` | `e` | `e` used for navigation |
 | **Search next** | `;` / `,` | `n` / `N` | `n` used for navigation |
 | **Marks** | `<C-m>` | `m` | `m` used for navigation |
-| **Textobjects** | `t` | `i` | `i` used for navigation |
+| **Textobjects** | `r` | `i` | `i` used for navigation, `r` = "inneR" |
 
 
 ---
@@ -140,18 +140,20 @@ Standard search repeat commands are remapped due to `n` being used for downward 
 
 ### Mini.ai (Textobjects)
 
-The default `i` prefix for "inside" textobjects conflicts with right navigation. We remap to use `t` instead:
+The default `i` prefix for "inside" textobjects conflicts with right navigation. We remap to use `r` instead:
 
 | Colemak DH | QWERTY | Action | Mnemonic |
 |------------|--------|--------|----------|
-| `t` | `i` | Inside textobject | **t**extobject / **t**ype |
-| `tn` | `in` | Inside next textobject | |
-| `tl` | `il` | Inside last textobject | |
+| `r` | `i` | Inside textobject | inne**R** |
+| `rn` | `in` | Inside next textobject | |
+| `rl` | `il` | Inside last textobject | |
+| `a` | `a` | Around textobject | (unchanged) |
 
 **Examples:**
-- `dtw` - Delete inside word
-- `ct"` - Change inside quotes
+- `drw` - Delete inside word
+- `cr"` - Change inside quotes
 - `vab` - Visual select around brackets
+- `dab` - Delete around brackets
 
 ---
 

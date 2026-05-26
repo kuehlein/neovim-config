@@ -6,7 +6,7 @@ local layout_util = require('utils.layout')
 
 mini_completion.setup({
   delay = {
-    completion = 200,
+    completion = 100,
     info = 200,
     signature = 50
   },
@@ -15,12 +15,7 @@ mini_completion.setup({
   fallback_action = function() end,
 
   lsp_completion = {
-    -- Remove type `Text` from completion menu
-    process_items = function(items)
-      return vim.tbl_filter(function(item)
-        return item.kind ~= 1 -- Filter out Text items
-      end, items)
-    end,
+    source_func = 'omnifunc',
   },
 
   mappings = {
@@ -36,7 +31,7 @@ mini_completion.setup({
   },
 })
 
--- Enable immediate selection when completion menu opens
+-- Enable completion menu with automatic selection but no insertion
 vim.opt.completeopt = { 'menu', 'menuone', 'noinsert' }
 
 layout_util.set_keymap('i', layout_util.ACTIONS.prev, function()

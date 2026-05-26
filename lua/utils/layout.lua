@@ -28,6 +28,7 @@ local ACTION_MAPPINGS = {
   prev = { colemak = '<C-m>', qwerty = '<C-p>' },
   insert = { colemak = 't', qwerty = 'i' },
   mark = { colemak = 'h', qwerty = 'm' },
+  inside_textobj = { colemak = 'r', qwerty = 'i' },  -- "inneR" for colemak
 }
 
 ---@enum Action
@@ -40,6 +41,7 @@ M.ACTIONS = {
   prev = 'prev',
   insert = 'insert',
   mark = 'mark',
+  inside_textobj = 'inside_textobj',
 }
 
 ---@param action Action Action name from ACTIONS (e.g., 'next', 'prev')
@@ -66,6 +68,10 @@ local active_mappings = {}
 
 ---@type number
 local next_id = 1
+
+---Callbacks to run when layout changes
+---@type function[]
+local layout_change_callbacks = {}
 
 ---Register a keymap that reacts to layout changes
 ---@param modes string|string[]
@@ -122,6 +128,17 @@ function M.set_layout(layout)
   end
 
   M.current_layout = layout
+
+  -- Run all registered callbacks
+  for _, callback in ipairs(layout_change_callbacks) do
+    callback(layout)
+  end
+end
+
+---Register a callback to run when layout changes
+---@param callback function Function that takes layout as parameter
+function M.on_layout_change(callback)
+  table.insert(layout_change_callbacks, callback)
 end
 
 ---Remove an active mapping by id
