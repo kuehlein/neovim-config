@@ -207,19 +207,20 @@
 
 ## Mini.ai (Textobjects)
 
-*Remapped due to Colemak DH conflicts*
+*Uses default Vim text objects - no conflicts with Colemak!*
 
-Default `i` (inside) prefix conflicts with navigation, so we use `r` instead (mnemonic: "inneR"):
+Text objects work in operator-pending mode (after `d`, `c`, `y`), which doesn't conflict with Colemak navigation:
 
-- `r` - Inside textobject
-- `rn` - Inside next textobject
-- `rl` - Inside last textobject
-- `a` - Around textobject (default, unchanged)
+- `i` - Inside textobject
+- `in` - Inside next textobject
+- `il` - Inside last textobject
+- `a` - Around textobject
 
 **Examples:**
-- `drw` - Delete inside word
-- `cr"` - Change inside quotes
+- `diw` - Delete inside word
+- `ci"` - Change inside quotes
 - `dab` - Delete around brackets
+- `via` - Visual select inside argument
 
 ---
 

@@ -32,7 +32,7 @@ This document describes keybinding changes made to accommodate the Colemak DH ke
 | **End of word** | `l` | `e` | `e` used for navigation |
 | **Search next** | `;` / `,` | `n` / `N` | `n` used for navigation |
 | **Marks** | `<C-m>` | `m` | `m` used for navigation |
-| **Textobjects** | `r` | `i` | `i` used for navigation, `r` = "inneR" |
+| **Textobjects** | `i` / `a` | `i` / `a` | No conflict - different modes |
 
 
 ---
@@ -140,20 +140,22 @@ Standard search repeat commands are remapped due to `n` being used for downward 
 
 ### Mini.ai (Textobjects)
 
-The default `i` prefix for "inside" textobjects conflicts with right navigation. We remap to use `r` instead:
+**No remapping needed!** Text objects use operator-pending mode (triggered after `d`, `c`, `y`, etc.), which doesn't conflict with Colemak navigation keys in normal/visual modes.
 
-| Colemak DH | QWERTY | Action | Mnemonic |
-|------------|--------|--------|----------|
-| `r` | `i` | Inside textobject | inne**R** |
-| `rn` | `in` | Inside next textobject | |
-| `rl` | `il` | Inside last textobject | |
-| `a` | `a` | Around textobject | (unchanged) |
+| Colemak DH | QWERTY | Action |
+|------------|--------|--------|
+| `i` | `i` | Inside textobject (operator-pending mode only) |
+| `in` | `in` | Inside next textobject |
+| `il` | `il` | Inside last textobject |
+| `a` | `a` | Around textobject |
 
 **Examples:**
-- `drw` - Delete inside word
-- `cr"` - Change inside quotes
+- `diw` - Delete inside word
+- `ci"` - Change inside quotes
 - `vab` - Visual select around brackets
 - `dab` - Delete around brackets
+
+**Note:** In normal mode, `i` still moves right (Colemak). The text object `i` only activates after an operator.
 
 ---
 
