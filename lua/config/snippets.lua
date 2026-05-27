@@ -6,30 +6,43 @@ local snippets = require('mini.snippets')
 
 snippets.setup({
   snippets = {
-    _ = {}, -- Global snippets
+    -- Global snippets (work in all filetypes)
+    { prefix = 'todo', body = '-- TODO: $0', desc = 'TODO comment' },
+    { prefix = 'fixme', body = '-- FIXME: $0', desc = 'FIXME comment' },
+    { prefix = 'note', body = '-- NOTE: $0', desc = 'NOTE comment' },
 
-    {
-      prefix = 'p',
-      body = 'print($0)',
-      description = '...',
-    },
-    {
-      prefix = 'ff',
-      body = '-- TODO: $0',
-      description = '...',
+    -- Lua-specific snippets
+    lua = {
+      { prefix = 'fn', body = 'function $1($2)\n  $0\nend', desc = 'Function' },
+      { prefix = 'lf', body = 'local function $1($2)\n  $0\nend', desc = 'Local function' },
+      { prefix = 'if', body = 'if $1 then\n  $0\nend', desc = 'If statement' },
+      { prefix = 'p', body = 'print($0)', desc = 'Print' },
+      { prefix = 'req', body = 'require(\'$1\')', desc = 'Require' },
     },
 
-    -- -- Load custom file with global snippets first (adjust for Windows)
-    -- gen_loader.from_file('~/.config/nvim/snippets/global.json'),
-    --
-    -- -- Simple text replacement
-    -- { prefix = 'fn', body = 'function $1($2)\n  $0\nend' },
-    --
-    -- -- With description
-    -- { prefix = 'if', body = 'if $1 then\n  $0\nend', desc = 'if statement' },
-    --
-    -- -- JavaScript arrow function
-    -- { prefix = 'af', body = 'const $1 = ($2) => {\n  $0\n}' },
+    -- Rust-specific snippets
+    rust = {
+      { prefix = 'fn', body = 'fn $1($2) -> $3 {\n  $0\n}', desc = 'Function' },
+      { prefix = 'pfn', body = 'pub fn $1($2) -> $3 {\n  $0\n}', desc = 'Public function' },
+      { prefix = 'impl', body = 'impl $1 {\n  $0\n}', desc = 'Impl block' },
+      { prefix = 'p', body = 'println!("$1");$0', desc = 'Println' },
+      { prefix = 'test', body = '#[test]\nfn $1() {\n  $0\n}', desc = 'Test function' },
+    },
+
+    -- JavaScript/TypeScript snippets
+    javascript = {
+      { prefix = 'fn', body = 'function $1($2) {\n  $0\n}', desc = 'Function' },
+      { prefix = 'af', body = 'const $1 = ($2) => {\n  $0\n}', desc = 'Arrow function' },
+      { prefix = 'cl', body = 'console.log($0)', desc = 'Console log' },
+      { prefix = 'if', body = 'if ($1) {\n  $0\n}', desc = 'If statement' },
+    },
+    typescript = {
+      { prefix = 'fn', body = 'function $1($2): $3 {\n  $0\n}', desc = 'Function' },
+      { prefix = 'af', body = 'const $1 = ($2): $3 => {\n  $0\n}', desc = 'Arrow function' },
+      { prefix = 'cl', body = 'console.log($0)', desc = 'Console log' },
+      { prefix = 'if', body = 'if ($1) {\n  $0\n}', desc = 'If statement' },
+      { prefix = 'int', body = 'interface $1 {\n  $0\n}', desc = 'Interface' },
+    },
   },
 
   expand = {

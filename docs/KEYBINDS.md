@@ -261,14 +261,38 @@ Text objects work in operator-pending mode (after `d`, `c`, `y`), which doesn't 
 
 ## Snippets
 
-### Global
-*Coming soon*
+**How to use:**
+1. Type the prefix (e.g., `fn`)
+2. Press `<Tab>` to expand
+3. Press `<Tab>` to jump to next position
+4. Press `<S-Tab>` to jump back
+5. Press `<CR>` to exit snippet mode
 
-### Rust
-*Coming soon*
+### Global (all files)
+- `todo` - `-- TODO:` comment
+- `fixme` - `-- FIXME:` comment
+- `note` - `-- NOTE:` comment
 
 ### Lua
-*Coming soon*
+- `fn` - Function
+- `lf` - Local function
+- `if` - If statement
+- `p` - Print statement
+- `req` - Require module
+
+### Rust
+- `fn` - Function
+- `pfn` - Public function
+- `impl` - Impl block
+- `p` - Println macro
+- `test` - Test function
+
+### JavaScript/TypeScript
+- `fn` - Function
+- `af` - Arrow function
+- `cl` - Console.log
+- `if` - If statement
+- `int` - Interface (TypeScript only)
 
 ---
 

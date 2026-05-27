@@ -140,11 +140,9 @@ Standard search repeat commands are remapped due to `n` being used for downward 
 
 ### Mini.ai (Textobjects)
 
-**No remapping needed!** Text objects use operator-pending mode (triggered after `d`, `c`, `y`, etc.), which doesn't conflict with Colemak navigation keys in normal/visual modes.
-
 | Colemak DH | QWERTY | Action |
 |------------|--------|--------|
-| `i` | `i` | Inside textobject (operator-pending mode only) |
+| `i` | `i` | Inside textobject |
 | `in` | `in` | Inside next textobject |
 | `il` | `il` | Inside last textobject |
 | `a` | `a` | Around textobject |

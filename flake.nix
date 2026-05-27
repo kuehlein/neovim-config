@@ -4,10 +4,8 @@
 # TODO: change log, versioning, etc.
 # TODO: linting requirements (via CI)
 
-# TODO: mini.ai `t` seems to not really work well
 # TODO: mini.snippets
 # TODO: completion menu is kinda fucked... sometimes it inserts these weird characters?
-# TODO: add git shortcuts
 # TODO: improve obsidian configuration
 # TODO: lualine not working for --Terminal--
 
