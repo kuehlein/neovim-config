@@ -269,14 +269,14 @@ Text objects work in operator-pending mode (after `d`, `c`, `y`), which doesn't 
 5. Press `<CR>` to exit snippet mode
 
 ### Global (all files)
-- `todo` - `-- TODO:` comment
+- `dd` - `-- TODO:` comment (avoid `todo` - conflicts with `t` insert)
 - `fixme` - `-- FIXME:` comment
 - `note` - `-- NOTE:` comment
 
 ### Lua
 - `fn` - Function
 - `lf` - Local function
-- `if` - If statement
+- `lif` - If statement (avoid `if` - conflicts with `i` navigation)
 - `p` - Print statement
 - `req` - Require module
 
@@ -291,7 +291,7 @@ Text objects work in operator-pending mode (after `d`, `c`, `y`), which doesn't 
 - `fn` - Function
 - `af` - Arrow function
 - `cl` - Console.log
-- `if` - If statement
+- `lif` - If statement (avoid `if`)
 - `int` - Interface (TypeScript only)
 
 ---
