@@ -6,10 +6,10 @@ local snippets = require('mini.snippets')
 
 snippets.setup({
   snippets = {
-    -- Global snippets - avoid prefixes that start with 't' (Colemak insert key)
-    { prefix = 'dd', body = '-- TODO: $0', desc = 'TODO comment' },
-    { prefix = 'fixme', body = '-- FIXME: $0', desc = 'FIXME comment' },
-    { prefix = 'note', body = '-- NOTE: $0', desc = 'NOTE comment' },
+    -- Global snippets - use '@' prefix to avoid Vim command conflicts
+    { prefix = '@d', body = '-- TODO: $0', desc = 'TODO comment' },
+    { prefix = '@f', body = '-- FIXME: $0', desc = 'FIXME comment' },
+    { prefix = '@n', body = '-- NOTE: $0', desc = 'NOTE comment' },
   },
 
   -- Language-specific snippets

@@ -269,9 +269,11 @@ Text objects work in operator-pending mode (after `d`, `c`, `y`), which doesn't 
 5. Press `<CR>` to exit snippet mode
 
 ### Global (all files)
-- `dd` - `-- TODO:` comment (avoid `todo` - conflicts with `t` insert)
-- `fixme` - `-- FIXME:` comment
-- `note` - `-- NOTE:` comment
+- `@d` - `-- TODO:` comment
+- `@f` - `-- FIXME:` comment
+- `@n` - `-- NOTE:` comment
+
+*Note: `@` prefix avoids Vim command conflicts (e.g., `dd` deletes line)*
 
 ### Lua
 - `fn` - Function
