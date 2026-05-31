@@ -1,8 +1,6 @@
 vim.g.mapleader = ' '
 vim.g.maplocalleader = '\\'
 
-print("init.lua loaded")
-
 -- General configuration
 require('keymaps')          -- Create new mappings
 require('notepad').setup()  -- Floating persistent notepad

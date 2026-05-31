@@ -42,3 +42,39 @@ layout_util.set_keymap('i', layout_util.ACTIONS.prev, function()
     return layout_util.get_action_mapping(layout_util.ACTIONS.prev)
   end
 end, { expr = true, replace_keycodes = true })
+
+-- Show only snippet completions with <C-j>
+vim.keymap.set('i', '<C-j>', function()
+  local MiniSnippets = require('mini.snippets')
+  -- Get matched snippets at cursor without inserting
+  local snippets = MiniSnippets.expand({ insert = false })
+
+  if not snippets or #snippets == 0 then
+    vim.notify('No snippets available', vim.log.levels.INFO)
+    return
+  end
+
+  -- Convert snippets to completion items format
+  local items = {}
+  for _, snip in ipairs(snippets) do
+    -- Build info text with description and body
+    local info_text = ''
+    if snip.desc then
+      info_text = snip.desc .. '\n\n'
+    end
+    if snip.body then
+      info_text = info_text .. snip.body
+    end
+
+    table.insert(items, {
+      word = snip.prefix,
+      abbr = snip.prefix,
+      menu = snip.desc or '',
+      info = info_text,  -- Show description and snippet body in info window
+      dup = 0,
+    })
+  end
+
+  -- Show completion menu with only snippets
+  vim.fn.complete(vim.fn.col('.'), items)
+end, { desc = 'Show snippet completions only' })

@@ -4,8 +4,6 @@
 # TODO: change log, versioning, etc.
 # TODO: linting requirements (via CI)
 
-# TODO: mini.snippets
-# TODO: completion menu is kinda fucked... sometimes it inserts these weird characters?
 # TODO: improve obsidian configuration
 # TODO: lualine not working for --Terminal--
 
@@ -34,7 +32,7 @@
           bash-language-server # Bash
           clang-tools # C
           dart # Dart (Flutter)
-          haskell-language-server # Haskell
+          # haskell-language-server # Haskell (provided by project environment)
           lua-language-server # Lua
           nil # Nix
           rust-analyzer # Rust

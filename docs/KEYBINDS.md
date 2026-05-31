@@ -144,10 +144,11 @@
 
 - `<C-m>` - Previous item in completion menu
   - `<C-p>` - For Qwerty bindings
-- `<C-i>` - Previous item in completion menu
+- `<C-i>` - Next item in completion menu
   - `<C-n>` - For Qwerty bindings
 - `<C-y>` - Accept selected completion
-- `<C-Space>` - Force two-step completion
+- `<C-Space>` - Show all completions (LSP, snippets, etc.)
+- `<C-j>` - Show only snippet completions
 
 ---
 
@@ -261,40 +262,39 @@ Text objects work in operator-pending mode (after `d`, `c`, `y`), which doesn't 
 
 ## Snippets
 
-**How to use:**
-1. Type the prefix (e.g., `fn`)
-2. Press `<Tab>` to expand
-3. Press `<Tab>` to jump to next position
-4. Press `<S-Tab>` to jump back
-5. Press `<CR>` to exit snippet mode
+**Keybindings:**
+- `<C-j>` - Browse available snippets (shows snippet-only completion menu)
+- `<Tab>` - Expand snippet / Jump to next tab stop
+- `<S-Tab>` - Jump to previous tab stop
+- `<CR>` - Exit snippet mode
 
-### Global (all files)
-- `@d` - `-- TODO:` comment
-- `@f` - `-- FIXME:` comment
-- `@n` - `-- NOTE:` comment
+**How to use snippets:**
+1. **Enter INSERT mode**
+2. **Either:**
+   - Type the prefix (e.g., `fn`, `td`, `p`) and press `<Tab>` to expand
+   - Press `<C-j>` to browse all available snippets for current filetype
+3. Navigate between tab stops with `<Tab>` (next) and `<S-Tab>` (previous)
+4. Press `<CR>` to exit snippet mode when done
 
-*Note: `@` prefix avoids Vim command conflicts (e.g., `dd` deletes line)*
+**Available for 19 languages:** Bash, C, CSS, Dart, Haskell, HTML, JavaScript, JSON, Lua, Nix, Rust, SCSS, SQL, TOML, TypeScript, YAML
 
-### Lua
-- `fn` - Function
-- `lf` - Local function
-- `lif` - If statement (avoid `if` - conflicts with `i` navigation)
-- `p` - Print statement
-- `req` - Require module
+**Common snippet conventions:**
+- `td` - TODO comment (adapts to language's comment syntax)
+- `p` - Print/log statement (`console.log`, `println!`, `print`, etc.)
+- `db` - Debug print (`console.debug`, `dbg!`, `debugPrint`)
+- `fn` - Function definition
+- `if`/`ie`/`ieie` - If/if-else/if-elseif-else statements
+- `for` - For loop (with variants: `fori`, `foro`, `forp`)
+- `wl` - While loop
+- `tc` - Try-catch block
+- `cl` - Class definition
 
-### Rust
-- `fn` - Function
-- `pfn` - Public function
-- `impl` - Impl block
-- `p` - Println macro
-- `test` - Test function
+**Global snippets (work in all filetypes):**
+- `@date` - Insert current date (YYYY-MM-DD)
+- `@time` - Insert current time (HH:MM:SS)
+- `@datetime` - Insert date and time
 
-### JavaScript/TypeScript
-- `fn` - Function
-- `af` - Arrow function
-- `cl` - Console.log
-- `lif` - If statement (avoid `if`)
-- `int` - Interface (TypeScript only)
+*Note: Full snippet reference available in `lua/config/snippets.lua`*
 
 ---
 
