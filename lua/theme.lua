@@ -69,6 +69,7 @@ require('lualine').setup({
   options = {
     component_separators = '',
     section_separators = { left = '\u{e0b0}', right = '\u{e0b2}' },
+    globalstatus = true,
     theme = {
       normal = {
         a = { fg = p.dark0_hard, bg = p.neutral_orange, gui = 'bold' },
@@ -101,7 +102,7 @@ require('lualine').setup({
         c = { fg = p.light1, bg = 'NONE' },
       },
       terminal = {
-        a = { fg = p.dark0_hard, bg = p.neutral_yellow, gui = 'bold' },
+        a = { fg = p.dark0_hard, bg = p.bright_aqua, gui = 'bold' },
         b = { fg = p.light1, bg = p.dark1 },
         -- c = { fg = 'NONE', bg = 'NONE' },
       },
@@ -119,7 +120,7 @@ require('lualine').setup({
             ['VISUAL'] = 'VISUAL ',
             ['V-BLOCK'] = 'VISUAL ',
             ['V-LINE'] = 'VISUAL ',
-            -- ['TERMINAL'] = 'TERMINAL', -- TODO: ???
+            ['TERMINAL'] = 'TERMINAL',
           }
           return modes[str] or str
         end,

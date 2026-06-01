@@ -114,7 +114,6 @@ This creates conflicts with existing Vim commands, which are then remapped to ma
 |------------|--------|--------|----------|
 | `l` | `e` | Move to end of word | **l**ast character |
 
-<!-- TODO: should we use `h` or just `<C-m>?` -->
 ### Marks
 
 | Colemak DH | QWERTY | Action | Mnemonic |

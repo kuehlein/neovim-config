@@ -2,15 +2,16 @@
 let
   inherit (pkgs) vimPlugins vimUtils;
 
-  # `harpoon2` is the most up-to-date version, use this unti `harpoon-2` is merged to `master`
+  # Custom build until `harpoon-2` is available in nixpkgs
+  # See docs/TECH_DEBT.md for details and update instructions
   harpoon-2 = vimUtils.buildVimPlugin {
     doCheck = false;
     pname = "harpoon2";
     src = pkgs.fetchFromGitHub {
-      hash = "sha256-L7FvOV6KvD58BnY3no5IudiKTdgkGqhpS85RoSxtl7U=";
+      hash = "sha256-qQSPVMdldksNZDPZvnTiXxty+GSUqMGz8nYEFDRezrQ=";
       owner = "ThePrimeagen";
       repo = "harpoon";
-      rev = "harpoon2";
+      rev = "87b1a3506211538f460786c23f98ec63ad9af4e5";
     };
     version = "unstable";
   };

@@ -24,7 +24,6 @@ flutter_tools.setup({
   flutter_lookup_cmd = 'which flutter',
   flutter_path = nil,
   lsp = {
-    color = { enabled = false },
     settings = {
       completeFunctionCalls = true,
       enableSnippets = true,

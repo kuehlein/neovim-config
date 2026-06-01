@@ -1,18 +1,12 @@
-# TODO: clean up git history
-# TODO: version 1.0.0
-# TODO: protected branch, github actions, etc?
-# TODO: change log, versioning, etc.
-# TODO: linting requirements (via CI)
-
-# TODO: improve obsidian configuration
-# TODO: lualine not working for --Terminal--
-
 {
   description = "Neovim config";
 
   inputs = {
     flake-utils.url = "github:numtide/flake-utils";
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+
+    # Third-party flake for up-to-date Claude Code (see docs/TECH_DEBT.md)
+    claude-code-nix.url = "github:sadjow/claude-code-nix";
   };
 
   outputs =
@@ -20,12 +14,16 @@
       self,
       flake-utils,
       nixpkgs,
+      claude-code-nix,
       ...
     }:
     flake-utils.lib.eachDefaultSystem (
       system:
       let
-        pkgs = import nixpkgs { inherit system; };
+        pkgs = import nixpkgs {
+          inherit system;
+          config.allowUnfree = true;
+        };
         plugins = import ./plugins.nix { inherit pkgs; };
 
         languageServers = with pkgs; [
@@ -41,6 +39,10 @@
           typescript-language-server # Typescript/Javascript
           vscode-langservers-extracted # CSS, HTML, JSON
           yaml-language-server # YAML
+        ];
+
+        tools = [
+          claude-code-nix.packages.${system}.default # Claude Code CLI (always up-to-date)
         ];
 
         # Symlink config dir into the store
@@ -80,7 +82,7 @@
             paths = [ wrappedNeovimConfig ];
             postBuild = ''
               wrapProgram $out/bin/nvim \
-                --prefix PATH : ${pkgs.lib.makeBinPath languageServers}
+                --prefix PATH : ${pkgs.lib.makeBinPath (languageServers ++ tools)}
             '';
           };
 

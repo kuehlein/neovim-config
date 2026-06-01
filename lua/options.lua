@@ -61,6 +61,9 @@ vim.opt.spell = false
 -- Better colors
 vim.opt.termguicolors = true
 
+-- Disable default mode indicator since lualine shows it
+vim.opt.showmode = false
+
 -- Move cursor to new split
 vim.opt.splitbelow = true
 vim.opt.splitright = true

@@ -57,6 +57,8 @@ Personal Neovim configuration built with Nix, optimized for the Colemak DH keybo
 
 **[Adding Languages](docs/LANGUAGES.md)** - How to add support for new languages
 
+**[Technical Debt](docs/TECH_DEBT.md)** - Known workarounds and planned improvements
+
 ---
 
 ## Structure
