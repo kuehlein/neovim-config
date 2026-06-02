@@ -1,11 +1,10 @@
 -- ============================================================================
 -- Claude Code Configuration
 -- ============================================================================
-
 require('claudecode').setup({})
 
 -- Equalize splits when entering Claude terminal buffer
-vim.api.nvim_create_autocmd({"TermOpen", "BufWinEnter"}, {
+vim.api.nvim_create_autocmd({ "TermOpen", "BufWinEnter" }, {
   callback = function()
     local bufname = vim.api.nvim_buf_get_name(0)
 
@@ -15,11 +14,11 @@ vim.api.nvim_create_autocmd({"TermOpen", "BufWinEnter"}, {
   end,
 })
 
--- Map <Esc> to exit terminal mode for all terminals (instead of <C-\><C-n>)
 vim.api.nvim_create_autocmd("TermOpen", {
   pattern = "*",
   callback = function()
-    vim.keymap.set('t', '<Esc>', [[<C-\><C-n>]], { buffer = true })
+    vim.opt_local.spell = false
+    vim.keymap.set('t', '<Esc>', [[<C-\><C-n>]], { buffer = true }) -- Map <Esc> to exit
   end,
 })
 
@@ -39,9 +38,9 @@ vim.keymap.set('n', "<leader>ad", "<cmd>ClaudeCodeDiffDeny<cr>", { desc = "Deny 
 vim.api.nvim_create_autocmd("FileType", {
   pattern = { "oil", "netrw" },
   callback = function()
-    vim.keymap.set('n', "<leader>at","<cmd>ClaudeCodeTreeAdd<cr>", {
+    vim.keymap.set('n', "<leader>at", "<cmd>ClaudeCodeTreeAdd<cr>", {
       desc = "Add file",
-      buffer = true  -- keymap only active in file explorer buffers
+      buffer = true -- keymap only active in file explorer buffers
     })
   end,
 })

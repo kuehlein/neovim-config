@@ -32,11 +32,17 @@ gruvbox.setup({
     ['DiagnosticSignInfo'] = { bg = p.dark0_hard, fg = p.bright_blue },
     ['DiagnosticSignHint'] = { bg = p.dark0_hard, fg = p.bright_aqua },
     ['DiagnosticUnnecessary'] = { undercurl = true, italic = true, fg = p.gray },
-    -- ['LspInlayHint'] = { bold = true, italic = true, bg = p.dark_aqua, fg = p.bright_aqua },
     ['LspInlayHint'] = { bold = true, italic = true, bg = p.dark0, fg = p.dark1 },
 
-    -- Rust
-    -- ['@lsp.mod.mutable.rust'] = { bold = true, bg = p.faded_red, fg = p.bright_red },
+    -- Markdown
+    ['markdownError'] = {},
+
+    -- Snippets - customize tabstop marker
+    ['MiniSnippetsCurrent'] = { fg = p.neutral_blue, underline = false },
+    ['MiniSnippetsCurrentReplace'] = { fg = p.neutral_blue, underline = false },
+    ['MiniSnippetsFinal'] = { fg = p.neutral_green, underline = false },
+    ['MiniSnippetsUnvisited'] = { fg = p.gray, underline = false },
+    ['MiniSnippetsVisited'] = { fg = p.gray, underline = false }
   },
   terminal_colors = true,
 })

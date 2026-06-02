@@ -107,7 +107,10 @@ harpoon = with vimPlugins; [
 **Status:** Enhancement requests
 **Priority:** Medium-Low
 
-- **Obsidian configuration:** Current setup could be improved
+- **Claude plugin layout broken**
+```
+Because we are resizing claude's split with `wincmd =`, the text in the terminal (where claude prompts us with "yes", "no", etc.) the text is can be quite messed up at times. So far, it seems like it is not worth the effort to fix this issue. In the future this problem may be resolved by changes in the plugin upstream.
+```
 
 ---
 

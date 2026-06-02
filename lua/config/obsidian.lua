@@ -1,10 +1,9 @@
 -- ============================================================================
 -- Obsidian configuration
 -- ============================================================================
-local vault_path = vim.fn.expand('~/Documents/obsidian-vault')
+-- Use env var with fallback (set OBSIDIAN_VAULT in your shell or nix config)
+local vault_path = os.getenv('OBSIDIAN_VAULT') or vim.fn.expand('~/Documents/obsidian-vault')
 
--- TODO: is there a better way to do this?
--- `vault_path` probably wont exist on NixOS system build
 if vim.fn.isdirectory(vault_path) == 1 then
   require('obsidian').setup({
     completion = {
@@ -18,7 +17,7 @@ if vim.fn.isdirectory(vault_path) == 1 then
     workspaces = {
       {
         name = 'notes',
-        path = os.getenv('HOME') .. '/Documents/obsidian-vault',
+        path = vault_path,
       },
     },
   })

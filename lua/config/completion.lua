@@ -16,6 +16,21 @@ mini_completion.setup({
 
   lsp_completion = {
     source_func = 'omnifunc',
+    -- Filter out Text items (kind = 1) - random buffer words
+    process_items = function(items)
+      return vim.tbl_filter(function(item)
+        return item.kind ~= 1
+      end, items)
+    end,
+    -- Simplify LSP snippets: add(${1:arg})$0 -> add($1)
+    snippet_insert = function(snippet)
+      -- Keep first placeholder as $1, remove rest
+      local simplified = snippet
+          :gsub('%$%{%d+:([^}]-)%}', '$1', 1) -- First ${n:text} -> $1
+          :gsub('%$%{[^}]-}', '')             -- Remove other ${...}
+          :gsub('%$0', '')                    -- Remove $0
+      vim.snippet.expand(simplified)
+    end,
   },
 
   mappings = {
@@ -70,7 +85,7 @@ vim.keymap.set('i', '<C-j>', function()
       word = snip.prefix,
       abbr = snip.prefix,
       menu = snip.desc or '',
-      info = info_text,  -- Show description and snippet body in info window
+      info = info_text, -- Show description and snippet body in info window
       dup = 0,
     })
   end
