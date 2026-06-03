@@ -344,7 +344,7 @@ snippets.setup({
     expand = '<Tab>',
     jump_next = '<Tab>',
     jump_prev = '<S-Tab>',
-    stop = '<CR>',
+    stop = '<Esc>',
   },
 })
 

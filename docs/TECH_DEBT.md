@@ -112,6 +112,31 @@ harpoon = with vimPlugins; [
 Because we are resizing claude's split with `wincmd =`, the text in the terminal (where claude prompts us with "yes", "no", etc.) the text is can be quite messed up at times. So far, it seems like it is not worth the effort to fix this issue. In the future this problem may be resolved by changes in the plugin upstream.
 ```
 
+### Keyboard Protocol Limitations
+
+**Status:** Known limitation - workaround applied
+**Priority:** Low
+**Location:** `lua/utils/layout.lua:27-28`
+
+**Problem:**
+Cannot distinguish `<Tab>` from `<C-i>` or `<CR>` (Enter) from `<C-m>` in Neovim keymaps, even with Kitty keyboard protocol enabled. While Kitty successfully sends distinct keycodes and Neovim receives them correctly, the `vim.keymap.set()` API doesn't support protocol-aware mapping strings.
+
+**Technical Details:**
+- Kitty keyboard protocol (CSI u) sends distinct codes for these legacy-ambiguous keys:
+  - Tab = `CSI 9 u`, Ctrl-I = `CSI 105 ; 5 u`
+  - Enter = `CSI 13 u`, Ctrl-M = `CSI 109 ; 5 u`
+- Neovim receives these correctly (verified with `nvim --clean` testing)
+- But `vim.keymap.set()` with `'<C-i>'` or `'<C-m>'` uses legacy keycodes that capture both keys
+- This is a known Neovim limitation tracked in [issue #5916](https://github.com/neovim/neovim/issues/5916) since 2017
+
+**Current Workaround:**
+Originally used `<C-i>` (conflicts with Tab) and `<C-m>` (conflicts with Enter) for Harpoon next/prev navigation in Colemak layout. Keeping current mappings despite conflicts - user accepts the limitation.
+
+**Future Resolution:**
+- Wait for Neovim to add protocol-aware mapping API
+- Monitor [issue #5916](https://github.com/neovim/neovim/issues/5916) for updates
+- Alternative: Could map raw escape sequences, but fragile and not recommended
+
 ---
 
 ## Maintenance Notes
