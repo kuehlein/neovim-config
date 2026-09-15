@@ -1,7 +1,13 @@
 -- ============================================================================
 -- Claude Code Configuration
 -- ============================================================================
-require('claudecode').setup({})
+require('claudecode').setup({
+  diff_opts = {
+    layout = 'vertical',        -- Inline vertical split: original | proposed
+    open_in_new_tab = false,    -- Keep diffs in the current tab, not a new one
+    keep_terminal_focus = true, -- Don't move the cursor into the diff while Claude works
+  },
+})
 
 -- Equalize splits when entering Claude terminal buffer
 vim.api.nvim_create_autocmd({ "TermOpen", "BufWinEnter" }, {

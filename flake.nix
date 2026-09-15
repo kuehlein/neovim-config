@@ -45,6 +45,14 @@
           claude-code-nix.packages.${system}.default # Claude Code CLI (always up-to-date)
         ];
 
+        # Runtime binaries used by plugins/commands, placed on Neovim's PATH.
+        imageTools = with pkgs; [
+          imagemagick # image.nvim `magick_cli` processor + `:Img` resize
+          curl # `:Img` URL download
+          wl-clipboard # `:Img` clipboard paste (Wayland: wl-paste)
+          xclip # `:Img` clipboard paste (X11)
+        ];
+
         # Symlink config dir into the store
         configDir = pkgs.stdenv.mkDerivation {
           name = "neovim-config";
@@ -82,7 +90,7 @@
             paths = [ wrappedNeovimConfig ];
             postBuild = ''
               wrapProgram $out/bin/nvim \
-                --prefix PATH : ${pkgs.lib.makeBinPath (languageServers ++ tools)}
+                --prefix PATH : ${pkgs.lib.makeBinPath (languageServers ++ tools ++ imageTools)}
             '';
           };
 

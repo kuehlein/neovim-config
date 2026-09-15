@@ -111,6 +111,54 @@ harpoon = with vimPlugins; [
 ```
 Because we are resizing claude's split with `wincmd =`, the text in the terminal (where claude prompts us with "yes", "no", etc.) the text is can be quite messed up at times. So far, it seems like it is not worth the effort to fix this issue. In the future this problem may be resolved by changes in the plugin upstream.
 ```
+- **Pressing "J" in rapid succession triggers error**
+```
+Error in CursorMoved Autocommands for "<buffer=3>":                                                                                                                                                             
+Lua callback: ...wrapped-0.12.2/share/nvim/runtime/lua/vim/diagnostic.lua:2160: Invalid 'line': out of range                                                                                                    
+stack traceback:                                                                                                                                                                                                
+        [C]: in function 'nvim_buf_set_extmark'                                                                                                                                                                 
+        ...wrapped-0.12.2/share/nvim/runtime/lua/vim/diagnostic.lua:2160: in function 'render_virtual_lines'                                                                                                    
+        ...wrapped-0.12.2/share/nvim/runtime/lua/vim/diagnostic.lua:2213: in function <...wrapped-0.12.2/share/nvim/runtime/lua/vim/diagnostic.lua:2212>
+```
+- **Claude opens many diff windows when running parallel agents**
+```
+When Claude runs multiple sub-agents (or issues parallel tool calls), each proposed
+change opens its own `openDiff` split at the same time, so several diff window pairs
+stack up and it becomes hard to see what is going on.
+
+The plugin (claudecode.nvim) processes diffs one-at-a-time and blocking for normal
+single-agent use, so this only happens with concurrent agents. There is currently no
+config option to queue, cap, or show only the "current" diff, and the plugin emits no
+diff-open/close events to hook, so a custom serialization layer would be fragile.
+
+Tracked upstream: coder/claudecode.nvim issues #205 (stale diffs accumulate) and #155
+(spawns many split windows). Mitigation for now: avoid parallel agents when you want to
+watch diffs land, or close leftovers with `<leader>ad` / `:q`.
+```
+
+### LSP `client.notify` Deprecation Warning
+
+**Status:** Cosmetic - upstream
+**Priority:** Low
+
+**Problem:**
+```
+client.notify is deprecated. Run ":checkhealth vim.deprecated" for more information
+```
+Neovim 0.11+ deprecated the function-style `client.notify(...)` in favor of the method
+form `client:notify(...)`. The warning is emitted by third-party plugins, not this
+config - `client.notify(` still appears in `lazydev.nvim` (`lua/lazydev/lsp.lua`),
+`oil.nvim` (`lua/oil/lsp/workspace.lua`), and `nvim-lspconfig`. lazydev is the most
+frequent trigger since it pushes updated `lua_ls` settings on every attach.
+
+**Current Solution:**
+None needed in this config - it is a harmless deprecation notice.
+
+**Future Resolution:**
+Resolves automatically as those plugins migrate to the method form. Picked up via the
+periodic `nix flake update nixpkgs` broad plugin refresh.
+
+---
 
 ### Keyboard Protocol Limitations
 

@@ -1,0 +1,10 @@
+# nix-direnv cache: symlinks into the nix store (~180k files, incl. full nixpkgs
+# source). Left untracked, it caused lua_ls to scan 100k+ files. See docs/TECH_DEBT.md.
+.direnv/
+
+# nix build output symlinks
+result
+result-*
+
+# Claude Code session/memory data
+.claude/

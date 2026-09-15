@@ -45,6 +45,9 @@ vim.lsp.config('lua_ls', {
       },
       workspace = {
         checkThirdParty = false,
+        -- Skip the direnv/nix-store symlink tree; otherwise lua_ls scans 100k+
+        -- files and warns. `.gitignore` covers this too, but be explicit.
+        ignoreDir = { '.direnv', 'result' },
       },
     },
   },

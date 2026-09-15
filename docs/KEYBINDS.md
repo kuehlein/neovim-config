@@ -11,6 +11,7 @@
 - [Claude](#Claude) - Claude integration
 - [Floating Terminal](#floating-terminal) - Floating terminal
 - [Notepad](#notepad) - Notepad
+- [Obsidian](#obsidian) - Obsidian vault notes
 - [Completion](#completion) - Autocompletion menu
 - [Harpoon](#harpoon) - Quick file switching
 - [Git](#git-vim-fugitive) - Version control
@@ -137,6 +138,18 @@
 - `<leader>n` - Open Notepad
 - `<Esc>` - Close Notepad (when open in normal mode)
 - `<C-s>` - Save note to workspace root
+
+---
+
+## Obsidian
+
+*Requires an Obsidian vault (set `OBSIDIAN_VAULT`, defaults to `~/Documents/obsidian-vault`)*
+
+- `<leader>on` - New note
+- `<leader>os` - Search notes
+- `<leader>ot` - Today's daily note
+- `<leader>ob` - Show backlinks
+- `<leader>ol` - Insert link
 
 ---
 
