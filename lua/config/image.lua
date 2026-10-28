@@ -48,6 +48,8 @@ local function put_image(name, max)
 
   if clip:match("^https?://") then
     vim.fn.system({ "curl", "-sfL", "-A", "nvim-img/1.0", clip, "-o", out })
+  elseif vim.fn.has("mac") == 1 then
+    vim.fn.system({ "pngpaste", out }) -- writes PNG straight to the file
   else
     local paste = vim.env.WAYLAND_DISPLAY
         and "wl-paste --type image/png"

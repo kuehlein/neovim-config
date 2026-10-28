@@ -46,12 +46,20 @@
         ];
 
         # Runtime binaries used by plugins/commands, placed on Neovim's PATH.
-        imageTools = with pkgs; [
-          imagemagick # image.nvim `magick_cli` processor + `:Img` resize
-          curl # `:Img` URL download
-          wl-clipboard # `:Img` clipboard paste (Wayland: wl-paste)
-          xclip # `:Img` clipboard paste (X11)
-        ];
+        imageTools =
+          with pkgs;
+          [
+            imagemagick # image.nvim `magick_cli` processor + `:Img` resize
+            curl # `:Img` URL download
+          ]
+          # Clipboard image extraction for `:Img`; the tool differs per platform.
+          ++ lib.optionals stdenv.hostPlatform.isLinux [
+            wl-clipboard # Wayland: wl-paste
+            xclip # X11
+          ]
+          ++ lib.optionals stdenv.hostPlatform.isDarwin [
+            pngpaste # macOS
+          ];
 
         # Symlink config dir into the store
         configDir = pkgs.stdenv.mkDerivation {
