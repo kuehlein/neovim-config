@@ -161,8 +161,10 @@ local function custom_snippets(context)
     { prefix = 'pcall', body = 'local ok, result = pcall($1)\nif ok then\n\t$0\nend', desc = 'Protected call', filetype = 'lua' },
 
     -- Markdown
-    { prefix = 'l', body = '[$1]($0)', desc = 'Link', filetype = 'markdown' },
-    { prefix = 'bl', body = '[$1:$2](Bible/$3/$4.md#^$0)', desc = 'Bible link', filetype = 'markdown' },
+    -- Note: `context.lang` is the Treesitter language at the cursor, which in
+    -- markdown prose is the injected `markdown_inline`, not `markdown`.
+    { prefix = 'l', body = '[$1]($0)', desc = 'Link', filetype = { 'markdown', 'markdown_inline' } },
+    { prefix = 'bl', body = '[$1:$2](Bible/$3/$4.md#^$0)', desc = 'Bible link', filetype = { 'markdown', 'markdown_inline' } },
 
     -- Nix
     { prefix = 'td', body = '# TODO: $0', desc = 'TODO comment', filetype = 'nix' },
@@ -321,11 +323,19 @@ local function custom_snippets(context)
     { prefix = 'al', body = '<<: *$1$0', desc = 'YAML alias', filetype = 'yaml' },
   }
 
-  -- Filter snippets based on current language/filetype
+  -- Filter snippets based on current language/filetype.
+  -- `snip.filetype` may be a string or a list of strings (e.g. markdown, whose
+  -- prose resolves to the `markdown_inline` Treesitter language at the cursor).
   local result = {}
   for _, snip in ipairs(all_snippets) do
-    -- Include snippet if it has no filetype (global) or matches current language
-    if not snip.filetype or snip.filetype == context.lang then
+    local ft = snip.filetype
+    local matches = not ft -- no filetype == global snippet
+    if type(ft) == 'string' then
+      matches = ft == context.lang
+    elseif type(ft) == 'table' then
+      matches = vim.tbl_contains(ft, context.lang)
+    end
+    if matches then
       local filtered_snip = { prefix = snip.prefix, body = snip.body, desc = snip.desc }
       table.insert(result, filtered_snip)
     end
