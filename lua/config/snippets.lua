@@ -161,8 +161,8 @@ local function custom_snippets(context)
     { prefix = 'pcall', body = 'local ok, result = pcall($1)\nif ok then\n\t$0\nend', desc = 'Protected call', filetype = 'lua' },
 
     -- Markdown
-    { prefix = 'l', body = '[$1]($0)', desc = 'Link', filetype = 'md' },
-    { prefix = 'bl', body = '[$1:$2](Bible/$3/$4.md#^$0)', desc = 'Bible link', filetype = 'md' },
+    { prefix = 'l', body = '[$1]($0)', desc = 'Link', filetype = 'markdown' },
+    { prefix = 'bl', body = '[$1:$2](Bible/$3/$4.md#^$0)', desc = 'Bible link', filetype = 'markdown' },
 
     -- Nix
     { prefix = 'td', body = '# TODO: $0', desc = 'TODO comment', filetype = 'nix' },
