@@ -23,11 +23,6 @@ local snippets = require('mini.snippets')
 -- context.lang contains the current buffer's filetype
 local function custom_snippets(context)
   local all_snippets = {
-    -- Global snippets
-    { prefix = '@date', body = '$CURRENT_YEAR-$CURRENT_MONTH-$CURRENT_DATE', desc = 'Current date (YYYY-MM-DD)' },
-    { prefix = '@time', body = '$CURRENT_HOUR:$CURRENT_MINUTE:$CURRENT_SECOND', desc = 'Current time (HH:MM:SS)' },
-    { prefix = '@datetime', body = '$CURRENT_YEAR-$CURRENT_MONTH-$CURRENT_DATE $CURRENT_HOUR:$CURRENT_MINUTE', desc = 'Date and time' },
-
     -- Bash
     { prefix = 'td', body = '# TODO: $0', desc = 'TODO comment', filetype = 'bash' },
     { prefix = 'sbash', body = '#!/usr/bin/env bash\n\nset -euo pipefail\n\n$0', desc = 'Bash script with strict mode', filetype = 'bash' },
@@ -164,6 +159,10 @@ local function custom_snippets(context)
     { prefix = 'tbl', body = 'local $1 = { $0 }', desc = 'Table definition', filetype = 'lua' },
     { prefix = 'lvi', body = 'local $1 = vim.$0', desc = 'Local vim variable', filetype = 'lua' },
     { prefix = 'pcall', body = 'local ok, result = pcall($1)\nif ok then\n\t$0\nend', desc = 'Protected call', filetype = 'lua' },
+
+    -- Markdown
+    { prefix = 'l', body = '[$1]($0)', desc = 'Link', filetype = 'md' },
+    { prefix = 'bl', body = '[$1:$2](Bible/$3/$4.md#^$0)', desc = 'Bible link', filetype = 'md' },
 
     -- Nix
     { prefix = 'td', body = '# TODO: $0', desc = 'TODO comment', filetype = 'nix' },
