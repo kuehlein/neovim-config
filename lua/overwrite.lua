@@ -10,9 +10,11 @@ vim.keymap.set('n', '<C-u>', '<C-u>zz')
 -- Overwrite marks to add `zz`
 vim.keymap.set("n", "'", function()
   local char = vim.fn.getcharstr()
-  local pos = vim.api.nvim_buf_get_mark(0, char)
+  -- pcall guards against a non-mark char (e.g. <Esc> to cancel), which would
+  -- otherwise throw "Invalid mark name".
+  local ok, pos = pcall(vim.api.nvim_buf_get_mark, 0, char)
 
-  if pos[1] ~= 0 then
+  if ok and pos[1] ~= 0 then
     vim.cmd("normal! '" .. char .. 'zz')
   end
 end)

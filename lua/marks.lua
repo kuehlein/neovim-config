@@ -9,7 +9,7 @@ local SIGN_COLUMN_MARK_INDICATOR_HIGHLIGHT_GROUP = 'SignColumnMarkIndicator'
 
 local M = {}
 
-function PlaceMarkIndicator(char)
+local function PlaceMarkIndicator(char)
   local mark_pos = vim.api.nvim_buf_get_mark(0, char)
 
   if mark_pos[1] > 0 then
@@ -26,7 +26,7 @@ function PlaceMarkIndicator(char)
   end
 end
 
-function DisplayMarkIndicator()
+local function DisplayMarkIndicator()
   if vim.o.signcolumn == 'no' then
     return
   end
@@ -71,7 +71,7 @@ vim.api.nvim_create_autocmd({
   end,
 })
 
-function ToggleMark(char)
+local function ToggleMark(char)
   local current_line = vim.api.nvim_win_get_cursor(0)[1]
   local mark_pos = vim.api.nvim_buf_get_mark(0, char)
 

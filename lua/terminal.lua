@@ -21,7 +21,7 @@ local function toggle_terminal()
   _, term_win = floating_window_util.create_window(nil, nil, term_buf)
 
   if vim.api.nvim_buf_line_count(term_buf) <= 1 and vim.api.nvim_buf_get_lines(term_buf, 0, 1, false)[1] == "" then
-    vim.fn.jobstart(vim.o.shell, { term = true, buffer = term_buf })
+    vim.fn.jobstart(vim.o.shell, { term = true })
   end
 
   vim.cmd.startinsert()

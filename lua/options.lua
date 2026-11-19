@@ -15,8 +15,9 @@ vim.opt.tabstop = 2
 vim.api.nvim_create_autocmd('FileType', {
   pattern = '*',
   callback = function()
-    -- Prevent comment continuation for all filetypes.
-    vim.opt.formatoptions:remove({ 'c', 'r', 'o' })
+    -- Prevent comment continuation. opt_local so it's set per buffer rather
+    -- than mutating the global default.
+    vim.opt_local.formatoptions:remove({ 'c', 'r', 'o' })
   end,
 })
 

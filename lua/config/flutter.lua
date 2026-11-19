@@ -13,7 +13,6 @@ flutter_tools.setup({
     enabled = true,
     register_configurations = function(_)
       require('dap').configurations.dart = {}
-      require('dapui').setup()
     end,
     run_via_dap = true,
   },
@@ -22,7 +21,6 @@ flutter_tools.setup({
     open_cmd = 'vnew',
   },
   flutter_lookup_cmd = 'which flutter',
-  flutter_path = nil,
   lsp = {
     settings = {
       completeFunctionCalls = true,
