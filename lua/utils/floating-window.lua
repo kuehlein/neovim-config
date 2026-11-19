@@ -63,9 +63,9 @@ function M.create_window(width, height, buf, opts)
     border = 'rounded',
 
     title = opts.title,
-    title_pos = opts.title and 'center' or nil,
+    title_pos = opts.title and (opts.title_pos or 'center') or nil,
     footer = opts.footer,
-    footer_pos = opts.footer and 'center' or nil,
+    footer_pos = opts.footer and (opts.footer_pos or 'center') or nil,
     zindex = opts.zindex or 50,
   }
 

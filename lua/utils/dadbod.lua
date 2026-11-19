@@ -312,13 +312,26 @@ local function submit(state)
     { title = 'Database Connection' }
   )
 
-  -- Refresh DBUI if it's open
+  -- Refresh DBUI drawer in place if it's open (no close/reopen flicker, keeps
+  -- the user's window/cursor). No-op when the drawer is closed.
   vim.schedule(function()
     for _, win in ipairs(vim.api.nvim_list_wins()) do
       local buf = vim.api.nvim_win_get_buf(win)
       if vim.bo[buf].filetype == 'dbui' then
-        vim.cmd.DBUIToggle()
-        vim.cmd.DBUIToggle()
+        -- redraw()'s full-refresh branch echoes two info messages; suppress them
+        -- (we already notified "Connection created"). Restore the flag even on
+        -- error; feedkeys("x") is synchronous so the redraw finishes first.
+        local had = vim.g.db_ui_disable_info_notifications
+        vim.g.db_ui_disable_info_notifications = 1
+        pcall(vim.api.nvim_win_call, win, function()
+          local view = vim.fn.winsaveview()
+          -- Level-0 line so redraw() hits the {dbs:1} branch (re-reads connections.json)
+          vim.api.nvim_win_set_cursor(win, { 1, 0 })
+          -- <Plug>(DBUI_Redraw); 'x' runs it synchronously
+          vim.cmd('call feedkeys("\\<Plug>(DBUI_Redraw)", "x")')
+          vim.fn.winrestview(view)
+        end)
+        vim.g.db_ui_disable_info_notifications = had
         break
       end
     end
@@ -462,10 +475,10 @@ local function create_window()
     '[a-z]'
   )
 
-  local buf, win = floating_window_util.create_window(width, height)
-
-  vim.api.nvim_win_set_config(win, {
+  local buf, win = floating_window_util.create_window(width, height, nil, {
     title = " New Database Connection ",
+    -- Keep the title left-aligned (create_window would otherwise center it)
+    title_pos = "left",
     footer = string.format(
       " <C-%s/%s> DB type • <C-s> Save • <Esc>/q Close ",
       prev_action_mapping,
