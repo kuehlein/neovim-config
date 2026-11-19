@@ -19,7 +19,9 @@ vim.api.nvim_create_autocmd({ "TermOpen", "BufWinEnter" }, {
   callback = function()
     local bufname = vim.api.nvim_buf_get_name(0)
 
-    if bufname:match("claude") then
+    -- Guard on buftype so only the Claude *terminal* is pinned, not source
+    -- files whose path contains "claude" (e.g. this file, ~/.claude/...).
+    if vim.bo.buftype == "terminal" and bufname:match("claude") then
       if vim.fn.exists("&winfixbuf") == 1 then
         vim.wo.winfixbuf = true
       end

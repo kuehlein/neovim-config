@@ -20,8 +20,7 @@ vim.lsp.enable('clangd')
 -- CSS,
 vim.lsp.enable('cssls')
 
--- Dart
-vim.lsp.enable('dartls')
+-- Dart is handled by flutter-tools (see flutter.lua), which starts dartls itself.
 
 -- Haskell
 vim.lsp.enable('hls')

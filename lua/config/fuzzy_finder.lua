@@ -33,7 +33,7 @@ fzf.setup({
   winopts = {
     backdrop = 33,
     preview = {
-      scrollbar = 'false',
+      scrollbar = false,
     },
   },
   ---@diagnostic enable: missing-fields

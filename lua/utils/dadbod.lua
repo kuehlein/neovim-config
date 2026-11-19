@@ -356,9 +356,10 @@ local function setup_keymaps(state)
     end
   end
 
+  -- Stored as an array so `close()`'s ipairs cleanup actually unmaps them.
   M.reactive_ids = {
-    next_id = layout_util.set_keymap('n', layout_util.ACTIONS.next, function() cycle_db_type(state, 1) end, base_opts),
-    prev_id = layout_util.set_keymap('n', layout_util.ACTIONS.prev, function() cycle_db_type(state, -1) end, base_opts),
+    layout_util.set_keymap('n', layout_util.ACTIONS.next, function() cycle_db_type(state, 1) end, base_opts),
+    layout_util.set_keymap('n', layout_util.ACTIONS.prev, function() cycle_db_type(state, -1) end, base_opts),
   }
 
   -- Close mappings
@@ -533,7 +534,7 @@ end
 -- Setup
 -- ============================================================================
 function M.setup()
-  vim.g.db_ui_save_location = vim.fn.stdpath('data') .. DEFAULT_SAVE_LOCATION
+  vim.g.db_ui_save_location = DEFAULT_SAVE_LOCATION
 
   vim.api.nvim_create_user_command('DBUIConnectionForm', toggle, {
     desc = 'Open database connection form',
