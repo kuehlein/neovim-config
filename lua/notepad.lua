@@ -6,8 +6,6 @@ local floating_window_util = require('utils.floating-window')
 local M = {}
 
 local SAVE_DIR = vim.fn.stdpath('data') .. '/notes'
-local NOTE_BUF_NAME = 'notes-nvim'
-local SAVE_DIALOGUE_BUF_NAME = 'notes-nvim-save-dialogue'
 
 local save_file = nil
 local note_buf = nil
@@ -176,7 +174,7 @@ local function open_save_dialogue()
 
   local workspace_root = get_workspace_root()
 
-  save_dialogue_buf = floating_window_util.create_buffer(SAVE_DIALOGUE_BUF_NAME)
+  save_dialogue_buf = floating_window_util.create_buffer()
   vim.bo[save_dialogue_buf].buftype = 'prompt'
 
   local width = 60
@@ -213,10 +211,10 @@ local function open_save_dialogue()
     buffer = save_dialogue_buf,
     once = true,
     callback = function()
-      -- Allow save to complete
-      vim.defer_fn(function()
-        close_save_dialogue()
-      end, 10)
+      -- Defer out of the BufLeave event so this runs after any in-progress
+      -- save (do_save) finishes tearing down; close_save_dialogue is
+      -- idempotent, so a redundant call here is a safe no-op.
+      vim.schedule(close_save_dialogue)
     end,
   })
 
@@ -229,7 +227,9 @@ end
 
 local function close_notepad()
   if note_win and vim.api.nvim_win_is_valid(note_win) then
-    save_tmp()
+    -- The WinClosed autocmd (registered in open_notepad) saves on close -- it
+    -- fires for every close path while the buffer is still valid -- so no
+    -- explicit save is needed here.
     vim.api.nvim_win_close(note_win, true)
     note_win = nil
   end
@@ -237,7 +237,7 @@ end
 
 local function open_notepad()
   if not note_buf or not vim.api.nvim_buf_is_valid(note_buf) then
-    note_buf = floating_window_util.create_buffer(NOTE_BUF_NAME)
+    note_buf = floating_window_util.create_buffer()
     vim.bo[note_buf].modifiable = true
 
     local content = load_tmp()
