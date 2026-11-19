@@ -76,6 +76,10 @@ require('lualine').setup({
     component_separators = '',
     section_separators = { left = '\u{e0b0}', right = '\u{e0b2}' },
     globalstatus = true,
+    -- Keep the winbar off special / non-file windows.
+    disabled_filetypes = {
+      winbar = { 'oil', 'harpoon', 'dbui', 'dbout', 'dadbod-connection-form' },
+    },
     theme = {
       normal = {
         a = { fg = p.dark0_hard, bg = p.neutral_orange, gui = 'bold' },
@@ -133,5 +137,15 @@ require('lualine').setup({
       },
     },
     lualine_x = { 'filetype' },
+  },
+
+  -- Show each split's filename at the top of the window (active and inactive),
+  -- so you can tell which file a split holds regardless of focus. The bottom
+  -- statusline stays a single global bar (globalstatus = true).
+  winbar = {
+    lualine_c = { { 'filename', path = 1 } },
+  },
+  inactive_winbar = {
+    lualine_c = { { 'filename', path = 1 } },
   },
 })
