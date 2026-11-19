@@ -15,7 +15,6 @@ local function PlaceMarkIndicator(char)
   if mark_pos[1] > 0 then
     local sign_name = 'MarkSign_' .. char
 
-    vim.fn.sign_define(sign_name, { text = char, texthl = SIGN_COLUMN_MARK_INDICATOR_HIGHLIGHT_GROUP })
     vim.fn.sign_place(
       0,               -- Sign ID (0 allows automatic assignment)
       'MarkSignGroup', -- Group name to place/unplace marks
@@ -98,5 +97,16 @@ end
 
 -- Use the correct colors for highlighting marks
 vim.api.nvim_set_hl(0, SIGN_COLUMN_MARK_INDICATOR_HIGHLIGHT_GROUP, { fg = p.bright_orange })
+
+-- Define each mark sign once at load time so the hot path (DisplayMarkIndicator
+-- on every CursorHold/BufEnter) only places/unplaces signs instead of
+-- redefining ~30 of them each tick. Covers the special marks and a-z.
+local MARK_SIGN_CHARS = { '[', ']', '.', "'" }
+for i = string.byte('a'), string.byte('z') do
+  MARK_SIGN_CHARS[#MARK_SIGN_CHARS + 1] = string.char(i)
+end
+for _, char in ipairs(MARK_SIGN_CHARS) do
+  vim.fn.sign_define('MarkSign_' .. char, { text = char, texthl = SIGN_COLUMN_MARK_INDICATOR_HIGHLIGHT_GROUP })
+end
 
 return M
