@@ -2,6 +2,9 @@
 -- Claude Code Configuration
 -- ============================================================================
 require('claudecode').setup({
+  terminal = {
+    split_width_percentage = 0.33, -- Open Claude as a ~33% right-side split
+  },
   diff_opts = {
     layout = 'vertical',        -- Inline vertical split: original | proposed
     open_in_new_tab = false,    -- Keep diffs in the current tab, not a new one
@@ -9,13 +12,17 @@ require('claudecode').setup({
   },
 })
 
--- Equalize splits when entering Claude terminal buffer
+-- Pin the Claude window to its terminal buffer so a stray keystroke can't swap
+-- a different buffer into it (winfixbuf blocks the switch with E1513 instead of
+-- hijacking the window). Width is handled by split_width_percentage above.
 vim.api.nvim_create_autocmd({ "TermOpen", "BufWinEnter" }, {
   callback = function()
     local bufname = vim.api.nvim_buf_get_name(0)
 
     if bufname:match("claude") then
-      vim.cmd("wincmd =")
+      if vim.fn.exists("&winfixbuf") == 1 then
+        vim.wo.winfixbuf = true
+      end
     end
   end,
 })
