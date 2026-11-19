@@ -14,7 +14,7 @@ Personal Neovim configuration built with Nix, optimized for the Colemak DH keybo
 ## Plugins
 
 **Core Functionality:**
-- **mini.nvim** - Lightweight plugin suite (completion, pairs, icons, diff, git, ai, snippets)
+- **mini.nvim** - Lightweight plugin suite (completion, pairs, diff, git, ai, snippets)
 - **nvim-lspconfig** - LSP client configuration
 - **nvim-treesitter** - Advanced syntax highlighting
 
@@ -36,7 +36,6 @@ Personal Neovim configuration built with Nix, optimized for the Colemak DH keybo
 **Theme & UI:**
 - **gruvbox.nvim** - Colorscheme
 - **lualine.nvim** - Statusline
-- **mini.icons** - File/LSP icons
 
 **Markdown & Notes:**
 - **render-markdown.nvim** - In-editor markdown rendering
@@ -71,7 +70,7 @@ Personal Neovim configuration built with Nix, optimized for the Colemak DH keybo
 ├── lua/
 │   ├── config/
 │   │   ├── completion.lua      # Mini.completion setup
-│   │   ├── fzf.lua             # Fuzzy finder
+│   │   ├── fuzzy_finder.lua    # Fuzzy finder
 │   │   ├── harpoon.lua         # Quick file navigation
 │   │   ├── lsp.lua             # Language server configuration
 │   │   ├── obsidian.lua        # Note-taking

@@ -128,7 +128,7 @@ vim.api.nvim_create_autocmd('LspAttach', {
   end,
 })
 
--- Shortcut for `<C-w>d<C-w>w`
+-- Open the diagnostic float; the first call opens it, the second focuses it
 vim.keymap.set('n', '<leader>e', '<Nop>', {
   callback = function()
     -- first call opens the error window, second jumps inside

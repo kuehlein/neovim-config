@@ -9,7 +9,7 @@ This document tracks technical debt, workarounds, and temporary solutions in thi
 ### Claude Code CLI (Third-party Flake)
 
 **Status:** Active workaround
-**Location:** `flake.nix:16, 52`
+**Location:** `flake.nix:9, 44-46`
 
 **Problem:**
 The official nixpkgs repository often lags behind Claude Code releases. Version 2.0.11 in nixpkgs had a critical bug (`Cannot read properties of null (reading 'alwaysThinking')`) that prevented normal operation.
@@ -85,7 +85,7 @@ harpoon = with vimPlugins; [
 ```
 
 **References:**
-- Comment in code: "use this until `harpoon-2` is merged to `master`"
+- Comment in code: "Custom build until `harpoon-2` is available in nixpkgs" (`plugins.nix:5`)
 
 ---
 
@@ -107,10 +107,6 @@ harpoon = with vimPlugins; [
 **Status:** Enhancement requests
 **Priority:** Medium-Low
 
-- **Claude plugin layout broken**
-```
-Because we are resizing claude's split with `wincmd =`, the text in the terminal (where claude prompts us with "yes", "no", etc.) the text is can be quite messed up at times. So far, it seems like it is not worth the effort to fix this issue. In the future this problem may be resolved by changes in the plugin upstream.
-```
 - **Pressing "J" in rapid succession triggers error**
 ```
 Error in CursorMoved Autocommands for "<buffer=3>":                                                                                                                                                             

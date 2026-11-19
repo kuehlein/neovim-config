@@ -31,7 +31,7 @@ This document describes keybinding changes made to accommodate the Colemak DH ke
 | **Insert** | `t` / `T` | `i` / `I` | `i` used for navigation |
 | **End of word** | `l` | `e` | `e` used for navigation |
 | **Search next** | `;` / `,` | `n` / `N` | `n` used for navigation |
-| **Marks** | `<C-m>` | `m` | `m` used for navigation |
+| **Marks** | `h` | `m` | `m` used for navigation |
 | **Textobjects** | `i` / `a` | `i` / `a` | No conflict - different modes |
 
 
@@ -63,10 +63,8 @@ This creates conflicts with existing Vim commands, which are then remapped to ma
 
 | Colemak DH | QWERTY | Action |
 |------------|--------|--------|
-| `gm` | `gh` | Move left (display line) |
 | `gn` | `gj` | Move down (display line) |
 | `ge` | `gk` | Move up (display line) |
-| `gi` | `gl` | Move right (display line) |
 
 ### Screen Scrolling
 
@@ -92,8 +90,8 @@ This creates conflicts with existing Vim commands, which are then remapped to ma
 
 | Colemak DH | QWERTY | Action |
 |------------|--------|--------|
-| `<C-n>` | `<C-n>` (unchanged) | Move to next item |
-| `<C-e>` | `<C-p>` | Move to previous item |
+| `<C-i>` | `<C-n>` | Move to next item |
+| `<C-m>` | `<C-p>` | Move to previous item |
 
 ---
 
@@ -120,7 +118,7 @@ This creates conflicts with existing Vim commands, which are then remapped to ma
 |------------|--------|--------|----------|
 | `h` | `m` | Set mark | **h**ighlight position |
 
-**Note:** Due to `m` being used for navigation, the standard `m<char>` mark command is remapped to `h<char>` for local marks. See [Keybindings](Keybinds.md#navigation-overwrites) for details.
+**Note:** Due to `m` being used for navigation, the standard `m<char>` mark command is remapped to `h<char>` for local marks. See [Keybindings](KEYBINDS.md#navigation-overwrites) for details.
 
 ---
 

@@ -40,10 +40,10 @@
 | Select quick files | `<C-1>`-`<C-5>` | Harpoon |
 | Git status | `<leader>gs` | Fugitive |
 | Go to definition | `gd` | LSP |
-| Show references | `grr` | LSP |
+| Show references | `gr` | LSP |
 | Show docs | `K` | LSP |
-| Rename symbol | `grn` | LSP |
-| Code action | `gra` | LSP |
+| Rename symbol | `<leader>rn` | LSP |
+| Code action | `<leader>ra` | LSP |
 | Format code | `<leader>f` | LSP |
 | Diagnostics | `<leader>e` | LSP |
 | Next/Prev Diagnostic | `]d`/`[d` | LSP |
@@ -172,7 +172,7 @@
 
 - `<leader>ah` - Add current buffer to Harpoon list
 - `<leader><leader>` - Open Harpoon file list
-- `<C-1>` through `<C-5>` - Jump to file 1-9 in list
+- `<C-1>` through `<C-5>` - Jump to file 1-5 in list
 - `<C-m>` - Previous file in Harpoon list (for Colemak bindings)
   - `<C-p>` (For Qwerty bindings)
 - `<C-i>` - Next file in Harpoon list (for Colemak bindings)
@@ -280,7 +280,7 @@ Text objects work in operator-pending mode (after `d`, `c`, `y`), which doesn't 
 - `<C-j>` - Browse available snippets (shows snippet-only completion menu)
 - `<Tab>` - Expand snippet / Jump to next tab stop
 - `<S-Tab>` - Jump to previous tab stop
-- `<CR>` - Exit snippet mode
+- `<Esc>` - Exit snippet mode
 
 **How to use snippets:**
 1. **Enter INSERT mode**
@@ -288,9 +288,9 @@ Text objects work in operator-pending mode (after `d`, `c`, `y`), which doesn't 
    - Type the prefix (e.g., `fn`, `td`, `p`) and press `<Tab>` to expand
    - Press `<C-j>` to browse all available snippets for current filetype
 3. Navigate between tab stops with `<Tab>` (next) and `<S-Tab>` (previous)
-4. Press `<CR>` to exit snippet mode when done
+4. Press `<Esc>` to exit snippet mode when done
 
-**Available for 19 languages:** Bash, C, CSS, Dart, Haskell, HTML, JavaScript, JSON, Lua, Nix, Rust, SCSS, SQL, TOML, TypeScript, YAML
+**Available for 17 languages:** Bash, C, CSS, Dart, Haskell, HTML, JavaScript, JSON, Lua, Markdown, Nix, Rust, SCSS, SQL, TOML, TypeScript, YAML
 
 **Common snippet conventions:**
 - `td` - TODO comment (adapts to language's comment syntax)
@@ -302,11 +302,6 @@ Text objects work in operator-pending mode (after `d`, `c`, `y`), which doesn't 
 - `wl` - While loop
 - `tc` - Try-catch block
 - `cl` - Class definition
-
-**Global snippets (work in all filetypes):**
-- `@date` - Insert current date (YYYY-MM-DD)
-- `@time` - Insert current time (HH:MM:SS)
-- `@datetime` - Insert date and time
 
 *Note: Full snippet reference available in `lua/config/snippets.lua`*
 

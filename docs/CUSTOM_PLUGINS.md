@@ -33,7 +33,7 @@ Opens a persistent, floating terminal. Good for running a process in the backgro
 
 ## Notepad
 
-Opens a persistent, floating terminal. Good for running a process in the background.
+Opens a persistent, per-workspace markdown scratch notepad in a floating window. Each workspace gets its own note, which is auto-persisted to disk so it survives across sessions.
 
 - `<leader>n` - Toggle open notepad.
 - `<Esc>` - Close notepad (when it is open and in normal mode).
