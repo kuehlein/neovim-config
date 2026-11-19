@@ -239,7 +239,6 @@ local function open_notepad()
   if not note_buf or not vim.api.nvim_buf_is_valid(note_buf) then
     note_buf = floating_window_util.create_buffer(NOTE_BUF_NAME)
     vim.bo[note_buf].modifiable = true
-    vim.bo[note_buf].filetype = 'markdown'
 
     local content = load_tmp()
     if #content > 0 then
@@ -251,6 +250,13 @@ local function open_notepad()
     title = ' Notes ',
     footer = ' <C-s> Save As • <Esc>/q Close ',
   })
+
+  -- Set the filetype after the window exists (and is current) so the markdown
+  -- FileType autocmd applies its window-local options (wrap, linebreak, spell)
+  -- to the notes window itself. Setting it earlier, while the buffer was not
+  -- yet displayed, meant 'wrap' never landed here -- it instead depended on
+  -- whichever window was current, which is why wrap only worked after a toggle.
+  vim.bo[note_buf].filetype = 'markdown'
 
   vim.wo[note_win].nu = true
   vim.wo[note_win].relativenumber = true
