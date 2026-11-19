@@ -32,18 +32,40 @@ end
 
 vim.keymap.set('n', '<leader>on', '<cmd>Obsidian new<CR>', { desc = 'New note' })
 vim.keymap.set('n', '<leader>os', '<cmd>Obsidian search<CR>', { desc = 'Search notes' })
-vim.keymap.set('n', '<leader>ot', '<cmd>Obsidian today<CR>', { desc = 'Today note' })
+vim.keymap.set('n', '<leader>ot', ':Obsidian template ', { desc = 'Insert template' })
 vim.keymap.set('n', '<leader>ob', '<cmd>Obsidian backlinks<CR>', { desc = 'Backlinks' })
 vim.keymap.set('n', '<leader>ol', '<cmd>Obsidian link<CR>', { desc = 'Insert link' })
 
--- Autocommand
-vim.api.nvim_create_autocmd("BufNewFile", {
-  pattern = "*/orthodoxy/saints/*.md",
-  callback = function()
-    -- defer so obsidian.nvim has the buffer registered as a note first
-    vim.defer_fn(function()
-      vim.cmd("ObsidianTemplate saint")
-    end, 50)
+-- ============================================================================
+-- Make <CR> on a link record a jump so <C-o> / '' / <C-t> can return.
+-- ============================================================================
+-- obsidian.nvim's own <CR> follows links via api.open_note ->
+-- nvim_win_set_cursor, which bypasses the jumplist for same-file targets, so
+-- there's nothing to jump back to. Routing a link-follow through the LSP
+-- definition path instead lets core Neovim record the jump (it runs
+-- `normal! m'` + settagstack before moving the cursor). Non-link <CR> presses
+-- fall back to obsidian's smart action (checkbox toggle, heading fold, etc.).
+--
+-- Installed on BufEnter (not FileType) and deferred because obsidian
+-- re-installs its own <CR> map on every BufEnter; the defer lets ours win.
+vim.api.nvim_create_autocmd("BufEnter", {
+  pattern = "*.md",
+  group = vim.api.nvim_create_augroup("obsidian_jumplist_fix", { clear = true }),
+  callback = function(ev)
+    vim.schedule(function()
+      if not vim.api.nvim_buf_is_valid(ev.buf) then return end
+      if not vim.b[ev.buf].obsidian_buffer then return end -- only real obsidian notes
+      local api = require("obsidian.api")
+      vim.keymap.set("n", "<CR>", function()
+        if api.cursor_link() then
+          vim.lsp.buf.definition() -- core records the jump, then follows the link
+        else
+          local keys = api.smart_action()
+          vim.api.nvim_feedkeys(
+            vim.api.nvim_replace_termcodes(keys, true, false, true), "n", false)
+        end
+      end, { buffer = ev.buf, desc = "Obsidian smart action (jump-aware via LSP)" })
+    end)
   end,
 })
 

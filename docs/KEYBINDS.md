@@ -147,9 +147,10 @@
 
 - `<leader>on` - New note
 - `<leader>os` - Search notes
-- `<leader>ot` - Today's daily note
+- `<leader>ot` - Insert template (type a name, e.g. `<leader>ot saint<CR>`, or leave blank to pick)
 - `<leader>ob` - Show backlinks
 - `<leader>ol` - Insert link
+- `<CR>` (on a link) - Follow link; records a jump, so `<C-o>` / `''` return you
 
 ---
 
