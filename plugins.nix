@@ -62,7 +62,6 @@ let
         ];
         git = with vimPlugins; [
           mini-diff
-          mini-git
           vim-fugitive
         ];
         fileTree = with vimPlugins; [ oil-nvim ];
@@ -73,7 +72,7 @@ let
         ];
         hex_colors = with vimPlugins; [ nvim-colorizer-lua ];
         image = with vimPlugins; [ image-nvim ];
-        lsp = with vimPlugins; [ lazydev-nvim luvit-meta nvim-lspconfig ];
+        lsp = with vimPlugins; [ lazydev-nvim nvim-lspconfig ];
         obsidian = with vimPlugins; [ obsidian-nvim ];
         pairs = with vimPlugins; [ mini-pairs ];
         preview = with vimPlugins; [ render-markdown-nvim ];
